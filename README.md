@@ -1,5 +1,5 @@
 # 乐园之土
-使用js,lua,bsh编写Android应用
+使用js(lua)编写Android应用
 <br />
 <br />[码云](https://gitee.com/MikaGuraN/HL4A)
 <br />[Github](https://github.com/MikaGuraN/HL4A)
@@ -10,6 +10,10 @@
 <br />[GNU GENERAL PUBLIC LICENSE 3](./LICENSE)<pre>
 
 还在不断完善啦
+
+lua本来写好了，但是
+不支持多线程(多线程就要重新开状态机)
+所以暂时去掉了
 
 欢迎加入讨论群：538982726
 
