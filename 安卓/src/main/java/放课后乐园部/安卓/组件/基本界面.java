@@ -296,13 +296,13 @@ public class 基本界面 extends Activity implements 可处理的 {
             startActivityForResult($意图, $请求码);
 
     }
-
+    
     public void 请求权限() {
         if (设备工具.取SDK() < 23) {
             权限回调事件();
             return;
         }
-        权限工具.请求所有(this, 233);
+        权限工具.默认请求(this);
     }
 
 

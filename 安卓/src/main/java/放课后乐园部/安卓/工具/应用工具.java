@@ -15,10 +15,11 @@ import 放课后乐园部.安卓.组件.*;
 import 放课后乐园部.工具.*;
 import 放课后乐园部.收集.*;
 import 放课后乐园部.线程.*;
+import hl4a.runtime.*;
 
 public class 应用工具 {
 
-    private static 集合<基本界面> 所有界面 = new 集合<基本界面>();
+    private static 集合<Activity> 所有界面 = new 集合<Activity>();
 
     public static boolean 已安装(String $包名) {
         PackageManager $PM = 上下文工具.取全局上下文().getPackageManager();
@@ -30,25 +31,30 @@ public class 应用工具 {
         }
     }
     
-    public static void 初始化界面(基本界面 $界面) {
+    public static void hh() {
+        
+    }
+    
+    public static void 初始化界面(Activity $界面) {
         新建界面($界面);
         自动设置主题($界面);
     }
     
-    public static void 新建界面(基本界面 $界面) {
+    public static void 新建界面(Activity $界面) {
         所有界面.添加($界面);
         竖屏($界面);
     }
     
     public static void 结束界面() {
-        for (基本界面 $单个 : 所有界面) {
-            $单个.结束界面();
+        for (Activity $单个 : 所有界面) {
+            $单个.finish();
         }
     }
     
     public static void 结束界面(Exception $错误) {
-        for (基本界面 $单个 : 所有界面) {
-            $单个.结束界面($错误);
+        for (Activity $单个 : 所有界面) {
+            if ($单个 instanceof 基本界面)
+            ((基本界面)$单个).结束界面($错误);
         }
     }
     
@@ -56,12 +62,20 @@ public class 应用工具 {
     public static 通用方法 错误处理 = new 通用方法() {
         @Override
         public Object 调用(Object[] $参数) {
-            上下文工具.取全局上下文().错误处理事件((Thread)$参数[0],(Exception)$参数[1]);
+            Exception $错误 = (Exception)$参数[1];
+            辅助工具.停止();
+            应用工具.结束界面($错误);
+            Intent $意图 = new Intent(上下文工具.取全局上下文(), ErrorActivity.class);
+            $意图.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            $意图.putExtra("错误","当前应用版本 :"+ 应用工具.取版本名() +"\n"+ 错误工具.取整个错误($错误));
+            上下文工具.取全局上下文().startActivity($意图);
+            字符工具.保存("#错误日志/" + 时间工具.格式() + ".log", 错误工具.取整个错误($错误));
+            System.exit(0);
             return null;
         }
     };
     
-    public static void 初始化应用(基本应用 $应用) {
+    public static void 初始化应用(Application $应用) {
         上下文工具.置全局上下文($应用);
         安卓文件.初始化();
         线程.置错误处理(错误处理);
@@ -77,9 +91,9 @@ public class 应用工具 {
 
     public static void 自动设置主题(Context $上下文) {
         if (设备工具.取SDK() >= 21) {
-            $上下文.setTheme(R.style.Theme_Material_Light_NoActionBar);
+            $上下文.setTheme(android.R.style.Theme_Material_Light_NoActionBar);
         } else {
-            $上下文.setTheme(R.style.Theme_Holo_Light_NoActionBar);
+            $上下文.setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
         }
     }
 

@@ -9,6 +9,8 @@ import 放课后乐园部.安卓.资源.布局.*;
 import 放课后乐园部.工具.*;
 import 放课后乐园部.线程.*;
 import 放课后乐园部.安卓.线程.*;
+import android.util.*;
+import java.io.*;
 
 public class 启动界面 extends 基本界面 {
 
@@ -24,9 +26,9 @@ public class 启动界面 extends 基本界面 {
         public Object 调用(Object[] $参数) {
             String $文件 = "lib/armeabi/libHL4A.so";
             String $安装包 = 应用工具.取安装包位置();
-            String $哈希 = 散列工具.文件("MD5", $安装包);
-            String $记录 = (String)安卓设置.读取("安装包哈希");
-            if ($记录 == null || !$哈希.equals($记录)) {
+            Integer $上次 =  new Long(new File($安装包).lastModified()).intValue();
+            Integer $记录 = (Integer)安卓设置.读取("上次安装");
+            if ($记录 == null || $上次.equals($记录)) {
                 文件工具.删除("@");
                 String $缓存 = "$cache/lib.so";
                 String $字符 = 字符工具.读取(getClassLoader().getResourceAsStream($文件));
