@@ -67,7 +67,7 @@ public class 编译工程 {
         ZIP.压缩(工程.取地址("源码/"), $脚本);
         字符.保存($脚本, 编码.Base64.编码(字节.读取($脚本)));
         弹窗.更新("编译应用类文件");
-        CLASS $应用 = new CLASS(工程.信息.包名 + ".Application", "间.安卓.组件.基本应用", "Application.java");
+        CLASS $应用 = new CLASS(工程.信息.包名 + ".Application", "间.安卓.实例.实例应用", "Application.java");
         $应用.初始化();
         $应用.编译(工程.取地址("编译", "类", 字符.替换(工程.信息.包名, ".", "/"), "Application.class"));
         弹窗.更新("编译启动界面");
@@ -77,13 +77,14 @@ public class 编译工程 {
         弹窗.更新("编译到Dex");
         try {
             int $d = 2;
-            /*
-             while (文件工具.是文件(工程.取地址("编译", "打包", "classes" + $d + ".dex"))) {
+            
+             while (文件.是文件(工程.取地址("编译", "打包", "classes" + $d + ".dex"))) {
+                 文件.删除(工程.取地址("编译", "打包", "classes" + $d + ".dex"));
              $d ++;
              }
-             */
-            String $DEX = 工程.取地址("编译", "打包", "classes" + $d + ".dex");
-            文件.删除($DEX);
+             
+            String $DEX = 工程.取地址("编译", "打包", "classes2.dex");
+            //文件.删除($DEX);
             DEX.多个($DEX, 工程.取地址("编译", "类"));
         } catch (IOException $错误) {
             提示.普通($错误);

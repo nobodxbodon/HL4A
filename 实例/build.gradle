@@ -7,16 +7,16 @@ android {
 
     defaultConfig {
         applicationId "hl4a.client"
-      	minSdkVersion 21
+      	minSdkVersion 19
       	targetSdkVersion 23
         versionCode 62
         versionName "1.6.0"
-        multiDexEnabled true
     }
 }
 
 dependencies {
     compile project(':安卓')
+    compile project(':附加')
     compile project(':网络')
     compile project(':脚本')
 }

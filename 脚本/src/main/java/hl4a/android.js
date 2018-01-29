@@ -7,19 +7,20 @@ var 导入包 = importPackage;
 var 导入类 = importClass;
 var 扩类 = JavaImporter;
 
+导入类(ha.工具.线程,ha.工具.文件);
+
 导入包(java.lang,java.io,java.util,android.os,android.content);
 
-导入包(h.事件,h.压缩,h.工具,h.收集,h.线程,h.网络);
-导入包(ha.图形,ha.工具,ha.弹窗,ha.线程,ha.组件,ha.绘画);
+导入包(h.工具,h.收集,h.接口);
+导入包(ha.插件,ha.工具,ha.弹窗,ha.线程,ha.组件,ha.绘画);
 导入包(ha.视图,ha.视图.扩展,ha.视图.适配器);
 
+// 不手动导入就会报混淆错
+
 var 导入文件 = function(_文件) {
-if (文件工具.是文件(_文件))
+if (文件.是文件(_文件))
 return 当前环境.运行文件(_文件);
 }
-
-var 提示 = 提示工具.普通;
-var 警告 = 提示工具.警告;
 
 var 自动布局 = function(_类型) {
 let _界面 = 当前界面 || null;

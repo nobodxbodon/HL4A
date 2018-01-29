@@ -16,13 +16,14 @@ public class 布局 {
 
     public static void 打开(Activity $界面,View $视图) {
         Window $窗口 = $界面.getWindow();
-        $窗口.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); //Then call setStatusBarColor. 
-        $窗口.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         if (可直接) {
+            $窗口.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            $窗口.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             $窗口.setStatusBarColor(视图.检查颜色(主题.取主题颜色().取基本深色()));
             $界面.setContentView($视图);
             return;
         }
+        $窗口.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if ($视图 instanceof ViewGroup) {
             if ($视图.findViewWithTag("$状态栏") != null) {
                 $界面.setContentView($视图);

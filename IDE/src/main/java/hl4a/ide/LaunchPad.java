@@ -20,8 +20,8 @@ public class LaunchPad extends 基本界面 {
         if ($文件 != null) {
             跳转界面(MainActivity.class, $文件.getPath());
         } else {
-			跳转界面(MainActivity.class);
-		}
+            跳转界面(MainActivity.class);
+        }
         结束界面();
     }
 
