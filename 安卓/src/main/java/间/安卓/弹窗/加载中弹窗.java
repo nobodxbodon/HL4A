@@ -4,7 +4,7 @@ import android.app.*;
 import 间.安卓.资源.布局.*;
 import 间.安卓.视图.*;
 import 间.安卓.工具.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 加载中弹窗 extends 基本弹窗 {
     
@@ -19,7 +19,7 @@ public class 加载中弹窗 extends 基本弹窗 {
     }
     
     public void 更新(final String $内容) {
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     文本.置文本($内容);

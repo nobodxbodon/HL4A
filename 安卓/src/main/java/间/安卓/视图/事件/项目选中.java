@@ -3,14 +3,14 @@ package 间.安卓.视图.事件;
 import android.widget.AdapterView.*;
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 项目选中 implements OnItemSelectedListener {
 
-    通用方法 选中;
-    通用方法 取消;
+    方法 选中;
+    方法 取消;
     
-    public 项目选中(通用方法 $选中,通用方法 $没选中) {
+    public 项目选中(方法 $选中,方法 $没选中) {
         选中 = $选中;
         取消 = $没选中;
     }

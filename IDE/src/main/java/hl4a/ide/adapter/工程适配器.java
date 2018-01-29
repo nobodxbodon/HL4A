@@ -5,7 +5,7 @@ import hl4a.ide.activity.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.io.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
 import 间.安卓.组件.*;
@@ -39,7 +39,7 @@ public class 工程适配器 extends 数组适配器 {
 
     基本弹窗 新建工程;
 
-    通用方法 创建 = new 通用方法() {
+    方法 创建 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             String $包名 = 新建工程布局.包名.取文本();
@@ -62,7 +62,7 @@ public class 工程适配器 extends 数组适配器 {
         }
     };
 
-    通用方法 列表单击 = new 通用方法() {
+    方法 列表单击 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             int $键值 = $参数[2];

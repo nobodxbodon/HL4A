@@ -4,7 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.view.*;
 import android.view.WindowManager.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.事件.*;
 import 间.安卓.视图.扩展.*;
 import 间.安卓.资源.布局.*;
@@ -39,25 +39,25 @@ public class 基本弹窗 extends AlertDialog {
         布局.底层.加入子元素($视图);
     }
     
-    public void 置左按钮(String $文本,通用方法 $单击) {
+    public void 置左按钮(String $文本,方法 $单击) {
         布局.控制.显示();
         布局.左按钮.文本.置文本($文本);
         布局.左按钮.置单击事件(new 弹窗按钮单击(this,$单击));
     }
     
-    public void 置中按钮(String $文本,通用方法 $单击) {
+    public void 置中按钮(String $文本,方法 $单击) {
         布局.控制.显示();
         布局.中按钮.文本.置文本($文本);
         布局.中按钮.置单击事件(new 弹窗按钮单击(this,$单击));
     }
     
-    public void 置右按钮(String $文本,通用方法 $单击) {
+    public void 置右按钮(String $文本,方法 $单击) {
         布局.控制.显示();
         布局.右按钮.文本.置文本($文本);
         布局.右按钮.置单击事件(new 弹窗按钮单击(this,$单击));
     }
     
-    public 通用方法 显示 = new 通用方法() {
+    public 方法 显示 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             显示();
@@ -65,7 +65,7 @@ public class 基本弹窗 extends AlertDialog {
         }
     };
     
-    public 通用方法 隐藏 = new 通用方法() {
+    public 方法 隐藏 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             隐藏();
@@ -93,12 +93,12 @@ public class 基本弹窗 extends AlertDialog {
         dismiss();
     }
     
-    public static class 弹窗按钮单击 implements 通用方法 {
+    public static class 弹窗按钮单击 implements 方法 {
         
         基本弹窗 弹窗;
-        通用方法 单击;
+        方法 单击;
         
-        public 弹窗按钮单击(基本弹窗 $弹窗,通用方法 $单击) {
+        public 弹窗按钮单击(基本弹窗 $弹窗,方法 $单击) {
             弹窗 = $弹窗;
             单击 = $单击;
         }

@@ -2,7 +2,7 @@ package 间.安卓.视图.实现;
 
 import android.graphics.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public interface 基本文本 extends 基本视图 {
     
@@ -30,7 +30,7 @@ public interface 基本文本 extends 基本视图 {
     
     public void 置链接颜色(Object $颜色);
     
-    public void 置文本改变事件(通用方法 $改变);
-    public void 置文本改变事件(通用方法 $改变前,通用方法 $已改变,通用方法 $改变后);
+    public void 置文本改变事件(方法 $改变);
+    public void 置文本改变事件(方法 $改变前,方法 $已改变,方法 $改变后);
     
 }

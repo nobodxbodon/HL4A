@@ -2,7 +2,7 @@ package hl4a.ide.activity;
 
 import android.os.*;
 import hl4a.ide.layout.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.组件.*;
 import 间.安卓.视图.*;
@@ -36,7 +36,7 @@ public class HelpActivity extends 基本界面 {
         打开布局(布局);
     }
 
-    通用方法 $列表单击 = new 通用方法() {
+    方法 $列表单击 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             String $内容 = ((布局_适配器_数组)$参数[1]).文本.取文本();

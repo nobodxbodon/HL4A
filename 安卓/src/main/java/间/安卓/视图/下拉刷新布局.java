@@ -4,7 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.support.v4.widget.*;
 import android.view.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.事件.*;
 import 间.安卓.视图.实现.*;
@@ -37,7 +37,7 @@ public class 下拉刷新布局 extends SwipeRefreshLayout implements 基本布�
         setRefreshing($刷新);
     }
 
-    public void 置刷新事件(通用方法 $事件) {
+    public void 置刷新事件(方法 $事件) {
         setOnRefreshListener(new 下拉刷新($事件));
     }
 
@@ -84,17 +84,17 @@ public class 下拉刷新布局 extends SwipeRefreshLayout implements 基本布�
     }
 
     @Override
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
     @Override
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
     @Override
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

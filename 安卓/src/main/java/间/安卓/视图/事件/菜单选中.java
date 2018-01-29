@@ -2,13 +2,13 @@ package 间.安卓.视图.事件;
 
 import android.view.*;
 import android.view.MenuItem.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 菜单选中 implements OnMenuItemClickListener {
 
-    通用方法 事件;
+    方法 事件;
     
-    public 菜单选中(通用方法 $方法) {
+    public 菜单选中(方法 $方法) {
         事件 = $方法;
     } 
     

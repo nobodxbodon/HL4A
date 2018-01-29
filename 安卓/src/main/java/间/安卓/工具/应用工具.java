@@ -9,7 +9,7 @@ import android.graphics.drawable.*;
 import android.util.*;
 import android.view.*;
 import java.util.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.图形.*;
 import 间.安卓.组件.*;
 import 间.工具.*;
@@ -59,7 +59,7 @@ public class 应用工具 {
     }
     
     
-    public static 通用方法 错误处理 = new 通用方法() {
+    public static 方法 错误处理 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             Exception $错误 = (Exception)$参数[1];

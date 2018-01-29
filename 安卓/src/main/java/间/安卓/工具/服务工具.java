@@ -4,7 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.os.*;
 import java.util.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.组件.*;
 
 public class 服务工具 {
@@ -27,7 +27,7 @@ public class 服务工具 {
         return false;
     }
 
-    public static 连接处理 绑定(基本界面 $界面,Class<?> $类,通用方法 $成功,通用方法 $断开) {
+    public static 连接处理 绑定(基本界面 $界面,Class<?> $类,方法 $成功,方法 $断开) {
         启动($界面,$类);
         连接处理 $处理 = new 连接处理($成功, $断开);
         $界面.bindService(new Intent($界面, $类), $处理, Context.BIND_AUTO_CREATE);
@@ -38,11 +38,11 @@ public class 服务工具 {
     public static class 连接处理 implements ServiceConnection {
 
         基本服务 服务;
-        通用方法 成功;
-        通用方法 断开;
+        方法 成功;
+        方法 断开;
         boolean 已连接 = false;
 
-        public 连接处理(通用方法 $成功,通用方法 $断开) {
+        public 连接处理(方法 $成功,方法 $断开) {
             成功 = $成功;
             断开 = $断开;
         }

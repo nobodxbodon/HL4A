@@ -1,7 +1,7 @@
 package 间.工具;
 
 import java.util.concurrent.atomic.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 计数工具 {
 

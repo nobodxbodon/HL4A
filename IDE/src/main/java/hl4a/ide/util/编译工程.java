@@ -3,7 +3,7 @@ package hl4a.ide.util;
 import android.content.*;
 import android.net.*;
 import java.io.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.压缩.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
@@ -33,7 +33,7 @@ public class 编译工程 {
         new 线程($初始化).启动();
     }
 
-    通用方法 $初始化 = new 通用方法() {
+    方法 $初始化 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             主程序();
@@ -103,7 +103,7 @@ public class 编译工程 {
         弹窗.更新("打包签名");
         $签名.打包签名();
         文件工具.删除($编译);
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     弹窗.隐藏();

@@ -3,13 +3,13 @@ package 间.安卓.视图.事件;
 import android.widget.AdapterView.*;
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 项目单击 implements OnItemClickListener {
 
-    通用方法 单击;
+    方法 单击;
     
-    public 项目单击(通用方法 $方法) {
+    public 项目单击(方法 $方法) {
         单击 = $方法;
     }
     

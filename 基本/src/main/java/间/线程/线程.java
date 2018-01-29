@@ -1,13 +1,13 @@
 package 间.线程;
 
-import 间.事件.*;
+import 间.接口.*;
 
 public class 线程<返回值> extends Thread {
     
-    private 通用方法 方法;
+    private 方法 方法;
     private 回调<返回值> 返回;
     
-    public 线程(通用方法<返回值> $方法) {
+    public 线程(方法<返回值> $方法) {
         方法 = $方法;
         返回 = new 回调<返回值> ();
     }
@@ -48,7 +48,7 @@ public class 线程<返回值> extends Thread {
         return 取当前线程() instanceof 线程;
     }
 
-    public static void 置错误处理(通用方法 $处理) {
+    public static void 置错误处理(方法 $处理) {
         置错误处理对象(new 错误处理($处理));
     }
 
@@ -56,7 +56,7 @@ public class 线程<返回值> extends Thread {
         Thread.setDefaultUncaughtExceptionHandler($处理);
     }
 
-    public 通用方法 启动 = new 通用方法() {
+    public 方法 启动 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             启动();

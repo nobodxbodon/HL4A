@@ -5,7 +5,7 @@ import android.os.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.lang.reflect.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
 import 间.安卓.组件.*;
@@ -88,7 +88,7 @@ public class ProjActivity extends 基本界面 {
         创建按钮("删除工程").置单击事件(删除工程);
     }
 
-    通用方法 详细协议 = new 通用方法() {
+    方法 详细协议 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             链接工具.打开("http://www.gnu.org/licenses/gpl-3.0.html");
@@ -96,7 +96,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 直接运行 = new 通用方法() {
+    方法 直接运行 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
@@ -110,7 +110,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 打包HPK = new 通用方法() {
+    方法 打包HPK = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
@@ -122,7 +122,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 打包APK = new 通用方法() {
+    方法 打包APK = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
@@ -140,7 +140,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 删除工程 = new 通用方法() {
+    方法 删除工程 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             删除.显示();
@@ -148,7 +148,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 直接删除 = new 通用方法() {
+    方法 直接删除 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查())return null;
@@ -161,7 +161,7 @@ public class ProjActivity extends 基本界面 {
     };
 
 
-    通用方法 进入编辑 = new 通用方法() {
+    方法 进入编辑 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查())return null;
@@ -170,7 +170,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 更改打包 = new 通用方法() {
+    方法 更改打包 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (更改设置.调用() == null) return null;
@@ -179,7 +179,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 更改设置 = new 通用方法() {
+    方法 更改设置 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查())return null;
@@ -213,7 +213,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 界面结束 = new 通用方法() {
+    方法 界面结束 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             结束界面();
@@ -221,7 +221,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    通用方法 启动设置 = new 通用方法() {
+    方法 启动设置 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查())return null;

@@ -2,13 +2,13 @@ package 间.安卓.视图.事件;
 
 import android.view.*;
 import android.view.View.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 单击 implements OnClickListener {
 
-    private 通用方法 事件;
+    private 方法 事件;
     
-    public 单击(通用方法 $事件) {
+    public 单击(方法 $事件) {
         事件 = $事件;
     }
     

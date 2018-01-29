@@ -4,7 +4,7 @@ import android.os.*;
 import hl4a.ide.adapter.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.组件.*;
 import 间.安卓.视图.*;
@@ -26,7 +26,7 @@ public class MainActivity extends 基本界面 {
         布局 = new 布局_主页(this);
         final 弹出菜单 $菜单 = 布局.标题.取菜单();
         
-        $菜单.添加("帮助/手册", new 通用方法() {
+        $菜单.添加("帮助/手册", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     跳转界面(HelpActivity.class);
@@ -34,7 +34,7 @@ public class MainActivity extends 基本界面 {
                     return null;
                 }
             });
-        $菜单.添加("用户讨论群", new 通用方法() {
+        $菜单.添加("用户讨论群", new 方法() {
             @Override
                 public Object 调用(Object[] $参数) {
                     链接工具.QQ.乐园部();
@@ -42,7 +42,7 @@ public class MainActivity extends 基本界面 {
                     return null;
                 }
             });
-        $菜单.添加("建议/反馈", new 通用方法() {
+        $菜单.添加("建议/反馈", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     链接工具.QQ.反馈();
@@ -76,7 +76,7 @@ public class MainActivity extends 基本界面 {
     }
 
 
-    通用方法 刷新 = new 通用方法() {
+    方法 刷新 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             布局.适配器.更新工程();

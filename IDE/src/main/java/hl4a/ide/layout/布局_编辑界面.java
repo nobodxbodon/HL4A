@@ -1,7 +1,7 @@
 package hl4a.ide.layout;
 
 import android.content.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.*;
 import 间.安卓.视图.扩展.*;
 import 间.安卓.视图.适配器.*;
@@ -26,7 +26,7 @@ public class 布局_编辑界面 extends 布局_侧滑界面 {
         列表 = new 列表视图(侧滑);
     }
     
-    通用方法 打开侧滑 = new 通用方法() {
+    方法 打开侧滑 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             打开侧滑();

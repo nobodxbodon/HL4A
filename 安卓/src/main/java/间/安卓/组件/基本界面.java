@@ -5,7 +5,7 @@ import android.content.*;
 import android.os.*;
 import android.view.*;
 import java.io.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.工具.服务工具.*;
 import 间.安卓.接口.*;
@@ -17,7 +17,7 @@ public class 基本界面 extends Activity implements 可处理的 {
 
 
     public Object[] 传入参数;
-    public 哈希表<String,通用方法> 所有事件 = new 哈希表<String,通用方法>();
+    public 哈希表<String,方法> 所有事件 = new 哈希表<String,方法>();
     public 集合<连接处理> 所有连接 = new 集合<>();
     public 集合<浏览器> 所有浏览器 = new 集合<>();
 
@@ -26,7 +26,7 @@ public class 基本界面 extends Activity implements 可处理的 {
         return Looper.myLooper();
     }
     
-    public void 注册事件(String $事件,通用方法 $方法) {
+    public void 注册事件(String $事件,方法 $方法) {
         所有事件.设置($事件, $方法);
     }
 
@@ -35,7 +35,7 @@ public class 基本界面 extends Activity implements 可处理的 {
     }
 
     public Object 调用事件(String $名称,Object... $参数) {
-        通用方法 $方法 = 所有事件.读取($名称);
+        方法 $方法 = 所有事件.读取($名称);
         return 调用方法.事件($方法, $参数);
     }
 

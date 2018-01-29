@@ -7,7 +7,7 @@ import 间.安卓.视图.实现.*;
 import 间.安卓.视图.适配器.*;
 import 间.安卓.工具.*;
 import 间.安卓.图形.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 高级滑动 extends 线性布局 {
 
@@ -37,7 +37,7 @@ public class 高级滑动 extends 线性布局 {
         滑动 = new 滑动视图(this);
         界面 = new 界面适配器();
         滑动.置适配器(界面);
-        通用方法 $进度 = new 通用方法() {
+        方法 $进度 = new 方法() {
             @Override
             public Object 调用(Object[] $参数) {
                 int $界面 = $参数[0];
@@ -64,7 +64,7 @@ public class 高级滑动 extends 线性布局 {
         $按钮.置布局权重(1);
         宽度 = 应用工具.取屏幕宽度() / 数量;
         指示.置宽度(宽度);
-        通用方法 $单击 = new 通用方法() {
+        方法 $单击 = new 方法() {
             @Override
             public Object 调用(Object[] $参数) {
                 滑动.置界面($当前);

@@ -5,7 +5,7 @@ import android.graphics.drawable.*;
 import android.view.*;
 import android.view.ViewGroup.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.事件.*;
 import android.graphics.*;
@@ -56,20 +56,20 @@ public final class 视图实现 {
     }
 
     // Width/Height
-    public static void 置单击事件(View $视图,通用方法 $事件) {
+    public static void 置单击事件(View $视图,方法 $事件) {
         $视图.setOnClickListener(new 单击($事件));
     }
 
-    public static void 置长按事件(View $视图,通用方法 $事件) {
+    public static void 置长按事件(View $视图,方法 $事件) {
         $视图.setOnLongClickListener(new 长按($事件));
     }
 
-    public static void 置触摸事件(View $视图,通用方法 $事件) {
+    public static void 置触摸事件(View $视图,方法 $事件) {
         $视图.setOnTouchListener(new 触摸($事件));
     }
 
     public static void 置宽度(final View $视图,final Object $宽度) {
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置宽度实现($视图, $宽度);
@@ -79,7 +79,7 @@ public final class 视图实现 {
     }
 
     public static void 置高度(final View $视图,final Object $高度) {
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置高度实现($视图, $高度);
@@ -137,7 +137,7 @@ public final class 视图实现 {
     }
 
     public static void 置边距(final View $视图,final Object $上,final Object $下,final Object $左,final Object $右) {
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置边距实现($视图, $上, $下, $左, $右);
@@ -149,7 +149,7 @@ public final class 视图实现 {
     // Visible
 
     public static void 置状态(final View $视图,final String $状态) {
-        处理工具.主线程(new 通用方法() {
+        处理工具.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置状态实现($视图, $状态);

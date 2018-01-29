@@ -2,7 +2,7 @@ package 间.安卓.视图;
 
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.事件.*;
 import 间.安卓.视图.适配器.*;
 import 间.收集.*;
@@ -23,12 +23,12 @@ public class 弹出菜单 extends ListPopupWindow {
         setModal(true);
     }
 
-    通用方法 单击事件 = new 通用方法() {
+    方法 单击事件 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             int $位置 = $参数[2];
             if (单击.检查($位置)) {
-                通用方法 $单击 = (通用方法)单击.读取($位置);
+                方法 $单击 = (方法)单击.读取($位置);
                 调用方法.事件($单击);
             }
             return null;
@@ -37,7 +37,7 @@ public class 弹出菜单 extends ListPopupWindow {
     
     public String 最大 = "";
     
-    public void 添加(String $名称,通用方法 $单击) {
+    public void 添加(String $名称,方法 $单击) {
         if ($名称.length() > 最大.length()) {
             最大 = $名称;
         }

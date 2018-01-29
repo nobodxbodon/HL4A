@@ -6,7 +6,7 @@ import android.graphics.*;
 import android.view.*;
 import com.myopicmobile.textwarrior.android.*;
 import com.myopicmobile.textwarrior.common.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.事件.*;
 import 间.安卓.视图.实现.*;
@@ -30,7 +30,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
     private Context mContext;
     private int _index;
 
-    public 通用方法 选中文本事件;
+    public 方法 选中文本事件;
 
     public 代码框(Context $上下文) {
         super($上下文);
@@ -52,7 +52,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
         加入到($父视图);
     }
     
-    public void 置代码选中事件(通用方法 $方法) {
+    public void 置代码选中事件(方法 $方法) {
         setOnSelectionChangedListener(new 代码选中($方法));
     }
 
@@ -72,15 +72,15 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
         return 视图实现.取标签(this);
     }
 
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

@@ -1,13 +1,13 @@
 package 间.安卓.视图.事件;
 
 import com.myopicmobile.textwarrior.android.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 代码选中 implements OnSelectionChangedListener  {
 
-    通用方法 事件;
+    方法 事件;
     
-    public 代码选中(通用方法 $方法) {
+    public 代码选中(方法 $方法) {
         事件 = $方法;
     }
     

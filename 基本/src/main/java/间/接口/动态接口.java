@@ -1,16 +1,16 @@
-package 间.事件;
+package 间.接口;
 
 import java.lang.reflect.*;
 import java.util.*;
 import 间.收集.*;
 
-public class 动态代理 implements InvocationHandler {
+public class 动态接口 implements InvocationHandler {
 
     public static Class v = void.class;
 
-    public 哈希表<String,通用方法> 方法表;
+    public 哈希表<String,方法> 方法表;
 
-    public 动态代理(Map<String,通用方法> $列表) {
+    public 动态接口(Map<String,方法> $列表) {
         方法表 = new 哈希表<>($列表);
     }
 
@@ -23,13 +23,13 @@ public class 动态代理 implements InvocationHandler {
         
         Class<?> $返回类型 = $方法.getReturnType();
         
-        通用方法 $通用方法 = null;
+        方法 $通用方法 = null;
         
         Object $方法对象 = 方法表.读取($方法.getName());
         
-        if ($方法对象 instanceof 通用方法) {
+        if ($方法对象 instanceof 方法) {
             
-            $通用方法 = (通用方法)$方法对象;
+            $通用方法 = (方法)$方法对象;
             
         }
         

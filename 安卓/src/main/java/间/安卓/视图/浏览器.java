@@ -5,7 +5,7 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.webkit.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.实现.*;
 import 间.安卓.组件.*;
 import 间.工具.*;
@@ -80,9 +80,9 @@ public class 浏览器 extends WebView implements 基本视图 {
         return getTitle();
     }
 
-    public 通用方法 加载开始事件;
-    public 通用方法 加载完成事件;
-    public 通用方法 加载错误事件;
+    public 方法 加载开始事件;
+    public 方法 加载完成事件;
+    public 方法 加载错误事件;
     
     private String 源码;
 
@@ -170,17 +170,17 @@ public class 浏览器 extends WebView implements 基本视图 {
     }
 
     @Override
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
     @Override
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
     @Override
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

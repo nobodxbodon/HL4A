@@ -5,7 +5,7 @@ import android.view.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.io.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
 import 间.安卓.组件.*;
@@ -90,13 +90,13 @@ public class EditActivity extends 基本界面 {
         新建弹窗.置右按钮("目录", 目录新建);
     }
     
-    通用方法 长按 = new 通用方法() {
+    方法 长按 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             View $视图 = (View)$参数[4];
             final String $地址 = (String)$参数[0];
             final 弹出菜单 $操作菜单 = new 弹出菜单($视图);
-            $操作菜单.添加("删除", new 通用方法() {
+            $操作菜单.添加("删除", new 方法() {
                     @Override
                     public Object 调用(Object[] $参数) {
                         文件工具.删除($地址);
@@ -112,7 +112,7 @@ public class EditActivity extends 基本界面 {
         }
     };
     
-    通用方法 撤销 = new 通用方法() {
+    方法 撤销 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             布局.代码.撤销();
@@ -120,7 +120,7 @@ public class EditActivity extends 基本界面 {
         }
     };
     
-    通用方法 重做 = new 通用方法() {
+    方法 重做 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             布局.代码.重做();
@@ -128,7 +128,7 @@ public class EditActivity extends 基本界面 {
         }
     };
 
-    通用方法 文件单击 = new 通用方法() {
+    方法 文件单击 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             界面遮挡事件();
@@ -141,7 +141,7 @@ public class EditActivity extends 基本界面 {
         }
     };
 
-    通用方法 文件新建 = new 通用方法() {
+    方法 文件新建 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             String $内容 = 新建布局.内容.取文本();
@@ -166,7 +166,7 @@ public class EditActivity extends 基本界面 {
         }
     };
 
-    通用方法 目录新建 = new 通用方法() {
+    方法 目录新建 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             String $内容 = 新建布局.内容.取文本();
@@ -192,7 +192,7 @@ public class EditActivity extends 基本界面 {
     };
     
     
-    通用方法 运行代码 = new 通用方法() {
+    方法 运行代码 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             界面遮挡事件();
@@ -235,7 +235,7 @@ public class EditActivity extends 基本界面 {
         }
     }
 
-    通用方法 新建文件 = new 通用方法() {
+    方法 新建文件 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             新建弹窗.显示();
@@ -244,7 +244,7 @@ public class EditActivity extends 基本界面 {
         }
     };
 
-    通用方法 打开侧滑菜单 = new 通用方法() {
+    方法 打开侧滑菜单 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             菜单.显示();

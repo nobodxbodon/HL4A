@@ -1,7 +1,7 @@
 package 间.安卓.弹窗;
 
 import android.content.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.*;
 import 间.安卓.视图.适配器.*;
 
@@ -30,7 +30,7 @@ public class 复选列表弹窗 extends 基本弹窗 {
         适配器.清空();
     }
 
-    public void 置单击(通用方法 $单击) {
+    public void 置单击(方法 $单击) {
         列表.置项目单击事件($单击);
     }
     

@@ -12,7 +12,7 @@ import java.util.*;
 import 间.安卓.线程.*;
 import 间.安卓.组件.*;
 import 间.线程.*;
-import 间.事件.*;
+import 间.接口.*;
 import java.math.*;
 
 public class 辅助工具 {

@@ -1,7 +1,7 @@
 package 间.安卓.脚本;
 
 import org.mozilla.javascript.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.脚本.事件.*;
 import 间.工具.*;
@@ -96,7 +96,7 @@ public class JavaScript implements 基本脚本 {
 
     }
 
-    public JavaScript 置错误监听(通用方法 $警告,通用方法 $错误,通用方法 $运行时错误) {
+    public JavaScript 置错误监听(方法 $警告,方法 $错误,方法 $运行时错误) {
         JS上下文.setErrorReporter(new 错误监听($警告, $错误, $运行时错误));
         return this;
     }

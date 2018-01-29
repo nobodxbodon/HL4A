@@ -4,7 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.support.v4.view.*;
 import android.view.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.事件.*;
 import 间.安卓.视图.实现.*;
 
@@ -30,7 +30,7 @@ public class 滑动视图 extends ViewPager implements 基本布局 {
         getCurrentItem();
     }
     
-    public void 置滑动事件(通用方法 $进度,通用方法 $改变,通用方法 $状态) {
+    public void 置滑动事件(方法 $进度,方法 $改变,方法 $状态) {
         setOnPageChangeListener(new 界面滑动($进度,$改变,$状态));
     }
     
@@ -89,17 +89,17 @@ public class 滑动视图 extends ViewPager implements 基本布局 {
     }
 
     @Override
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
     @Override
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
     @Override
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

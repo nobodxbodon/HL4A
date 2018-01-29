@@ -2,7 +2,7 @@ package 间.安卓.视图.扩展;
 
 import android.content.*;
 import android.view.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.图形.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.*;
@@ -37,7 +37,7 @@ public class 符号栏 extends 水平滚动 {
         框 = $框;
     }
 
-    通用方法 单击 = new 通用方法() {
+    方法 单击 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             String $符号 = ((文本视图)((线性布局)$参数[0]).取子元素("文本")).取文本();

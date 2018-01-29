@@ -1,11 +1,11 @@
-package 间.事件;
+package 间.接口;
 
-public class 可运行类 implements Runnable, 通用方法 {
+public class 可运行类 implements Runnable, 方法 {
 
-    public 通用方法 方法;
+    public 方法 方法;
     public Object[] 参数;
 
-    public 可运行类(通用方法 $方法, Object... $参数) {
+    public 可运行类(方法 $方法, Object... $参数) {
         方法 = $方法;
         参数 = $参数;
     }

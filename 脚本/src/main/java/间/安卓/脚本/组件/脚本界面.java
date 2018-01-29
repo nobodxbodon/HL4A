@@ -3,7 +3,7 @@ package 间.安卓.脚本.组件;
 import 间.安卓.组件.*;
 import android.os.*;
 import org.mozilla.javascript.annotations.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.脚本.*;
 import android.content.*;
 import 间.工具.*;

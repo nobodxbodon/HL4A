@@ -1,19 +1,19 @@
 package 间.安卓.视图.事件;
 
 import android.text.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 文本改变 implements TextWatcher {
 
-    public 通用方法 改变前 = null;
-    public 通用方法 已改变 = null;
-    public 通用方法 改变后 = null;
+    public 方法 改变前 = null;
+    public 方法 已改变 = null;
+    public 方法 改变后 = null;
 
-    public 文本改变(通用方法 $事件) {
+    public 文本改变(方法 $事件) {
         已改变 = $事件;
     }
 
-    public 文本改变(通用方法 $改变前,通用方法 $已改变,通用方法 $改变后) {
+    public 文本改变(方法 $改变前,方法 $已改变,方法 $改变后) {
         改变前 = $改变前;
         已改变 = $已改变;
         改变后 = $改变后;

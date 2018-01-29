@@ -1,13 +1,13 @@
-package 间.事件;
+package 间.接口;
 
 import java.io.*;
 import java.util.*;
 
 public class 打印处理 extends PrintStream {
 
-    private 通用方法 事件;
+    private 方法 事件;
 
-    public 打印处理(通用方法 $处理) {
+    public 打印处理(方法 $处理) {
         super(new ByteArrayOutputStream());
         事件 = $处理;
     }

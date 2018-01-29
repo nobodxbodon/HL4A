@@ -3,14 +3,14 @@ package 间.安卓.组件;
 import android.app.*;
 import android.content.*;
 import android.os.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.收集.*;
 
 public class 基本服务 extends Service {
 
-    public 哈希表<String,通用方法> 所有事件 = new 哈希表<String,通用方法>();
+    public 哈希表<String,方法> 所有事件 = new 哈希表<String,方法>();
 
-    public void 注册事件(String $事件,通用方法 $方法) {
+    public void 注册事件(String $事件,方法 $方法) {
         所有事件.设置($事件, $方法);
     }
 
@@ -19,7 +19,7 @@ public class 基本服务 extends Service {
     }
 
     public Object 调用事件(String $名称,Object... $参数) {
-        通用方法 $方法 = 所有事件.读取($名称);
+        方法 $方法 = 所有事件.读取($名称);
         return 调用方法.事件($方法, $参数);
     }
 

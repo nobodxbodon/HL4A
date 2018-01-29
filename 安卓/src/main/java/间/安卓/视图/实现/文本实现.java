@@ -5,7 +5,7 @@ import android.graphics.drawable.*;
 import android.text.*;
 import android.text.method.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.事件.*;
 
@@ -88,11 +88,11 @@ public final class 文本实现 {
         $视图.setLinkTextColor($颜色);
     }
 
-    public static void 置文本改变事件(TextView $视图,通用方法 $改变) {
+    public static void 置文本改变事件(TextView $视图,方法 $改变) {
         $视图.addTextChangedListener(new 文本改变($改变));
     }
 
-    public static void 置文本改变事件(TextView $视图,通用方法 $改变前,通用方法 $已改变,通用方法 $改变后) {
+    public static void 置文本改变事件(TextView $视图,方法 $改变前,方法 $已改变,方法 $改变后) {
         $视图.addTextChangedListener(new 文本改变($改变前, $已改变, $改变后));
     }
 

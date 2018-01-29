@@ -5,7 +5,7 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.图形.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.实现.*;
@@ -121,12 +121,12 @@ public class 按钮 extends Button implements 基本文本 {
     }
 
     @Override
-    public void 置文本改变事件(通用方法 $事件) {
+    public void 置文本改变事件(方法 $事件) {
         文本实现.置文本改变事件(this, $事件);
     }
 
     @Override
-    public void 置文本改变事件(通用方法 $改变前,通用方法 $已改变,通用方法 $改变后) {
+    public void 置文本改变事件(方法 $改变前,方法 $已改变,方法 $改变后) {
         文本实现.置文本改变事件(this, $改变前, $已改变, $改变后);
     }
 
@@ -154,17 +154,17 @@ public class 按钮 extends Button implements 基本文本 {
     }
 
     @Override
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
     @Override
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
     @Override
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

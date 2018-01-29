@@ -3,13 +3,13 @@ package 间.安卓.视图.事件;
 import android.widget.AdapterView.*;
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 项目长按 implements OnItemLongClickListener {
 
-    通用方法 长按;
+    方法 长按;
     
-    public 项目长按(通用方法 $方法) {
+    public 项目长按(方法 $方法) {
         长按 = $方法;
     }
     

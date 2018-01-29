@@ -2,7 +2,7 @@ package 间.安卓.工具;
 
 import android.content.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.图形.*;
 import 间.安卓.视图.*;
 import 间.安卓.资源.布局.*;
@@ -24,7 +24,7 @@ public class 提示工具 {
     }
 
     public static void 指定(final Object $内容,final Object $颜色) {
-        处理工具.主线程(new 通用方法(){
+        处理工具.主线程(new 方法(){
                 @Override
                 public Object 调用(Object[] $参数) {
                     直接($内容,$颜色);

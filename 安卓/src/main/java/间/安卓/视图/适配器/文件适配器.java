@@ -3,7 +3,7 @@ package 间.安卓.视图.适配器;
 import android.view.*;
 import java.io.*;
 import java.util.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.*;
 import 间.安卓.资源.布局.*;
 import 间.收集.*;
@@ -14,14 +14,14 @@ public class 文件适配器 extends 基本适配器 {
     private 列表视图 列表;
     private String 顶端;
     public String 附加;
-    private 通用方法 方法;
-    private 通用方法 长按;
+    private 方法 方法;
+    private 方法 长按;
 
-    public 文件适配器(列表视图 $列表,通用方法 $方法,通用方法 $长按,String $顶端) {
+    public 文件适配器(列表视图 $列表,方法 $方法,方法 $长按,String $顶端) {
         this($列表, $方法, $长按, $顶端, "/");
     }
 
-    public 文件适配器(列表视图 $列表,通用方法 $方法,通用方法 $长按,String $顶端,String $开始) {
+    public 文件适配器(列表视图 $列表,方法 $方法,方法 $长按,String $顶端,String $开始) {
         super($列表.getContext(), null);
         列表 = $列表;
         顶端 = 文件工具.检查地址($顶端);
@@ -33,7 +33,7 @@ public class 文件适配器 extends 基本适配器 {
         刷新();
     }
 
-    通用方法 项目单击 = new 通用方法() {
+    方法 项目单击 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             哈希表 $数据 = (哈希表)((View)$参数[1]).getTag();
@@ -52,7 +52,7 @@ public class 文件适配器 extends 基本适配器 {
         }
     };
 
-    通用方法 项目长按 = new 通用方法() {
+    方法 项目长按 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             哈希表<String,String> $数据 = (哈希表<String,String>)((View)$参数[1]).getTag();

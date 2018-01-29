@@ -1,10 +1,10 @@
-package 间.事件;
+package 间.接口;
 
 public class 错误处理 implements Thread.UncaughtExceptionHandler {
 
-    public 通用方法 处理;
+    public 方法 处理;
 
-    public 错误处理(通用方法 $方法) {
+    public 错误处理(方法 $方法) {
         处理 = $方法;
     }
 

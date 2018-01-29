@@ -2,7 +2,7 @@ package 间.安卓.视图.实现;
 
 import android.app.*;
 import android.view.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public interface 基本视图 {
 
@@ -15,9 +15,9 @@ public interface 基本视图 {
     public void 置标签(Object $标签);
     public Object 取标签();
 
-    public void 置单击事件(通用方法 $事件);
-    public void 置长按事件(通用方法 $事件);
-    public void 置触摸事件(通用方法 $事件);
+    public void 置单击事件(方法 $事件);
+    public void 置长按事件(方法 $事件);
+    public void 置触摸事件(方法 $事件);
 
     public void 置宽度(Object $宽度);
     public void 置高度(Object $高度);

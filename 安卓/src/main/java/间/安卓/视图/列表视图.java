@@ -4,7 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.视图.实现.*;
 import 间.安卓.视图.适配器.*;
 
@@ -38,22 +38,22 @@ public class 列表视图 extends ListView implements 基本列表 {
     }
     
     @Override
-    public void 置项目单击事件(通用方法 $单击) {
+    public void 置项目单击事件(方法 $单击) {
         列表实现.置项目单击事件(this, $单击);
     }
 
     @Override
-    public void 置项目长按事件(通用方法 $长按) {
+    public void 置项目长按事件(方法 $长按) {
         列表实现.置项目长按事件(this, $长按);
     }
     
     @Override
-    public void 置项目选中事件(通用方法 $选中) {
+    public void 置项目选中事件(方法 $选中) {
         列表实现.置项目选中事件(this, $选中);
     }
     
     @Override
-    public void 置项目选中事件(通用方法 $选中,通用方法 $取消) {
+    public void 置项目选中事件(方法 $选中,方法 $取消) {
         列表实现.置项目选中事件(this, $选中,$取消);
     }
     
@@ -78,17 +78,17 @@ public class 列表视图 extends ListView implements 基本列表 {
     }
 
     @Override
-    public void 置单击事件(通用方法 $事件) {
+    public void 置单击事件(方法 $事件) {
         视图实现.置单击事件(this, $事件);
     }
 
     @Override
-    public void 置长按事件(通用方法 $事件) {
+    public void 置长按事件(方法 $事件) {
         视图实现.置长按事件(this, $事件);
     }
 
     @Override
-    public void 置触摸事件(通用方法 $事件) {
+    public void 置触摸事件(方法 $事件) {
         视图实现.置触摸事件(this, $事件);
     }
 

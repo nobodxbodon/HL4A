@@ -1,19 +1,19 @@
 package 间.安卓.脚本.事件;
 
 import org.mozilla.javascript.*;
-import 间.事件.*;
+import 间.接口.*;
 
 public class 错误监听 implements ErrorReporter {
     
-    public 错误监听(通用方法 $警告,通用方法 $错误,通用方法 $运行时错误) {
+    public 错误监听(方法 $警告,方法 $错误,方法 $运行时错误) {
         警告 = $警告;
         错误 = $错误;
         运行时错误 = $运行时错误;
     }
     
-    public 通用方法 警告;
-    public 通用方法 错误;
-    public 通用方法 运行时错误;
+    public 方法 警告;
+    public 方法 错误;
+    public 方法 运行时错误;
     
     
     @Override

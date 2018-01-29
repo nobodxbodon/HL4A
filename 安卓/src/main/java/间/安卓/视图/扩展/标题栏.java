@@ -2,7 +2,7 @@ package 间.安卓.视图.扩展;
 
 import android.content.*;
 import android.view.*;
-import 间.事件.*;
+import 间.接口.*;
 import 间.安卓.图形.*;
 import 间.安卓.视图.*;
 import 间.安卓.工具.*;
@@ -52,7 +52,7 @@ public class 标题栏 extends 线性布局 {
 
     }
     
-    通用方法 菜单显示 = new 通用方法() {
+    方法 菜单显示 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
             菜单对象.显示();
@@ -79,28 +79,28 @@ public class 标题栏 extends 线性布局 {
         标题对象.置文本($内容);
     }
 
-    public 线性按钮 左按钮(通用方法 $事件) {
+    public 线性按钮 左按钮(方法 $事件) {
         线性按钮 $按钮 = new 线性按钮(上下文, 图标.菜单);
         $按钮.加入到(左按钮栏);
         $按钮.置单击事件($事件);
         return $按钮;
     }
 
-    public 线性按钮 左按钮(Object $图片,通用方法 $事件) {
+    public 线性按钮 左按钮(Object $图片,方法 $事件) {
         线性按钮 $按钮 = new 线性按钮(上下文, $图片);
         $按钮.加入到(左按钮栏);
         $按钮.置单击事件($事件);
         return $按钮;
     }
 
-    public 线性按钮 右按钮(通用方法 $事件) {
+    public 线性按钮 右按钮(方法 $事件) {
         线性按钮 $按钮 = new 线性按钮(上下文, 图标.更多);
         $按钮.加入到(右按钮栏);
         $按钮.置单击事件($事件);
         return $按钮;
     }
 
-    public 线性按钮 右按钮(Object $图片,通用方法 $事件) {
+    public 线性按钮 右按钮(Object $图片,方法 $事件) {
         线性按钮 $按钮 = new 线性按钮(上下文, $图片);
         $按钮.加入到(右按钮栏);
         $按钮.置单击事件($事件);
