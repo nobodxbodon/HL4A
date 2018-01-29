@@ -7,7 +7,7 @@
 package org.mozilla.javascript;
 
 import java.lang.reflect.Method;
-import 放课后乐园部.事件.*;
+import 间.事件.*;
 
 /**
  * Adapter to use JS function as implementation of Java interfaces with

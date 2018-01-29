@@ -1,7 +1,7 @@
 package hl4a.ide.layout;
 
 import android.content.*;
-import 放课后乐园部.安卓.视图.*;
+import 间.安卓.视图.*;
 
 public class 布局_新建文件 extends 线性布局 {
 

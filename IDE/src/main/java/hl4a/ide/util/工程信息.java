@@ -1,6 +1,6 @@
 package hl4a.ide.util;
 
-import 放课后乐园部.收集.*;
+import 间.收集.*;
 
 public class 工程信息 {
 

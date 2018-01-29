@@ -1,10 +1,10 @@
 package hl4a.ide.util;
 
 import java.io.*;
-import 放课后乐园部.压缩.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.数据.*;
+import 间.压缩.*;
+import 间.安卓.工具.*;
+import 间.工具.*;
+import 间.数据.*;
 
 public class 工程 {
 

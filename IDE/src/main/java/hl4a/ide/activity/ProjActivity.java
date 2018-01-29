@@ -5,16 +5,16 @@ import android.os.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.lang.reflect.*;
-import 放课后乐园部.事件.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.弹窗.*;
-import 放课后乐园部.安卓.组件.*;
-import 放课后乐园部.安卓.视图.*;
-import 放课后乐园部.安卓.资源.*;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.收集.*;
-import 放课后乐园部.安卓.编译.*;
-import 放课后乐园部.压缩.*;
+import 间.事件.*;
+import 间.安卓.工具.*;
+import 间.安卓.弹窗.*;
+import 间.安卓.组件.*;
+import 间.安卓.视图.*;
+import 间.安卓.资源.*;
+import 间.工具.*;
+import 间.收集.*;
+import 间.安卓.编译.*;
+import 间.压缩.*;
 
 public class ProjActivity extends 基本界面 {
 
@@ -188,7 +188,7 @@ public class ProjActivity extends 基本界面 {
             if (检查())return null;
             String $内容 = 内容.编辑.取文本();
             String $类型 = 内容.类型;
-            String $原内容 = (String)反射工具.取变量(当前.信息, $类型);
+            String $原内容 = (String)反射.取变量(当前.信息, $类型);
             if ("".equals($内容)) {
                 提示工具.警告("请不要留空 ~");
                 return null;
@@ -209,7 +209,7 @@ public class ProjActivity extends 基本界面 {
                 提示工具.普通("更改成功 ~");
             }
             ((文本视图)所有.读取($类型)).置文本($内容);
-            反射工具.置变量(当前.信息, $类型, $内容);
+            反射.置变量(当前.信息, $类型, $内容);
             当前.保存();
             设置.隐藏();
             return 233;
@@ -259,7 +259,7 @@ public class ProjActivity extends 基本界面 {
             $布局.置高度("自动");
             文本视图 $内容 = new 文本视图($布局);
             $内容.置标签("内容");
-            $内容.置文本(反射工具.取变量(当前.信息,$设置).toString());
+            $内容.置文本(反射.取变量(当前.信息,$设置).toString());
             所有.设置($设置, $内容);
         }
     }

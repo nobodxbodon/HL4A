@@ -57,7 +57,7 @@ import java.util.*;
 
 import android.text.ClipboardManager;
 import com.myopicmobile.textwarrior.common.Pair;
-import 放课后乐园部.安卓.视图.*;
+import 间.安卓.视图.*;
 
 /**
  * A custom text view that uses a solid shaded caret (aka cursor) instead of a

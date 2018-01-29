@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 package org.mozilla.javascript;
-import 放课后乐园部.工具.*;
+import 间.工具.*;
 
 /**
  * A wrapper for runtime exceptions.

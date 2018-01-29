@@ -9,7 +9,7 @@ package org.mozilla.javascript;
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
-import 放课后乐园部.工具.*;
+import 间.工具.*;
 
 /**
  * Collection of utilities
@@ -38,7 +38,7 @@ public class Kit
     public static Class<?> classOrNull(String className)
     {
        
-            return 反射工具.取类(className);
+            return 反射.取类(className);
        
     }
 
@@ -49,7 +49,7 @@ public class Kit
     public static Class<?> classOrNull(ClassLoader loader, String className)
     {
         
-            return 反射工具.取类(className,loader);
+            return 反射.取类(className,loader);
     }
 
     static Object newInstanceOrNull(Class<?> cl)

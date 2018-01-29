@@ -4,12 +4,12 @@ import android.os.*;
 import hl4a.ide.adapter.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
-import 放课后乐园部.事件.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.组件.*;
-import 放课后乐园部.安卓.视图.*;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.安卓.资源.布局.*;
+import 间.事件.*;
+import 间.安卓.工具.*;
+import 间.安卓.组件.*;
+import 间.安卓.视图.*;
+import 间.工具.*;
+import 间.安卓.资源.布局.*;
 
 public class MainActivity extends 基本界面 {
 
@@ -51,16 +51,7 @@ public class MainActivity extends 基本界面 {
         布局.适配器 = new 工程适配器(布局.列表);
         布局.布局.置刷新事件(刷新);
         打开布局(布局);
-        try {
-            检查导入();
-            测试();
-        } catch (Exception $错误) {
-            应用工具.错误处理.调用(null, $错误);
-        }
-    }
-    
-    public void 测试() throws Exception {
-       
+        检查到处();
     }
 
     public void 检查导入() {

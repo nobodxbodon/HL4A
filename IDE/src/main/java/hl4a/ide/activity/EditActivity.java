@@ -5,16 +5,16 @@ import android.view.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.io.*;
-import 放课后乐园部.事件.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.弹窗.*;
-import 放课后乐园部.安卓.组件.*;
-import 放课后乐园部.安卓.脚本.*;
-import 放课后乐园部.安卓.视图.*;
-import 放课后乐园部.安卓.视图.扩展.*;
-import 放课后乐园部.安卓.视图.适配器.*;
-import 放课后乐园部.安卓.资源.*;
-import 放课后乐园部.工具.*;
+import 间.事件.*;
+import 间.安卓.工具.*;
+import 间.安卓.弹窗.*;
+import 间.安卓.组件.*;
+import 间.安卓.脚本.*;
+import 间.安卓.视图.*;
+import 间.安卓.视图.扩展.*;
+import 间.安卓.视图.适配器.*;
+import 间.安卓.资源.*;
+import 间.工具.*;
 
 public class EditActivity extends 基本界面 {
 

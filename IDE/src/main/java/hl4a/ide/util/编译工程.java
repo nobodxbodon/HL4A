@@ -3,14 +3,14 @@ package hl4a.ide.util;
 import android.content.*;
 import android.net.*;
 import java.io.*;
-import 放课后乐园部.事件.*;
-import 放课后乐园部.压缩.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.弹窗.*;
-import 放课后乐园部.安卓.组件.*;
-import 放课后乐园部.安卓.编译.*;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.线程.*;
+import 间.事件.*;
+import 间.压缩.*;
+import 间.安卓.工具.*;
+import 间.安卓.弹窗.*;
+import 间.安卓.组件.*;
+import 间.安卓.编译.*;
+import 间.工具.*;
+import 间.线程.*;
 import android.os.*;
 
 public class 编译工程 {

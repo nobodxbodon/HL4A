@@ -10,7 +10,7 @@
 package com.myopicmobile.textwarrior.common;
 
 import java.util.*;
-import 放课后乐园部.安卓.工具.*;
+import 间.安卓.工具.*;
 
 public abstract class ColorScheme {
     public enum Colorable {

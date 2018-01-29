@@ -1,11 +1,11 @@
 package hl4a.ide.activity;
 
-import 放课后乐园部.安卓.组件.*;
+import 间.安卓.组件.*;
 import android.os.*;
 import android.content.*;
-import 放课后乐园部.安卓.资源.布局.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.视图.*;
+import 间.安卓.资源.布局.*;
+import 间.安卓.工具.*;
+import 间.安卓.视图.*;
 
 public class ViewActivity extends 基本界面 {
 

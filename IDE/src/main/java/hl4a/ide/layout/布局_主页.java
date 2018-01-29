@@ -2,11 +2,11 @@ package hl4a.ide.layout;
 
 import android.content.*;
 import hl4a.ide.adapter.*;
-import 放课后乐园部.安卓.视图.*;
-import 放课后乐园部.安卓.资源.布局.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.视图.适配器.*;
-import 放课后乐园部.安卓.视图.扩展.*;
+import 间.安卓.视图.*;
+import 间.安卓.资源.布局.*;
+import 间.安卓.工具.*;
+import 间.安卓.视图.适配器.*;
+import 间.安卓.视图.扩展.*;
 
 public class 布局_主页 extends 布局_基本界面 {
 

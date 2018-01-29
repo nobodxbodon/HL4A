@@ -10,9 +10,9 @@ import pxb.android.StringItem;
 import pxb.android.axml.AxmlReader;
 import pxb.android.axml.AxmlWriter;
 import pxb.android.axml.NodeVisitor;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.收集.*;
+import 间.工具.*;
+import 间.安卓.工具.*;
+import 间.收集.*;
 import java.util.*;
 
 /**

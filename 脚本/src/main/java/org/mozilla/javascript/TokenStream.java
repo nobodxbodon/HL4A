@@ -7,7 +7,7 @@
 package org.mozilla.javascript;
 
 import java.io.*;
-import 放课后乐园部.安卓.脚本.*;
+import 间.安卓.脚本.*;
 
 /**
  * This class implements the JavaScript scanner.
