@@ -1,15 +1,14 @@
 package 间.安卓.工具;
 
-import android.content.*;
-import android.widget.*;
-import 间.接口.*;
-import 间.安卓.图形.*;
-import 间.安卓.视图.*;
-import 间.安卓.资源.布局.*;
-import 间.安卓.工具.*;
-import 间.工具.*;
+import android.content.Context;
+import android.widget.Toast;
+import 间.安卓.视图.文本视图;
+import 间.安卓.资源.布局.布局_提示;
+import 间.工具.字符;
+import 间.工具.时间;
+import 间.接口.方法;
 
-public class 提示工具 {
+public class 提示 {
 
     public static Toast 提示对象;
     public static 文本视图 文本对象;

@@ -1,9 +1,12 @@
 package 间.安卓.资源.布局;
 
-import android.content.*;
-import 间.安卓.图形.*;
-import 间.安卓.视图.*;
-import 间.安卓.工具.*;
+import android.content.Context;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.线性布局;
+import 间.安卓.视图.进度圈;
+import 间.安卓.视图.进度条;
 
 public class 布局_加载中 extends 线性布局 {
 

@@ -40,7 +40,7 @@ public class ProjActivity extends 基本界面 {
 
     public boolean 检查() {
         if (!文件.是文件(当前.取地址("应用.json"))) {
-            提示工具.警告("工程已损坏!");
+            提示.警告("工程已损坏!");
             结束界面();
             return true;
         }
@@ -56,7 +56,7 @@ public class ProjActivity extends 基本界面 {
         super.onCreate($数据);
         地址 = (String)传入参数[0];
         if (!工程.检查(地址)) {
-            提示工具.警告("工程已损坏!");
+            提示.警告("工程已损坏!");
             结束界面();
         }
         当前 = 工程.读取(地址);
@@ -90,7 +90,7 @@ public class ProjActivity extends 基本界面 {
     方法 详细协议 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
-            链接工具.打开("http://www.gnu.org/licenses/gpl-3.0.html");
+            链接.打开("http://www.gnu.org/licenses/gpl-3.0.html");
             return null;
         }
     };
@@ -101,7 +101,7 @@ public class ProjActivity extends 基本界面 {
             if (检查()) return null;
             String $入口 = 当前.取地址("源码", "入口.js");
             if (!文件.是文件($入口)) {
-                提示工具.普通("没有入口文件 ！");
+                提示.普通("没有入口文件 ！");
             } else {
                 跳转脚本($入口);
             }
@@ -116,7 +116,7 @@ public class ProjActivity extends 基本界面 {
             String $输出 = 文件.取目录(当前.取地址()) + "/" + 当前.信息.工程名 + ".hpk";
             ZIP.压缩(当前.取地址(), $输出);
             字符.保存($输出, 编码.Base64.编码(字节.读取($输出)));
-            提示工具.普通("打包成功 ~ \n" + $输出);
+            提示.普通("打包成功 ~ \n" + $输出);
             return null;
         }
     };
@@ -152,7 +152,7 @@ public class ProjActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             if (检查())return null;
             文件.删除(当前.取地址());
-            提示工具.普通("删除成功 ！");
+            提示.普通("删除成功 ！");
             删除.隐藏();
             结束界面();
             return null;
@@ -186,23 +186,23 @@ public class ProjActivity extends 基本界面 {
             String $类型 = 内容.类型;
             String $原内容 = (String)反射.取变量(当前.信息, $类型);
             if ("".equals($内容)) {
-                提示工具.警告("请不要留空 ~");
+                提示.警告("请不要留空 ~");
                 return null;
             } else if ($类型 == "包名") {
                 if (!工程.检查包名($内容)) {
                     return null;
                 } else if (工程.检查($内容)) {
-                    提示工具.警告("该包名已存在 ~");
+                    提示.警告("该包名已存在 ~");
                     return null;
                 }
                 if (!工程.移动($原内容, $内容)) {
-                    提示工具.警告("移动失败 未知错误!");
+                    提示.警告("移动失败 未知错误!");
                     return null;
                 }
                 地址 = $内容;
                 当前.地址 = $内容;
             } else {
-                提示工具.普通("更改成功 ~");
+                提示.普通("更改成功 ~");
             }
             ((文本视图)所有.读取($类型)).置文本($内容);
             反射.置变量(当前.信息, $类型, $内容);

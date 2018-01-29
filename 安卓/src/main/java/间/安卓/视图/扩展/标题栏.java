@@ -1,13 +1,15 @@
 package 间.安卓.视图.扩展;
 
-import android.content.*;
-import android.view.*;
-import 间.接口.*;
-import 间.安卓.图形.*;
-import 间.安卓.视图.*;
-import 间.安卓.工具.*;
-import 间.安卓.资源.*;
-import 间.工具.*;
+import android.content.Context;
+import android.view.ViewGroup;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.视图;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.弹出菜单;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.线性布局;
+import 间.安卓.资源.图标;
+import 间.接口.方法;
 
 public class 标题栏 extends 线性布局 {
 
@@ -25,7 +27,7 @@ public class 标题栏 extends 线性布局 {
 
         上下文 = $上下文;
         
-        setTranslationZ(视图工具.检查大小("4dp"));
+        setTranslationZ(视图.检查大小("4dp"));
         
         置标签("标题");
         置方向("水平");

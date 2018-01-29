@@ -5,7 +5,7 @@ import hl4a.ide.activity.ProjActivity;
 import hl4a.ide.layout.布局_新建工程;
 import hl4a.ide.util.工程;
 import java.io.File;
-import 间.安卓.工具.提示工具;
+import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
 import 间.安卓.弹窗.基本弹窗;
 import 间.安卓.组件.基本界面;
@@ -46,12 +46,12 @@ public class 工程适配器 extends 数组适配器 {
             String $包名 = 新建工程布局.包名.取文本();
             String $工程名 = 新建工程布局.工程名.取文本();
             if ("".equals($包名)) {
-                提示工具.普通("包名不能为空 ~");
+                提示.普通("包名不能为空 ~");
             } else if (!工程.检查包名($包名)) {
             } else if ("".equals($工程名)) {
-                提示工具.普通("工程名不能为空 ~");
+                提示.普通("工程名不能为空 ~");
             } else if (工程.检查($包名)) {
-                提示工具.普通("包名已存在 ~");
+                提示.普通("包名已存在 ~");
             } else {
                 新建工程布局.工程名.置文本("");
                 新建工程布局.包名.置文本("");

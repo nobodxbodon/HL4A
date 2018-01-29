@@ -8,7 +8,7 @@ import 间.工具.*;
 import java.io.*;
 import android.graphics.drawable.*;
 
-public class 视图工具 {
+public class 视图 {
 
     public static ColorStateList 创建颜色列表(Object $普通颜色,Object $按下颜色) {
         int $普通 = 检查颜色($普通颜色);
@@ -82,7 +82,7 @@ public class 视图工具 {
         if ($颜色 instanceof Integer)
             return (Integer) $颜色;
         if ($颜色 instanceof String && 字符.以开始((String)$颜色, "#"))
-            return 颜色工具.转换((String)$颜色);
+            return 颜色.转换((String)$颜色);
         return null;
     }
 
@@ -102,12 +102,12 @@ public class 视图工具 {
             String $结束 = 字符.小写(字符.取结束后((String)$大小, 2));
             Integer $数量 = new Integer(字符.取结束前((String)$大小, 2));
             switch ($结束) {
-                case "px":return 转换工具.px($数量).intValue();
-                case "dp":return 转换工具.dp($数量).intValue();
-                case "sp":return 转换工具.sp($数量).intValue();
-                case "pt":return 转换工具.pt($数量).intValue();
-                case "mm":return 转换工具.mm($数量).intValue();
-                case "in":return 转换工具.in($数量).intValue();
+                case "px":return 转换.px($数量).intValue();
+                case "dp":return 转换.dp($数量).intValue();
+                case "sp":return 转换.sp($数量).intValue();
+                case "pt":return 转换.pt($数量).intValue();
+                case "mm":return 转换.mm($数量).intValue();
+                case "in":return 转换.in($数量).intValue();
             }
         }
         return -2;

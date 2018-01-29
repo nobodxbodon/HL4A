@@ -33,7 +33,7 @@ public class 图片视图 extends ImageView implements 基本视图 {
     }
 
     public void 置图片(Object $图片) {
-        setImageBitmap(视图工具.检查图片($图片));
+        setImageBitmap(视图.检查图片($图片));
     }
 
 

@@ -4,7 +4,7 @@ import android.util.TypedValue;
 import java.lang.reflect.TypeVariable;
 import android.util.DisplayMetrics;
 
-public class 转换工具 {
+public class 转换 {
 
     public static DisplayMetrics rdm = 环境.取应用().getResources().getDisplayMetrics();
 

@@ -33,7 +33,7 @@ public class 图片按钮 extends ImageButton implements 基本视图 {
     }
     
     public void 置图片(Object $图片) {
-        置图片(视图工具.检查图片($图片));
+        置图片(视图.检查图片($图片));
     }
 
     public void 保存到(String $地址) {

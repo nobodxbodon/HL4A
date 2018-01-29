@@ -1,19 +1,30 @@
 package 间.安卓.工具;
 
-import android.app.*;
-import android.content.*;
-import android.content.pm.*;
-import android.content.res.*;
-import android.graphics.drawable.*;
-import android.util.*;
-import android.view.*;
-import hl4a.runtime.*;
-import java.util.*;
-import 间.安卓.图形.*;
-import 间.安卓.组件.*;
-import 间.工具.*;
-import 间.接口.*;
-import 间.收集.*;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.view.Window;
+import android.view.WindowManager;
+import hl4a.runtime.ErrorActivity;
+import java.util.List;
+import 间.安卓.组件.基本界面;
+import 间.工具.字符;
+import 间.工具.散列;
+import 间.工具.时间;
+import 间.工具.线程;
+import 间.工具.错误;
+import 间.接口.方法;
+import 间.收集.集合;
 
 public class 应用 {
 
@@ -27,10 +38,6 @@ public class 应用 {
         } catch (PackageManager.NameNotFoundException $错误) {
             return false;
         }
-    }
-
-    public static void hh() {
-
     }
 
     public static void 初始化界面(Activity $界面) {
@@ -61,7 +68,6 @@ public class 应用 {
         @Override
         public Object 调用(Object[] $参数) {
             Exception $错误 = (Exception)$参数[1];
-            辅助工具.停止();
             应用.结束界面($错误);
             Intent $意图 = new Intent(环境.取应用(), ErrorActivity.class);
             $意图.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -84,11 +90,11 @@ public class 应用 {
         主题.置默认填充("16dp");
         主题.置中等填充("56dp");
         主题.置主题颜色(颜色.靛蓝);
-        提示工具.初始化($应用);
+        提示.初始化($应用);
     }
 
     public static void 自动设置主题(Context $上下文) {
-        if (设备工具.取SDK() >= 21) {
+        if (设备.取SDK() >= 21) {
             $上下文.setTheme(android.R.style.Theme_Material_Light_NoActionBar);
         } else {
             $上下文.setTheme(android.R.style.Theme_Holo_Light_NoActionBar);

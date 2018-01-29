@@ -1,14 +1,16 @@
 package 间.安卓.视图;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.view.*;
-import android.widget.*;
-import 间.接口.*;
-import 间.安卓.图形.*;
-import 间.安卓.工具.*;
-import 间.安卓.视图.实现.*;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.ViewGroup;
+import android.widget.Button;
+import 间.安卓.工具.绘画;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.实现.基本文本;
+import 间.安卓.视图.实现.文本实现;
+import 间.安卓.视图.实现.视图实现;
+import 间.接口.方法;
 
 public class 按钮 extends Button implements 基本文本 {
 
@@ -17,7 +19,7 @@ public class 按钮 extends Button implements 基本文本 {
         视图实现.初始化控件(this);
         置宽度("自动");
         置高度("自动");
-        置背景(绘画工具.主题());
+        置背景(绘画.主题());
         置文本颜色(颜色.白色);
     }
     

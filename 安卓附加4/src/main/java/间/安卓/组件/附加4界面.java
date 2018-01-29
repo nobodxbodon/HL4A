@@ -6,7 +6,7 @@ public class 附加4界面 extends 基本界面  {
 
     @Override
     public void 请求权限() {
-        if (设备工具.取SDK() < 23) {
+        if (设备.取SDK() < 23) {
             权限回调事件();
             return;
         }

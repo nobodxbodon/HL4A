@@ -1,14 +1,13 @@
-package 间.安卓.线程;
+package 间.安卓.工具;
 
 import android.os.*;
-import 间.安卓.工具.*;
 import 间.接口.*;
 
-public class 安卓线程 extends 间.工具.线程 {
+public class 线程 extends 间.工具.线程 {
     
     public Looper L;
     
-    public 安卓线程(方法 $方法) {
+    public 线程(方法 $方法) {
         super($方法);
         置错误处理(应用.错误处理);
     }

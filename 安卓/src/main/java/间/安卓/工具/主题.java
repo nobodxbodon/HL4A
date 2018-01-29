@@ -1,7 +1,5 @@
 package 间.安卓.工具;
 
-import 间.安卓.图形.*;
-
 public class 主题 {
 
     private static 颜色 主题颜色;
@@ -13,7 +11,7 @@ public class 主题 {
     private static int 中等填充;
 
     public static void 置中等填充(Object $填充) {
-        中等填充 = 视图工具.检查大小($填充);
+        中等填充 = 视图.检查大小($填充);
     }
 
     public static int 取中等填充() {
@@ -21,7 +19,7 @@ public class 主题 {
     }
 
     public static void 置小文本大小(Object $大小) {
-        小文本大小 = 视图工具.检查大小($大小) * 倍数;
+        小文本大小 = 视图.检查大小($大小) * 倍数;
     }
 
     public static int 取小文本大小() {
@@ -29,7 +27,7 @@ public class 主题 {
     }
 
     public static void 置大文本大小(Object $大小) {
-        主题.大文本大小 = 视图工具.检查大小($大小) * 倍数;
+        主题.大文本大小 = 视图.检查大小($大小) * 倍数;
     }
 
     public static int 取大文本大小() {
@@ -37,7 +35,7 @@ public class 主题 {
     }
 
     public static void 置默认填充(Object $填充) {
-        默认填充 = 视图工具.检查大小($填充);
+        默认填充 = 视图.检查大小($填充);
     }
 
     public static int 取默认填充() {
@@ -47,7 +45,7 @@ public class 主题 {
     public static int 倍数 = 应用.取屏幕DPI() < 480 ?  500 / 应用.取屏幕DPI() : 1;
 
     public static void 置文本大小(Object $大小) {
-        文本大小 = 视图工具.检查大小($大小) * 倍数;
+        文本大小 = 视图.检查大小($大小) * 倍数;
     }
 
     public static int 取文本大小() {
@@ -55,7 +53,7 @@ public class 主题 {
     }
 
     public static void 置圆角大小(Object $大小) {
-        圆角大小 = 视图工具.检查大小($大小);
+        圆角大小 = 视图.检查大小($大小);
     }
 
     public static int 取圆角大小() {

@@ -22,7 +22,7 @@ public final class 文本实现 {
         $视图.setText(Html.fromHtml($HTML, new Html.ImageGetter() {
                             @Override
                             public Drawable getDrawable(String $地址) {
-                                Drawable $绘画 = 绘画工具.图片转绘画($地址);
+                                Drawable $绘画 = 绘画.图片转绘画($地址);
                                 $绘画.setBounds(0, 0, $绘画.getIntrinsicWidth(), $绘画.getIntrinsicHeight());
                                 return $绘画;
                             }
@@ -34,14 +34,14 @@ public final class 文本实现 {
     }
 
     public static void 置文本大小(TextView $视图,Object $大小) {
-        $视图.setTextSize(视图工具.检查大小($大小));
+        $视图.setTextSize(视图.检查大小($大小));
     }
 
     public static void 置文本颜色(TextView $视图,Object $颜色) {
         if ($颜色 instanceof Integer)
             $视图.setTextColor((Integer)$颜色);
         else if ($颜色 instanceof String)
-            $视图.setTextColor(视图工具.检查颜色($颜色));
+            $视图.setTextColor(视图.检查颜色($颜色));
     }
 
     public static void 置文本字体(TextView $视图,String $地址) {
@@ -53,7 +53,7 @@ public final class 文本实现 {
     }
 
     public static void 置文本重力(TextView $视图,String $重力) {
-        $视图.setGravity(视图工具.检查重力($重力));
+        $视图.setGravity(视图.检查重力($重力));
     }
 
     public static void 置文本显示在同一行(TextView $视图) {

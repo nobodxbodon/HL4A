@@ -6,7 +6,7 @@ import android.os.*;
 import android.telephony.*;
 import java.util.*;
 
-public class 设备工具 {
+public class 设备 {
     
     public static int 取SDK() {
         return Build.VERSION.SDK_INT;

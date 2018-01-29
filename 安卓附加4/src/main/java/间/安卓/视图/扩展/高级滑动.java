@@ -1,13 +1,16 @@
 package 间.安卓.视图.扩展;
 
-import android.content.*;
-import android.view.*;
-import 间.安卓.视图.*;
-import 间.安卓.视图.实现.*;
-import 间.安卓.视图.适配器.*;
-import 间.安卓.工具.*;
-import 间.安卓.图形.*;
-import 间.接口.*;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.应用;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.滑动视图;
+import 间.安卓.视图.线性布局;
+import 间.安卓.视图.适配器.界面适配器;
+import 间.接口.方法;
 
 public class 高级滑动 extends 线性布局 {
 

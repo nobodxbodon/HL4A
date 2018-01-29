@@ -1,16 +1,25 @@
 package 间.安卓.视图;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.view.*;
-import android.webkit.*;
-import 间.接口.*;
-import 间.安卓.视图.实现.*;
-import 间.安卓.组件.*;
-import 间.工具.*;
-import 间.安卓.工具.*;
-import 间.安卓.弹窗.*;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import 间.安卓.工具.链接;
+import 间.安卓.弹窗.基本弹窗;
+import 间.安卓.组件.基本界面;
+import 间.安卓.视图.实现.基本视图;
+import 间.安卓.视图.实现.视图实现;
+import 间.工具.字符;
+import 间.接口.方法;
+import 间.接口.调用;
 
 public class 浏览器 extends WebView implements 基本视图 {
 
@@ -113,7 +122,7 @@ public class 浏览器 extends WebView implements 基本视图 {
                 $视图.loadUrl($链接);
                 return true;
             } else {
-                链接工具.打开($链接);
+                链接.打开($链接);
                 return false;
             }
         }

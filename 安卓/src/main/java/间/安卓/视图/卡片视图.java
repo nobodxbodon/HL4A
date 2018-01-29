@@ -23,7 +23,7 @@ public class 卡片视图 extends CardView implements 基本布局 {
     }
     
     public void 置圆角(Object $圆角) {
-        setRadius(视图工具.检查大小($圆角));
+        setRadius(视图.检查大小($圆角));
     }
     
     @Override

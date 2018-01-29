@@ -15,8 +15,8 @@ import com.myopicmobile.textwarrior.common.LanguageLua;
 import com.myopicmobile.textwarrior.common.Lexer;
 import 间.安卓.工具.主题;
 import 间.安卓.工具.文件;
-import 间.安卓.工具.视图工具;
-import 间.安卓.工具.转换工具;
+import 间.安卓.工具.视图;
+import 间.安卓.工具.转换;
 import 间.安卓.视图.事件.代码选中;
 import 间.安卓.视图.实现.基本视图;
 import 间.安卓.视图.实现.视图实现;
@@ -48,7 +48,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
         视图实现.初始化控件(this);
         mContext = $上下文;
         setTypeface(Typeface.MONOSPACE);
-        setTextSize(转换工具.dp(12).intValue());
+        setTextSize(转换.dp(12).intValue());
         setShowLineNumbers(true);
         setHighlightCurrentRow(true);
         setWordWrap(false);
@@ -231,7 +231,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
     }
 
     public void 置背景颜色(Object $颜色) {
-        getColorScheme().setColor(ColorScheme.Colorable.BACKGROUND, 视图工具.检查颜色($颜色));
+        getColorScheme().setColor(ColorScheme.Colorable.BACKGROUND, 视图.检查颜色($颜色));
     }
     
     public void 置文本颜色(int color) {

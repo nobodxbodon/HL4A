@@ -21,7 +21,7 @@ public final class 视图实现 {
     
     public static void 置布局重力(View $视图,String $重力) {
         ViewGroup.LayoutParams $设置 = $视图.getLayoutParams();
-        反射.置变量($设置,"gravity",视图工具.检查重力($重力));
+        反射.置变量($设置,"gravity",视图.检查重力($重力));
         置设置($视图, $设置);
     }
     
@@ -93,13 +93,13 @@ public final class 视图实现 {
 
     public static void 置宽度实现(View $视图,Object $宽度) {
         ViewGroup.LayoutParams $设置 = 取设置($视图);
-        $设置.width = 视图工具.检查大小($宽度).intValue();
+        $设置.width = 视图.检查大小($宽度).intValue();
         置设置($视图, $设置);
     }
 
     public static void 置高度实现(View $视图,Object $高度) {
         ViewGroup.LayoutParams $设置 = 取设置($视图);
-        $设置.height = 视图工具.检查大小($高度).intValue();
+        $设置.height = 视图.检查大小($高度).intValue();
         置设置($视图, $设置);
     }
     public static void 置边距(View $视图,Object $全局) {
@@ -129,10 +129,10 @@ public final class 视图实现 {
         int $下边距 = $设置.bottomMargin;
         int $左边距 = $设置.leftMargin;
         int $右边距 = $设置.rightMargin;
-        $上边距 = (($上 = 视图工具.检查大小($上)) == null) ? $上边距 : (int) $上;
-        $下边距 = (($下 = 视图工具.检查大小($下)) == null) ? $下边距 : (int) $下;
-        $左边距 = (($左 = 视图工具.检查大小($左)) == null) ? $左边距 : (int) $左;
-        $右边距 = (($右 = 视图工具.检查大小($左)) == null) ? $右边距 : (int) $右;
+        $上边距 = (($上 = 视图.检查大小($上)) == null) ? $上边距 : (int) $上;
+        $下边距 = (($下 = 视图.检查大小($下)) == null) ? $下边距 : (int) $下;
+        $左边距 = (($左 = 视图.检查大小($左)) == null) ? $左边距 : (int) $左;
+        $右边距 = (($右 = 视图.检查大小($左)) == null) ? $右边距 : (int) $右;
         $设置.setMargins($左边距, $上边距, $右边距, $下边距);
         // 这里的边距已经设置到了，但是为什么没有应用呢？
         置设置($视图, $设置);
@@ -206,9 +206,9 @@ public final class 视图实现 {
                 置背景颜色($视图, (Integer)$背景);
             else if ($背景 instanceof String)
                 switch ((String)$背景) {
-                    case "透明":case "through":置背景($视图, 绘画工具.透明());break;
-                    case "白色":case "white":置背景($视图, 绘画工具.白色());break;
-                    case "黑色":case "black":置背景($视图, 绘画工具.黑色());break;
+                    case "透明":case "through":置背景($视图, 绘画.透明());break;
+                    case "白色":case "white":置背景($视图, 绘画.白色());break;
+                    case "黑色":case "black":置背景($视图, 绘画.黑色());break;
                     default:置背景颜色($视图, (String)$背景);
                 }
         } catch (Exception $错误) {}
@@ -222,7 +222,7 @@ public final class 视图实现 {
             if ($颜色 instanceof Integer)
                 $视图.setBackgroundColor((Integer)$颜色);
             else if ($颜色 instanceof String)
-                $视图.setBackgroundColor(视图工具.检查颜色($颜色));
+                $视图.setBackgroundColor(视图.检查颜色($颜色));
         } catch (Exception $错误) {}
     }
 
@@ -248,10 +248,10 @@ public final class 视图实现 {
 
     public static void 置填充(View $视图,Object $上,Object $下,Object $左,Object $右) {
 
-        Integer $上填充 = (($上 = 视图工具.检查大小($上)) == null) ? $视图.getPaddingTop() : (Integer) $上;
-        Integer $下填充 = (($下 = 视图工具.检查大小($下)) == null) ? $视图.getPaddingBottom() : (Integer) $下;
-        Integer $左填充 = (($左 = 视图工具.检查大小($左)) == null) ? $视图.getPaddingLeft() : (Integer) $左;
-        Integer $右填充 = (($右 = 视图工具.检查大小($右)) == null) ? $视图.getPaddingRight() : (Integer) $右;
+        Integer $上填充 = (($上 = 视图.检查大小($上)) == null) ? $视图.getPaddingTop() : (Integer) $上;
+        Integer $下填充 = (($下 = 视图.检查大小($下)) == null) ? $视图.getPaddingBottom() : (Integer) $下;
+        Integer $左填充 = (($左 = 视图.检查大小($左)) == null) ? $视图.getPaddingLeft() : (Integer) $左;
+        Integer $右填充 = (($右 = 视图.检查大小($右)) == null) ? $视图.getPaddingRight() : (Integer) $右;
         $视图.setPadding($左填充, $上填充, $右填充, $下填充);
 
     }

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import 间.安卓.工具.处理;
 import 间.安卓.工具.应用;
-import 间.安卓.工具.提示工具;
+import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
 import 间.安卓.弹窗.加载中弹窗;
 import 间.安卓.组件.基本界面;
@@ -86,7 +86,7 @@ public class 编译工程 {
             文件.删除($DEX);
             DEX.多个($DEX, 工程.取地址("编译", "类"));
         } catch (IOException $错误) {
-            提示工具.普通($错误);
+            提示.普通($错误);
             return;
         }
         弹窗.更新("检查图标资源");
@@ -113,7 +113,7 @@ public class 编译工程 {
                 @Override
                 public Object 调用(Object[] $参数) {
                     弹窗.隐藏();
-                    提示工具.普通("打包成功 ~\n存放在: " + $APK);
+                    提示.普通("打包成功 ~\n存放在: " + $APK);
                     文件.打开($APK);
                     return null;
                 }

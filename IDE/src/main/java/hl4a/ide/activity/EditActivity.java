@@ -65,7 +65,7 @@ public class EditActivity extends 基本界面 {
         super.onCreate($数据);
         String $名称 = (String)传入参数[0];
         if (!工程.检查($名称)) {
-            提示工具.警告("没有那样的工程 :" + $名称);
+            提示.警告("没有那样的工程 :" + $名称);
             结束界面();
             return;
         }
@@ -103,7 +103,7 @@ public class EditActivity extends 基本界面 {
                     @Override
                     public Object 调用(Object[] $参数) {
                         文件.删除($地址);
-                        提示工具.普通("删除成功 ~");
+                        提示.普通("删除成功 ~");
                         布局.适配器.刷新();
                         界面刷新事件();
                         $操作菜单.隐藏();
@@ -139,7 +139,7 @@ public class EditActivity extends 基本界面 {
             String $名称 = (String)$参数[3];
             打开 = new File($附加 + "/" + $名称).getPath();
             界面刷新事件();
-            提示工具.普通("打开文件 " + $名称);
+            提示.普通("打开文件 " + $名称);
             return null;
         }
     };
@@ -149,21 +149,21 @@ public class EditActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             String $内容 = 新建布局.内容.取文本();
             if ($内容.equals("")) {
-                提示工具.普通("请不要留空 ~");
+                提示.普通("请不要留空 ~");
                 return null;
             }
             String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
             if (文件.是否存在($目标)) {
-                提示工具.普通("文件/夹 已存在 ~");
+                提示.普通("文件/夹 已存在 ~");
                 return null;
             }
             文件.创建文件($目标);
             if (文件.是文件($目标)) {
-                提示工具.普通("文件创建成功 ~");
+                提示.普通("文件创建成功 ~");
                 布局.适配器.刷新();
                 新建弹窗.隐藏();
             } else {
-                提示工具.警告("创建错误 ~");
+                提示.警告("创建错误 ~");
             }
             return null;
         }
@@ -174,21 +174,21 @@ public class EditActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             String $内容 = 新建布局.内容.取文本();
             if ($内容.equals("")) {
-                提示工具.普通("请不要留空 ~");
+                提示.普通("请不要留空 ~");
                 return null;
             }
             String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
             if (文件.是否存在($目标)) {
-                提示工具.普通("文件/夹 已存在 ~");
+                提示.普通("文件/夹 已存在 ~");
                 return null;
             }
             文件.创建目录($目标);
             if (文件.是目录($目标)) {
-                提示工具.普通("目录创建成功 ~");
+                提示.普通("目录创建成功 ~");
                 布局.适配器.刷新();
                 新建弹窗.隐藏();
             } else {
-                提示工具.警告("创建错误 ~");
+                提示.警告("创建错误 ~");
             }
             return null;
         }
@@ -218,7 +218,7 @@ public class EditActivity extends 基本界面 {
     @Override
     public void 界面刷新事件() {
         if (!文件.是文件(当前.取地址("应用.json"))) {
-            提示工具.警告("工程已损坏！");
+            提示.警告("工程已损坏！");
             置返回值(233);
             //如果Proj检测到返回233就直接结束
             //避免提示两次已损坏影响体验
@@ -229,7 +229,7 @@ public class EditActivity extends 基本界面 {
             打开 = "入口.js";
         }
         if (!文件.是文件(当前.取地址("源码/" + 打开))) {
-            提示工具.普通("正在创建入口 ~");
+            提示.普通("正在创建入口 ~");
             字符.保存(当前.取地址("源码/" + 打开), 字符.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
         }
         布局.代码.读入(当前.取地址("源码/" + 打开));

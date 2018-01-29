@@ -23,7 +23,7 @@ public class 布局实现 {
     // Gravity
 
     public static void 置重力(LinearLayout $视图,String $重力) {
-        $视图.setGravity(视图工具.检查重力($重力));
+        $视图.setGravity(视图.检查重力($重力));
     }
 
     // addView

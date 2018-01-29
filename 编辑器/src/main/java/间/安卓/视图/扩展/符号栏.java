@@ -1,11 +1,14 @@
 package 间.安卓.视图.扩展;
 
-import android.content.*;
-import android.view.*;
-import 间.接口.*;
-import 间.安卓.图形.*;
-import 间.安卓.工具.*;
-import 间.安卓.视图.*;
+import android.content.Context;
+import android.view.ViewGroup;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.代码框;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.水平滚动;
+import 间.安卓.视图.线性布局;
+import 间.接口.方法;
 
 public class 符号栏 extends 水平滚动 {
 

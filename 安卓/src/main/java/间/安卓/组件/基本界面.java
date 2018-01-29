@@ -1,19 +1,27 @@
 package 间.安卓.组件;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.view.*;
-import java.io.*;
-import 间.接口.*;
-import 间.安卓.工具.*;
-import 间.安卓.工具.服务.*;
-import 间.安卓.接口.*;
-import 间.安卓.视图.*;
-import 间.工具.*;
-import 间.收集.*;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import java.io.Serializable;
+import 间.安卓.工具.布局;
+import 间.安卓.工具.应用;
+import 间.安卓.工具.提示;
+import 间.安卓.工具.服务.连接处理;
+import 间.安卓.工具.设备;
+import 间.安卓.视图.浏览器;
+import 间.工具.反射;
+import 间.工具.时间;
+import 间.工具.错误;
+import 间.接口.方法;
+import 间.接口.调用;
+import 间.收集.哈希表;
+import 间.收集.集合;
 
-public class 基本界面 extends Activity implements 可处理的 {
+public class 基本界面 extends Activity {
 
 
     public Object[] 传入参数;
@@ -21,11 +29,6 @@ public class 基本界面 extends Activity implements 可处理的 {
     public 集合<连接处理> 所有连接 = new 集合<>();
     public 集合<浏览器> 所有浏览器 = new 集合<>();
 
-    @Override
-    public Looper 取处理器() {
-        return Looper.myLooper();
-    }
-    
     public void 注册事件(String $事件,方法 $方法) {
         所有事件.设置($事件, $方法);
     }
@@ -147,7 +150,7 @@ public class 基本界面 extends Activity implements 可处理的 {
                     finish();
                     return true;
                 } else {
-                    提示工具.普通("再按一次返回键退出 ~");
+                    提示.普通("再按一次返回键退出 ~");
                     return false;
                 }
             }
@@ -298,7 +301,7 @@ public class 基本界面 extends Activity implements 可处理的 {
     }
     
     public void 请求权限() {
-        if (设备工具.取SDK() < 23) {
+        if (设备.取SDK() < 23) {
             权限回调事件();
             return;
         }

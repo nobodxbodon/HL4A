@@ -1,7 +1,6 @@
-package 间.安卓.图形;
+package 间.安卓.工具;
 
 import android.graphics.*;
-import 间.安卓.工具.*;
 
 public class 颜色 {
 
@@ -62,7 +61,7 @@ public class 颜色 {
         字符组 = $颜色;
         颜色组 = new int[字符组.length];
         for (int $键值 = 0;$键值 < 字符组.length;$键值 ++) {
-            颜色组[$键值] = 颜色工具.转换(字符组[$键值]);
+            颜色组[$键值] = 转换(字符组[$键值]);
         }
     }
     
@@ -96,6 +95,10 @@ public class 颜色 {
     
     public int 取基本深色() {
         return 颜色组[7];
+    }
+    
+    public static Integer 转换(String $颜色) {
+        return Color.parseColor($颜色);
     }
     
 }

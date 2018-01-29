@@ -19,7 +19,7 @@ public class 布局 {
         $窗口.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); //Then call setStatusBarColor. 
         $窗口.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         if (可直接) {
-            $窗口.setStatusBarColor(视图工具.检查颜色(主题.取主题颜色().取基本深色()));
+            $窗口.setStatusBarColor(视图.检查颜色(主题.取主题颜色().取基本深色()));
             $界面.setContentView($视图);
             return;
         }

@@ -55,7 +55,7 @@ public class 弹出菜单 extends ListPopupWindow {
     }
     
     public void 置宽度(Object $宽度) {
-        setWidth(视图工具.检查大小($宽度));
+        setWidth(视图.检查大小($宽度));
     }
     
     public void 显示() {

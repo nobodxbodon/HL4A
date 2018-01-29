@@ -1,10 +1,11 @@
 package 间.安卓.资源.布局;
 
-import android.content.*;
-import 间.接口.*;
-import 间.安卓.图形.*;
-import 间.安卓.视图.*;
-import 间.安卓.视图.扩展.*;
+import android.content.Context;
+import 间.安卓.工具.颜色;
+import 间.安卓.视图.侧滑布局;
+import 间.安卓.视图.扩展.标题栏;
+import 间.安卓.视图.线性布局;
+import 间.接口.调用;
 
 public class 布局_侧滑界面 extends 侧滑布局 {
     

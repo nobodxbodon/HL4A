@@ -4,7 +4,7 @@ import android.content.*;
 import android.net.*;
 import 间.接口.*;
 
-public class 链接工具 {
+public class 链接 {
 
     public static void 打开(String $地址) {
         Intent $意图= new Intent(Intent.ACTION_VIEW, Uri.parse($地址));

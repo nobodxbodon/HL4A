@@ -1,12 +1,17 @@
 package 间.安卓.工具;
 
-import android.content.res.*;
-import android.graphics.drawable.*;
-import android.graphics.drawable.shapes.*;
-import 间.安卓.图形.*;
-import 间.安卓.绘画.*;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import 间.安卓.绘画.按下变色绘画;
+import 间.安卓.绘画.点九图绘画;
 
-public class 绘画工具 {
+public class 绘画 {
 
     public static Drawable 透明() {
         return 生成背景(颜色.透明, 颜色.半透明);
@@ -25,12 +30,11 @@ public class 绘画工具 {
     }
 
     public static Drawable 生成背景(Object $普通,Object $按下) {
-        if (设备工具.取SDK() > 21) {
+        if (设备.取SDK() > 21) {
             ShapeDrawable $波纹 = new ShapeDrawable();
             $波纹.setShape(new RectShape());
             InsetDrawable $绘画 = new InsetDrawable($波纹, -1);
-            
-            RippleDrawable $涟漪 = new RippleDrawable(ColorStateList.valueOf(主题.取主题颜色().取淡色()), 绘画工具.颜色转绘画($普通), $绘画);
+            RippleDrawable $涟漪 = new RippleDrawable(ColorStateList.valueOf(主题.取主题颜色().取淡色()), 绘画.颜色转绘画($普通), $绘画);
             return $涟漪;
         } else {
             return new 按下变色绘画($普通, $按下);
@@ -39,7 +43,7 @@ public class 绘画工具 {
     }
 
     public static Drawable 颜色转绘画(Object $颜色) {
-        return new ColorDrawable(视图工具.检查颜色($颜色));
+        return new ColorDrawable(视图.检查颜色($颜色));
     }
 
     public static Drawable 图片转绘画(String $文件) {

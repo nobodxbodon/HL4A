@@ -1,19 +1,19 @@
 package 间.安卓.工具;
 
-import android.accessibilityservice.*;
-import android.content.*;
-import android.graphics.*;
-import android.os.*;
-import android.provider.*;
-import android.view.*;
-import android.view.accessibility.*;
-import hl4a.runtime.*;
-import java.util.*;
-import 间.安卓.线程.*;
-import 间.安卓.组件.*;
-import 间.工具.*;
+import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.GestureDescription;
+import android.content.Intent;
+import android.graphics.Path;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.view.ViewConfiguration;
+import android.view.accessibility.AccessibilityNodeInfo;
+import hl4a.runtime.Accessibility;
+import java.util.List;
+import 间.安卓.组件.辅助服务;
+import 间.工具.回调;
 
-public class 辅助工具 {
+public class 辅助 {
 
     public static boolean 检查() {
         if (已启动() && 辅助服务.服务 != null)
@@ -158,7 +158,7 @@ public class 辅助工具 {
 
         public static boolean 手势(final GestureDescription.StrokeDescription... strokes) {
             if (!检查()) return false;
-            if (安卓线程.是主线程()) {
+            if (线程.是主线程()) {
                 throw new RuntimeException("点按不能在主线程，否则无法受到回调");
             }
             final 回调<Boolean> $回调 = new 回调<>();

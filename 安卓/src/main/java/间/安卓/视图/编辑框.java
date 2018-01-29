@@ -1,17 +1,21 @@
 package 间.安卓.视图;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.view.*;
-import android.widget.*;
-import java.lang.reflect.*;
-import 间.接口.*;
-import 间.安卓.视图.实现.*;
-import 间.安卓.工具.*;
-import 间.工具.*;
-import 间.安卓.图形.*;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.视图;
+import 间.安卓.工具.设备;
+import 间.安卓.视图.实现.基本视图;
+import 间.安卓.视图.实现.文本实现;
+import 间.安卓.视图.实现.编辑框实现;
+import 间.安卓.视图.实现.视图实现;
+import 间.工具.反射;
+import 间.接口.方法;
 
 public class 编辑框 extends EditText implements 基本视图 {
 
@@ -30,16 +34,16 @@ public class 编辑框 extends EditText implements 基本视图 {
     }
 
     public void 置横杠颜色(Object $颜色) {
-        getBackground().setTintList(视图工具.创建单颜色列表($颜色));
+        getBackground().setTintList(视图.创建单颜色列表($颜色));
     }
 
     public void 置指针颜色(Object $颜色) {
-        if (设备工具.取SDK() > 21) {
+        if (设备.取SDK() > 21) {
             int $资源ID = 反射.取变量(this, "mCursorDrawableRes");
             Object $编辑器 = 反射.取变量(this, "mEditor");
             Drawable[] $绘画组 = new Drawable[1];
             $绘画组[0] = getContext().getResources().getDrawable($资源ID);
-            $绘画组[0].setColorFilter(视图工具.检查颜色($颜色), PorterDuff.Mode.SRC_IN);
+            $绘画组[0].setColorFilter(视图.检查颜色($颜色), PorterDuff.Mode.SRC_IN);
             反射.置变量($编辑器, "mCursorDrawable", $绘画组);
         }
     }

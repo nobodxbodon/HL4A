@@ -37,7 +37,7 @@ public class MainActivity extends 基本界面 {
         $菜单.添加("用户讨论群", new 方法() {
             @Override
                 public Object 调用(Object[] $参数) {
-                    链接工具.QQ.乐园部();
+                    链接.QQ.乐园部();
                     $菜单.隐藏();
                     return null;
                 }
@@ -45,7 +45,7 @@ public class MainActivity extends 基本界面 {
         $菜单.添加("建议/反馈", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
-                    链接工具.QQ.反馈();
+                    链接.QQ.反馈();
                     $菜单.隐藏();
                     return null;
                 }
@@ -66,7 +66,7 @@ public class MainActivity extends 基本界面 {
     public void 检查导入() {
         String $文件 = (String)传入参数[0];
         if ($文件 != null)
-        提示工具.普通(工程.导入($文件));
+        提示.普通(工程.导入($文件));
         
     }
 

@@ -37,8 +37,8 @@ public class 权限 {
     }
 
     public static int 检查权限(Activity $界面,String $权限) {
-        if (设备工具.取SDK() >= Build.VERSION_CODES.M) {
-            if (设备工具.取目标SDK() >= Build.VERSION_CODES.M) {
+        if (设备.取SDK() >= Build.VERSION_CODES.M) {
+            if (设备.取目标SDK() >= Build.VERSION_CODES.M) {
                 return ContextCompat.checkSelfPermission($界面, $权限);
             } else {
                 return PermissionChecker.checkSelfPermission($界面, $权限);
@@ -48,7 +48,7 @@ public class 权限 {
     }
 
     public static void 请求所有(Activity $界面) {
-        if (设备工具.取SDK() >= 23) {
+        if (设备.取SDK() >= 23) {
             String[] $所有 = 应用.取所有权限();
             请求权限($界面, $所有);
         } else {

@@ -42,7 +42,7 @@ public class 下拉刷新布局 extends SwipeRefreshLayout implements 基本布�
     }
 
     public void 置圆圈颜色(Object $颜色) {
-        setColorSchemeColors(new int[] {视图工具.检查颜色($颜色)});
+        setColorSchemeColors(new int[] {视图.检查颜色($颜色)});
     }
 
     @Override

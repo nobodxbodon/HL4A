@@ -6,7 +6,6 @@ import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 import 间.接口.*;
-import 间.安卓.图形.*;
 import 间.安卓.工具.*;
 import 间.安卓.视图.实现.*;
 
