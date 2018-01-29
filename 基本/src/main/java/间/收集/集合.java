@@ -82,7 +82,7 @@ public class 集合<类型> extends ArrayList<类型> {
     }
 
     public Object[] 到数组(Class<?> $类) {
-        return toArray(数组工具.创建($类, 数量()));
+        return toArray(数组.创建($类, 数量()));
     }
 
     public Object[] 到数组() {

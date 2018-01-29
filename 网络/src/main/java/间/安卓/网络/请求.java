@@ -1,15 +1,15 @@
 package 间.安卓.网络;
 
-import com.lzy.okgo.*;
-import com.lzy.okgo.cache.*;
-import com.lzy.okgo.request.base.*;
-import java.io.*;
-import java.util.concurrent.*;
-import okhttp3.*;
-
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.request.base.BodyRequest;
 import com.lzy.okgo.request.base.Request;
-import 间.安卓.工具.*;
-import 间.工具.*;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import okhttp3.OkHttpClient;
+import 间.安卓.工具.环境;
+import 间.安卓.工具.文件;
+import 间.工具.字符;
 
 public class 请求 {
 
@@ -23,7 +23,7 @@ public class 请求 {
             已初始化 = true;
             OkHttpClient.Builder $工厂 = new OkHttpClient.Builder();
             $工厂.connectTimeout(2, TimeUnit.SECONDS);
-            OkGo.getInstance().init(上下文工具.取全局上下文())
+            OkGo.getInstance().init(环境.取应用())
                 .setOkHttpClient($工厂.build());
         }
     }
@@ -67,7 +67,7 @@ public class 请求 {
     }
 
     public 请求 置类型(String $类型) {
-        switch (字符工具.小写($类型)) {
+        switch (字符.小写($类型)) {
             default:
             case "get":
                 请求 = 实例.get(地址);break;
@@ -130,7 +130,7 @@ public class 请求 {
     }
 
     public 请求 文件(String $键值,String $地址) {
-        ((BodyRequest)请求).params($键值, 文件工具.取文件对象($地址));
+        ((BodyRequest)请求).params($键值, 文件.取文件对象($地址));
         return this;
     }
 

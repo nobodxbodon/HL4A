@@ -63,10 +63,10 @@ public class 播放器视图 extends VideoView implements 基本视图 {
     }
 
     public void 置视频地址(String $地址) {
-        if (文件工具.是文件($地址)) {
-            视频地址 = 文件工具.检查地址($地址);
+        if (文件.是文件($地址)) {
+            视频地址 = 文件.检查地址($地址);
             setVideoPath(视频地址);
-        } else if (字符工具.以开始($地址, "http")) {
+        } else if (字符.以开始($地址, "http")) {
             视频地址 = $地址;
             setVideoURI(Uri.parse(视频地址));
         }

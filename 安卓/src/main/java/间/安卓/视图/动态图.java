@@ -63,8 +63,8 @@ public class 动态图 extends View implements 基本视图 {
     public String 图片地址;
 
     public void 置动态图(String $地址) {
-        if (文件工具.是文件($地址)) {
-            图片地址 = 文件工具.检查地址($地址);
+        if (文件.是文件($地址)) {
+            图片地址 = 文件.检查地址($地址);
             movie = Movie.decodeFile(图片地址);
             requestLayout();
         }

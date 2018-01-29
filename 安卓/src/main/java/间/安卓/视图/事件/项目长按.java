@@ -15,7 +15,7 @@ public class 项目长按 implements OnItemLongClickListener {
     
     @Override
     public boolean onItemLongClick(AdapterView<?> $适配器视图,View $视图,int $键值,long $ID) {
-        Object $返回值 = 调用方法.事件(长按,$适配器视图,$视图,$键值,$ID);
+        Object $返回值 = 调用.事件(长按,$适配器视图,$视图,$键值,$ID);
         return true;
     }
 

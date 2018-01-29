@@ -5,7 +5,6 @@ import android.view.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
 import java.io.*;
-import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
 import 间.安卓.组件.*;
@@ -15,6 +14,10 @@ import 间.安卓.视图.扩展.*;
 import 间.安卓.视图.适配器.*;
 import 间.安卓.资源.*;
 import 间.工具.*;
+import 间.接口.*;
+
+import 间.安卓.工具.文件;
+import 间.安卓.工具.设置;
 
 public class EditActivity extends 基本界面 {
 
@@ -37,13 +40,13 @@ public class EditActivity extends 基本界面 {
         if ($目录 == null) {
             $目录 = 当前.取地址("源码");
         }
-        File[] $文件 = 文件工具.取文件列表($目录);
+        File[] $文件 = 文件.取文件列表($目录);
         try {
             for (File $单个 : $文件) {
                 if ($单个.isDirectory()) {
                     检查代码($单个.getPath());
                 } else if ($单个.getName().toLowerCase().endsWith(".js")) {
-                    环境.编译代码(字符工具.读取($单个.getPath()), $单个.getName());
+                    环境.编译代码(字符.读取($单个.getPath()), $单个.getName());
                 }
             }
         } catch (Exception $错误) {
@@ -73,7 +76,7 @@ public class EditActivity extends 基本界面 {
         布局.标题.右按钮(图标.撤销,撤销);
         布局.标题.右按钮(图标.重做,重做);
         布局.侧滑标题.置标题("打开文件");
-        打开 = (String)安卓设置.读取从文件("上次打开", 当前.地址);
+        打开 = (String)设置.读取从文件("上次打开", 当前.地址);
         界面刷新事件();
         布局.适配器 = new 文件适配器(布局.列表, 文件单击, 长按, 当前.取地址("源码"));
         布局.列表.置适配器(布局.适配器);
@@ -99,7 +102,7 @@ public class EditActivity extends 基本界面 {
             $操作菜单.添加("删除", new 方法() {
                     @Override
                     public Object 调用(Object[] $参数) {
-                        文件工具.删除($地址);
+                        文件.删除($地址);
                         提示工具.普通("删除成功 ~");
                         布局.适配器.刷新();
                         界面刷新事件();
@@ -150,12 +153,12 @@ public class EditActivity extends 基本界面 {
                 return null;
             }
             String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
-            if (文件工具.是否存在($目标)) {
+            if (文件.是否存在($目标)) {
                 提示工具.普通("文件/夹 已存在 ~");
                 return null;
             }
-            文件工具.创建文件($目标);
-            if (文件工具.是文件($目标)) {
+            文件.创建文件($目标);
+            if (文件.是文件($目标)) {
                 提示工具.普通("文件创建成功 ~");
                 布局.适配器.刷新();
                 新建弹窗.隐藏();
@@ -175,12 +178,12 @@ public class EditActivity extends 基本界面 {
                 return null;
             }
             String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
-            if (文件工具.是否存在($目标)) {
+            if (文件.是否存在($目标)) {
                 提示工具.普通("文件/夹 已存在 ~");
                 return null;
             }
-            文件工具.创建目录($目标);
-            if (文件工具.是目录($目标)) {
+            文件.创建目录($目标);
+            if (文件.是目录($目标)) {
                 提示工具.普通("目录创建成功 ~");
                 布局.适配器.刷新();
                 新建弹窗.隐藏();
@@ -206,7 +209,7 @@ public class EditActivity extends 基本界面 {
     @Override
     public void 界面遮挡事件() {
         String $文件 = 当前.取地址("源码/" + 打开);
-        if (!文件工具.是文件($文件)) {
+        if (!文件.是文件($文件)) {
             return;
         }
         布局.代码.保存(当前.取地址("源码/" + 打开));
@@ -214,7 +217,7 @@ public class EditActivity extends 基本界面 {
 
     @Override
     public void 界面刷新事件() {
-        if (!文件工具.是文件(当前.取地址("应用.json"))) {
+        if (!文件.是文件(当前.取地址("应用.json"))) {
             提示工具.警告("工程已损坏！");
             置返回值(233);
             //如果Proj检测到返回233就直接结束
@@ -222,12 +225,12 @@ public class EditActivity extends 基本界面 {
             结束界面();
             return;
         }
-        if (!文件工具.是文件(当前.取地址("源码/" + 打开)) || 打开 == null) {
+        if (!文件.是文件(当前.取地址("源码/" + 打开)) || 打开 == null) {
             打开 = "入口.js";
         }
-        if (!文件工具.是文件(当前.取地址("源码/" + 打开))) {
+        if (!文件.是文件(当前.取地址("源码/" + 打开))) {
             提示工具.普通("正在创建入口 ~");
-            字符工具.保存(当前.取地址("源码/" + 打开), 字符工具.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
+            字符.保存(当前.取地址("源码/" + 打开), 字符.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
         }
         布局.代码.读入(当前.取地址("源码/" + 打开));
         if (布局.适配器 != null) {

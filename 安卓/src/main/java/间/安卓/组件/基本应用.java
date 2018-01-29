@@ -12,7 +12,7 @@ public class 基本应用 extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        应用工具.初始化应用(this);
+        应用.初始化应用(this);
         应用创建事件();
     }
 

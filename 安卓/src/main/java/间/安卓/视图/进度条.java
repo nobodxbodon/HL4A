@@ -23,7 +23,7 @@ public class 进度条 extends ProgressBar implements 基本视图 {
     public 进度条(Context $上下文,int $主题) {
         super($上下文, null, $主题);
         视图实现.初始化控件(this);
-        置颜色(主题工具.取主题颜色().取控件色());
+        置颜色(主题.取主题颜色().取控件色());
     }
 
     public void 置自动(boolean $状态) {
@@ -32,8 +32,8 @@ public class 进度条 extends ProgressBar implements 基本视图 {
 
     public void 置颜色(Object $颜色) {
         if (设备工具.取SDK() > 23) {
-            setProgressTintList(视图工具.创建单颜色列表(主题工具.取主题颜色().取控件色()));
-            setIndeterminateTintList(视图工具.创建单颜色列表(主题工具.取主题颜色().取控件色()));
+            setProgressTintList(视图工具.创建单颜色列表(主题.取主题颜色().取控件色()));
+            setIndeterminateTintList(视图工具.创建单颜色列表(主题.取主题颜色().取控件色()));
         }
     }
 

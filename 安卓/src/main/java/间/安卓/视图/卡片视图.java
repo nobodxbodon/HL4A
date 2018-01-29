@@ -14,7 +14,7 @@ public class 卡片视图 extends CardView implements 基本布局 {
     public 卡片视图(Context $上下文) {
         super($上下文);
         视图实现.初始化控件(this);
-        置圆角(主题工具.取圆角大小());
+        置圆角(主题.取圆角大小());
     }
     
     public 卡片视图(ViewGroup $父视图) {

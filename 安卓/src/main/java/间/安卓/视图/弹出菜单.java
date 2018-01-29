@@ -29,7 +29,7 @@ public class 弹出菜单 extends ListPopupWindow {
             int $位置 = $参数[2];
             if (单击.检查($位置)) {
                 方法 $单击 = (方法)单击.读取($位置);
-                调用方法.事件($单击);
+                调用.事件($单击);
             }
             return null;
         }
@@ -48,8 +48,8 @@ public class 弹出菜单 extends ListPopupWindow {
 
     private void 预置宽度() {
         int $大小 = 适配器.预测宽度();
-        if ($大小 < (应用工具.取屏幕宽度() * 0.618 * 0.618)) {
-            $大小 = new Double(应用工具.取屏幕宽度() * 0.618 * 0.618).intValue();
+        if ($大小 < (应用.取屏幕宽度() * 0.618 * 0.618)) {
+            $大小 = new Double(应用.取屏幕宽度() * 0.618 * 0.618).intValue();
         }
         setWidth($大小);
     }

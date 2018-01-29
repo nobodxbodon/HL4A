@@ -14,7 +14,7 @@ public class 菜单选中 implements OnMenuItemClickListener {
     
     @Override
     public boolean onMenuItemClick(MenuItem $选项) {
-        return 调用方法.事件(事件,$选项) == true;
+        return 调用.事件(事件,$选项) == true;
     }
 
 }

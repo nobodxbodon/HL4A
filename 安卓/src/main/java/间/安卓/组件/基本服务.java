@@ -20,7 +20,7 @@ public class 基本服务 extends Service {
 
     public Object 调用事件(String $名称,Object... $参数) {
         方法 $方法 = 所有事件.读取($名称);
-        return 调用方法.事件($方法, $参数);
+        return 调用.事件($方法, $参数);
     }
 
     @Override

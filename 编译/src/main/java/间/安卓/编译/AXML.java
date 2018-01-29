@@ -12,7 +12,7 @@ public class AXML {
     public AXML(String $地址) {
         $源码 = new AXMLResource();
         try {
-            $源码.read(流工具.输入.文件($地址));
+            $源码.read(流.输入.文件($地址));
         } catch (Exception $错误) {}
     }
     
@@ -21,12 +21,12 @@ public class AXML {
     }
     
     public void 保存(String $地址) {
-        字符工具.保存($地址,读取());
+        字符.保存($地址,读取());
     }
     
     public void 编译(String $地址) {
         try {
-            $源码.write(流工具.输出.文件($地址));
+            $源码.write(流.输出.文件($地址));
         } catch (IOException $错误) {}
     }
 

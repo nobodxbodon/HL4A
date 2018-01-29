@@ -79,8 +79,8 @@ public class JavaScript implements 基本脚本 {
         函数环境 = 初始化环境;
         压入变量("当前环境", this);
         压入变量("是复制环境", false);
-        压入变量("当前应用", 上下文工具.取全局上下文());
-        执行代码(字符工具.读取(getClass().getClassLoader().getResourceAsStream("hl4a/android.js")));
+        压入变量("当前应用", 环境.取应用());
+        执行代码(字符.读取(getClass().getClassLoader().getResourceAsStream("hl4a/android.js")));
         
     }
 
@@ -106,7 +106,7 @@ public class JavaScript implements 基本脚本 {
         try {
             ScriptableObject.putProperty(函数环境, $对象名, Context.javaToJS($对象, 函数环境));
         } catch (Exception $错误) {
-            错误工具.抛出($错误);
+            错误.抛出($错误);
         }
     }
 
@@ -114,7 +114,7 @@ public class JavaScript implements 基本脚本 {
         try {
             ScriptableObject.putConstProperty(函数环境, $对象名, Context.javaToJS($对象, 函数环境));
         } catch (Exception $错误) {
-            错误工具.抛出($错误);
+            错误.抛出($错误);
         }
     }
 
@@ -142,7 +142,7 @@ public class JavaScript implements 基本脚本 {
         try {
             return $函数.call(JS上下文, 函数环境, 函数环境, $传入);
         } catch (Exception $错误) {
-            错误工具.抛出($错误);
+            错误.抛出($错误);
         }
         return null;
     }
@@ -172,12 +172,12 @@ public class JavaScript implements 基本脚本 {
 
     @Override
     public Object 运行文件(String $地址) {
-        String $ = 字符工具.读取($地址);
+        String $ = 字符.读取($地址);
         return 执行代码($, $地址);
     }
 
     public Object 运行文件(String $地址,String $环境名) {
-        String $ = 字符工具.读取($地址);
+        String $ = 字符.读取($地址);
         return 执行代码($, $环境名);
     }
 

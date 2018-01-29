@@ -38,7 +38,7 @@ public class 图片视图 extends ImageView implements 基本视图 {
 
 
     public void 保存到(String $地址) {
-        图片工具.保存(图片工具.读取((BitmapDrawable)getDrawable()), $地址);
+        图片.保存(图片.读取((BitmapDrawable)getDrawable()), $地址);
     }
 
     @Override

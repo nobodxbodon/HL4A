@@ -1,16 +1,27 @@
 package 间.安卓.视图;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.view.*;
-import com.myopicmobile.textwarrior.android.*;
-import com.myopicmobile.textwarrior.common.*;
-import 间.接口.*;
-import 间.安卓.工具.*;
-import 间.安卓.视图.事件.*;
-import 间.安卓.视图.实现.*;
-import 间.工具.*;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import com.myopicmobile.textwarrior.android.FreeScrollingTextField;
+import com.myopicmobile.textwarrior.android.YoyoNavigationMethod;
+import com.myopicmobile.textwarrior.common.ColorScheme;
+import com.myopicmobile.textwarrior.common.Document;
+import com.myopicmobile.textwarrior.common.DocumentProvider;
+import com.myopicmobile.textwarrior.common.LanguageJavascript;
+import com.myopicmobile.textwarrior.common.LanguageLua;
+import com.myopicmobile.textwarrior.common.Lexer;
+import 间.安卓.工具.主题;
+import 间.安卓.工具.文件;
+import 间.安卓.工具.视图工具;
+import 间.安卓.工具.转换工具;
+import 间.安卓.视图.事件.代码选中;
+import 间.安卓.视图.实现.基本视图;
+import 间.安卓.视图.实现.视图实现;
+import 间.工具.字符;
+import 间.接口.方法;
 
 public class 代码框 extends FreeScrollingTextField implements 基本视图  {
 
@@ -44,7 +55,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
         setAutoIndentWidth(0);
         Lexer.setLanguage(LanguageJavascript.getInstance());
         setNavigationMethod(new YoyoNavigationMethod(this));
-        置文本颜色(主题工具.取主题颜色().取控件色());
+        置文本颜色(主题.取主题颜色().取控件色());
     }
     
     public 代码框(ViewGroup $父视图) {
@@ -337,8 +348,8 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
     }
 
     public void 读入(String $文件) {
-        if (文件工具.是文件($文件))
-            置文本(字符工具.读取($文件));
+        if (文件.是文件($文件))
+            置文本(字符.读取($文件));
     }
 
     /**
@@ -346,7 +357,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
      * * @param file
      */
     public void 保存(String $文件) {
-        字符工具.保存($文件, 取文本());
+        字符.保存($文件, 取文本());
     }
 
 }

@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 package org.mozilla.javascript;
-import 间.工具.*;
+
 
 /**
  * A wrapper for runtime exceptions.
@@ -15,6 +15,8 @@ import 间.工具.*;
  *
  * @author Norris Boyd
  */
+import 间.工具.*;
+
 public class WrappedException extends EvaluatorException {
     static final long serialVersionUID = -1551979216966520648L;
 
@@ -24,7 +26,7 @@ public class WrappedException extends EvaluatorException {
      
     
     public WrappedException(Throwable exception) {
-        super(错误工具.取整个错误(exception));
+        super(错误.取整个错误(exception));
         this.exception = exception;
         Kit.initCause(this, exception);
 

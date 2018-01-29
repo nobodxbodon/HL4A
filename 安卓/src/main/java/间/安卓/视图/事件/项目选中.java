@@ -18,12 +18,12 @@ public class 项目选中 implements OnItemSelectedListener {
     
     @Override
     public void onItemSelected(AdapterView<?> $适配器视图,View $视图,int $键值,long $ID) {
-        调用方法.事件(选中,$适配器视图,$视图,$键值,$ID);
+        调用.事件(选中,$适配器视图,$视图,$键值,$ID);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> $适配器视图) {
-        调用方法.事件(取消,$适配器视图);
+        调用.事件(取消,$适配器视图);
     }
 
 }

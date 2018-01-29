@@ -15,7 +15,7 @@ public class 项目单击 implements OnItemClickListener {
     
     @Override
     public void onItemClick(AdapterView<?> $适配器视图,View $视图,int $键值,long $ID) {
-        调用方法.事件(单击,$适配器视图,$视图,$键值,$ID);
+        调用.事件(单击,$适配器视图,$视图,$键值,$ID);
     }
 
 }

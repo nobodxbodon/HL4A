@@ -10,22 +10,24 @@ import 间.安卓.工具.*;
 import 间.安卓.视图.事件.*;
 import android.graphics.*;
 import android.content.res.*;
+import 间.工具.*;
 
 public final class 视图实现 {
 
     private 视图实现() {}
-
-    // Linear
-
+    
+    // 因为侧滑界面和其他一些也需要设置这个，所以干脆反射了
+   
+    
     public static void 置布局重力(View $视图,String $重力) {
-        LinearLayout.LayoutParams $设置 = (LinearLayout.LayoutParams)取设置($视图);
-        $设置.gravity = 视图工具.检查重力($重力);
+        ViewGroup.LayoutParams $设置 = $视图.getLayoutParams();
+        反射.置变量($设置,"gravity",视图工具.检查重力($重力));
         置设置($视图, $设置);
     }
-
+    
     public static void 置布局权重(View $视图,float $权重) {
-        LinearLayout.LayoutParams $设置 = (LinearLayout.LayoutParams)取设置($视图);
-        $设置.weight = $权重;
+        ViewGroup.LayoutParams $设置 = 取设置($视图);
+        反射.置变量($设置,"weight",$权重);
         置设置($视图, $设置);
     }
 
@@ -42,7 +44,7 @@ public final class 视图实现 {
     //setContentView
 
     public static void 打开(View $视图,Activity $界面) {
-        布局工具.打开($界面, $视图);
+        布局.打开($界面, $视图);
     }
 
     // Tag
@@ -69,7 +71,7 @@ public final class 视图实现 {
     }
 
     public static void 置宽度(final View $视图,final Object $宽度) {
-        处理工具.主线程(new 方法() {
+        处理.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置宽度实现($视图, $宽度);
@@ -79,7 +81,7 @@ public final class 视图实现 {
     }
 
     public static void 置高度(final View $视图,final Object $高度) {
-        处理工具.主线程(new 方法() {
+        处理.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置高度实现($视图, $高度);
@@ -137,7 +139,7 @@ public final class 视图实现 {
     }
 
     public static void 置边距(final View $视图,final Object $上,final Object $下,final Object $左,final Object $右) {
-        处理工具.主线程(new 方法() {
+        处理.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置边距实现($视图, $上, $下, $左, $右);
@@ -149,7 +151,7 @@ public final class 视图实现 {
     // Visible
 
     public static void 置状态(final View $视图,final String $状态) {
-        处理工具.主线程(new 方法() {
+        处理.主线程(new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     置状态实现($视图, $状态);

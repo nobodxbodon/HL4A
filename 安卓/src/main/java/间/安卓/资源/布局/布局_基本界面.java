@@ -15,7 +15,7 @@ public class 布局_基本界面 extends 线性布局 {
     public 布局_基本界面(Context $上下文) {
         super($上下文);
         标题 = new 标题栏(this);
-        标题.置标题(应用工具.取应用名());
+        标题.置标题(应用.取应用名());
         底层 = new 线性布局(this);
     }
     

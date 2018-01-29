@@ -21,17 +21,17 @@ public class 文本改变 implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence p1,int p2,int p3,int p4) {
-        调用方法.事件(改变前, p1, p2, p3, p4);
+        调用.事件(改变前, p1, p2, p3, p4);
     }
 
     @Override
     public void onTextChanged(CharSequence p1,int p2,int p3,int p4) {
-        调用方法.事件(已改变,p1, p2, p3, p4);
+        调用.事件(已改变,p1, p2, p3, p4);
     }
 
     @Override
     public void afterTextChanged(Editable p1) {
-        调用方法.事件(改变后,p1);
+        调用.事件(改变后,p1);
     }
 
 }

@@ -4,17 +4,16 @@ import android.content.*;
 import android.os.*;
 import hl4a.ide.layout.*;
 import hl4a.ide.util.*;
-import java.lang.reflect.*;
-import 间.接口.*;
 import 间.安卓.工具.*;
 import 间.安卓.弹窗.*;
 import 间.安卓.组件.*;
 import 间.安卓.视图.*;
 import 间.安卓.资源.*;
 import 间.工具.*;
+import 间.接口.*;
 import 间.收集.*;
-import 间.安卓.编译.*;
-import 间.压缩.*;
+
+import 间.安卓.工具.文件;
 
 public class ProjActivity extends 基本界面 {
 
@@ -40,7 +39,7 @@ public class ProjActivity extends 基本界面 {
     }
 
     public boolean 检查() {
-        if (!文件工具.是文件(当前.取地址("应用.json"))) {
+        if (!文件.是文件(当前.取地址("应用.json"))) {
             提示工具.警告("工程已损坏!");
             结束界面();
             return true;
@@ -101,7 +100,7 @@ public class ProjActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
             String $入口 = 当前.取地址("源码", "入口.js");
-            if (!文件工具.是文件($入口)) {
+            if (!文件.是文件($入口)) {
                 提示工具.普通("没有入口文件 ！");
             } else {
                 跳转脚本($入口);
@@ -114,9 +113,9 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
-            String $输出 = 文件工具.取目录(当前.取地址()) + "/" + 当前.信息.工程名 + ".hpk";
-            ZIP工具.压缩(当前.取地址(), $输出);
-            字符工具.保存($输出, 编码工具.Base64.编码(字节工具.读取($输出)));
+            String $输出 = 文件.取目录(当前.取地址()) + "/" + 当前.信息.工程名 + ".hpk";
+            ZIP.压缩(当前.取地址(), $输出);
+            字符.保存($输出, 编码.Base64.编码(字节.读取($输出)));
             提示工具.普通("打包成功 ~ \n" + $输出);
             return null;
         }
@@ -152,7 +151,7 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查())return null;
-            文件工具.删除(当前.取地址());
+            文件.删除(当前.取地址());
             提示工具.普通("删除成功 ！");
             删除.隐藏();
             结束界面();
@@ -185,7 +184,7 @@ public class ProjActivity extends 基本界面 {
             if (检查())return null;
             String $内容 = 内容.编辑.取文本();
             String $类型 = 内容.类型;
-            String $原内容 = (String)反射工具.取变量(当前.信息, $类型);
+            String $原内容 = (String)反射.取变量(当前.信息, $类型);
             if ("".equals($内容)) {
                 提示工具.警告("请不要留空 ~");
                 return null;
@@ -206,7 +205,7 @@ public class ProjActivity extends 基本界面 {
                 提示工具.普通("更改成功 ~");
             }
             ((文本视图)所有.读取($类型)).置文本($内容);
-            反射工具.置变量(当前.信息, $类型, $内容);
+            反射.置变量(当前.信息, $类型, $内容);
             当前.保存();
             设置.隐藏();
             return 233;
@@ -256,7 +255,7 @@ public class ProjActivity extends 基本界面 {
             $布局.置高度("自动");
             文本视图 $内容 = new 文本视图($布局);
             $内容.置标签("内容");
-            $内容.置文本(反射工具.取变量(当前.信息,$设置).toString());
+            $内容.置文本(反射.取变量(当前.信息,$设置).toString());
             所有.设置($设置, $内容);
         }
     }

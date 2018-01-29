@@ -7,7 +7,7 @@ import android.view.*;
 import java.io.*;
 import 间.接口.*;
 import 间.安卓.工具.*;
-import 间.安卓.工具.服务工具.*;
+import 间.安卓.工具.服务.*;
 import 间.安卓.接口.*;
 import 间.安卓.视图.*;
 import 间.工具.*;
@@ -36,13 +36,13 @@ public class 基本界面 extends Activity implements 可处理的 {
 
     public Object 调用事件(String $名称,Object... $参数) {
         方法 $方法 = 所有事件.读取($名称);
-        return 调用方法.事件($方法, $参数);
+        return 调用.事件($方法, $参数);
     }
 
     @Override
     public void onCreate(Bundle $恢复) {
         super.onCreate($恢复);
-        应用工具.初始化界面(this);
+        应用.初始化界面(this);
         Intent $意图 = getIntent();
         if ($意图.hasExtra("参数")) {
             传入参数 = (Object[])$意图.getSerializableExtra("参数");
@@ -122,7 +122,7 @@ public class 基本界面 extends Activity implements 可处理的 {
             界面遮挡事件();
     }
 
-    private long 返回时间 = 时间工具.时间戳() - 23333;
+    private long 返回时间 = 时间.时间戳() - 23333;
 
     @Override
     public boolean onKeyDown(int keyCode,KeyEvent event) {
@@ -143,7 +143,7 @@ public class 基本界面 extends Activity implements 可处理的 {
                     return $返回;
                 }
                 long 上次 = 返回时间;
-                if ((返回时间 = 时间工具.时间戳()) - 上次 < 2333) {
+                if ((返回时间 = 时间.时间戳()) - 上次 < 2333) {
                     finish();
                     return true;
                 } else {
@@ -222,7 +222,7 @@ public class 基本界面 extends Activity implements 可处理的 {
 
     public void 打开布局(View $视图) {
         当前视图 = $视图;
-        布局工具.打开(this, $视图);
+        布局.打开(this, $视图);
     }
 
     public View 取视图(Object $标签) {
@@ -259,7 +259,7 @@ public class 基本界面 extends Activity implements 可处理的 {
 
     public void 跳转界面(Integer $请求码,String $类,Object... $数据) {
 
-        Intent $意图 = new Intent(this, 反射工具.取类($类));
+        Intent $意图 = new Intent(this, 反射.取类($类));
         if ($数据 != null)
             $意图.putExtra("参数", (Serializable)$数据);
         if ($请求码 == null)
@@ -279,12 +279,12 @@ public class 基本界面 extends Activity implements 可处理的 {
     }
 
     public void 跳转脚本(Integer $请求码,String $类,Object... $数据) {
-        Class<?> $组件 = 反射工具.取类("间.安卓.脚本.组件.脚本界面");
-        Class<?> $界面 = 反射工具.取类("hl4a.runtime.ScriptActivity");
+        Class<?> $组件 = 反射.取类("间.安卓.脚本.组件.脚本界面");
+        Class<?> $界面 = 反射.取类("hl4a.runtime.ScriptActivity");
         if ($组件 == null) {
-            错误工具.内容("没有引入脚本支持包 ~");
+            错误.内容("没有引入脚本支持包 ~");
         } else if ($界面 == null) {
-            错误工具.内容("没有创建SctiptAvtivity！");
+            错误.内容("没有创建SctiptAvtivity！");
         }
         Intent $意图 = new Intent(this, $界面);
         $意图.putExtra("脚本", $类);
@@ -302,7 +302,7 @@ public class 基本界面 extends Activity implements 可处理的 {
             权限回调事件();
             return;
         }
-        权限工具.默认请求(this);
+        错误.内容("基本界面不支持权限");
     }
 
 

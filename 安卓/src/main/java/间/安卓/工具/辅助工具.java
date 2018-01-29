@@ -11,9 +11,7 @@ import hl4a.runtime.*;
 import java.util.*;
 import 间.安卓.线程.*;
 import 间.安卓.组件.*;
-import 间.线程.*;
-import 间.接口.*;
-import java.math.*;
+import 间.工具.*;
 
 public class 辅助工具 {
 
@@ -32,13 +30,13 @@ public class 辅助工具 {
     }
 
     public static void 跳转() {
-        上下文工具.取全局上下文().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        环境.取应用().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public static boolean 自动() {
         if (!检查()) {
             跳转();
-            提示工具.普通("请开启或重启 " + 应用工具.取应用名() + " ~\n重新开关后服务仍未运行请重启系统！");
+            提示工具.普通("请开启或重启 " + 应用.取应用名() + " ~\n重新开关后服务仍未运行请重启系统！");
             return false;
         }
         return true;
@@ -102,7 +100,7 @@ public class 辅助工具 {
 
 
     public static boolean 已启动() {
-        return 服务工具.已启动(Accessibility.class);
+        return 服务.已启动(Accessibility.class);
     }
 
 

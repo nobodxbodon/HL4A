@@ -18,17 +18,17 @@ public class 错误监听 implements ErrorReporter {
     
     @Override
     public void warning(String $信息,String $源码名,int $行数,String $单行源码,int $行数结束) {
-        调用方法.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
+        调用.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
     }
 
     @Override
     public void error(String $信息,String $源码名,int $行数,String $单行源码,int $行数结束) {
-        调用方法.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
+        调用.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
     }
 
     @Override
     public EvaluatorException runtimeError(String $信息,String $源码名,int $行数,String $单行源码,int $行数结束) {
-        Object $返回值 = 调用方法.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
+        Object $返回值 = 调用.事件(警告,$信息,$源码名,$行数,$单行源码,$行数结束);
         if ($返回值 instanceof EvaluatorException) {
             return (EvaluatorException)$返回值;
         } else if ($返回值 instanceof String) {

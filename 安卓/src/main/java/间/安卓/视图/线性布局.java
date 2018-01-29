@@ -33,18 +33,6 @@ public class 线性布局 extends LinearLayout implements 基本布局 {
     public void 置布局权重(float $权重) {
         视图实现.置布局权重(this,$权重);
     }
-    
-    public void 置侧滑左布局(boolean $是否) {
-        侧滑布局.LayoutParams $设置 = new 侧滑布局.LayoutParams(getLayoutParams());
-        $设置.gravity = 视图工具.检查重力("开始");
-        setLayoutParams($设置);
-    }
-    
-    public void 置侧滑右布局(boolean $是否) {
-        侧滑布局.LayoutParams $设置 = new 侧滑布局.LayoutParams(getLayoutParams());
-        $设置.gravity = 视图工具.检查重力("结束");
-        setLayoutParams($设置);
-    }
 
     // 布局实现
     

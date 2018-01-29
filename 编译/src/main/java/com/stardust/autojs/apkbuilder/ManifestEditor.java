@@ -33,7 +33,7 @@ public class ManifestEditor {
 
 
     public ManifestEditor(String $地址) {
-        mManifestInputStream = 流工具.输入.文件($地址);
+        mManifestInputStream = 流.输入.文件($地址);
     }
 
     public void setPermissions(List<String> mPermissions) {

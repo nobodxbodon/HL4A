@@ -20,11 +20,11 @@ public class 提示工具 {
         布局_提示 $视图 = new 布局_提示($环境);
         文本对象 = $视图.文本;
         提示对象.setView($视图);
-        上次提示 = 时间工具.时间戳() - 233;
+        上次提示 = 时间.时间戳() - 233;
     }
 
     public static void 指定(final Object $内容,final Object $颜色) {
-        处理工具.主线程(new 方法(){
+        处理.主线程(new 方法(){
                 @Override
                 public Object 调用(Object[] $参数) {
                     直接($内容,$颜色);
@@ -36,10 +36,10 @@ public class 提示工具 {
     private synchronized static void 直接(Object $文本,Object $颜色) {
         if ($文本 == null) $文本 = "null";
         else if ($文本 instanceof Object[]) {
-            $文本 = 字符工具.分解((Object[])$文本,"\n");
+            $文本 = 字符.分解((Object[])$文本,"\n");
         }
         long 上次 = 上次提示;
-        if ((上次提示 = 时间工具.时间戳()) - 上次 < 233) {
+        if ((上次提示 = 时间.时间戳()) - 上次 < 233) {
             文本对象.置文本(文本对象.取文本() + "\n" + $文本);
         } else {
             文本对象.置文本($文本.toString());
@@ -49,7 +49,7 @@ public class 提示工具 {
     }
 
     public static void 普通(final Object $内容) {
-        指定($内容, 主题工具.取主题颜色().取控件色());
+        指定($内容, 主题.取主题颜色().取控件色());
     }
 
     public static void 警告(final Object $内容) {

@@ -105,7 +105,7 @@ public class 基本弹窗 extends AlertDialog {
         
         @Override
         public Object 调用(Object[] $参数) {
-            调用方法.事件(单击,数组工具.添加(Object.class,$参数,0,弹窗));
+            调用.事件(单击,数组.添加(Object.class,$参数,0,弹窗));
             return null;
         }
         

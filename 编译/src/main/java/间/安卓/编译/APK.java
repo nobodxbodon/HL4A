@@ -1,12 +1,10 @@
 package 间.安卓.编译;
 
-import java.io.*;
-import pxb.android.tinysign.*;
-import zhao.arsceditor.ResDecoder.*;
-import 间.压缩.*;
-import 间.工具.*;
-import com.stardust.autojs.apkbuilder.*;
-import 间.安卓.工具.*;
+import com.stardust.autojs.apkbuilder.ManifestEditor;
+import pxb.android.tinysign.TinySign;
+import zhao.arsceditor.ResDecoder.ARSCDecoder;
+import 间.安卓.工具.文件;
+import 间.工具.流;
 
 public class APK {
 
@@ -28,7 +26,7 @@ public class APK {
         清单 = new ManifestEditor(清单文件);
         清单.setPackageName($包名);
         包名 = $包名;
-        return 文件工具.取目录(文件工具.取目录(文件工具.取目录(目录))) + "/" + 包名 + ".apk";
+        return 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
     }
 
     public void 置工程名(String $名称) {
@@ -46,7 +44,7 @@ public class APK {
     public void 编译清单() {
         try {
             清单.commit();
-            清单.writeTo(流工具.输出.文件(清单文件));
+            清单.writeTo(流.输出.文件(清单文件));
         } catch (Exception $错误) {}
     }
 
@@ -64,15 +62,15 @@ public class APK {
 
     public String 打包签名() {
         try {
-            String $输出 = 文件工具.取目录(文件工具.取目录(文件工具.取目录(目录))) + "/" + 包名 + ".apk";
-            TinySign.sign(文件工具.取文件对象(目录), 流工具.输出.文件($输出));
+            String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
+            TinySign.sign(文件.取文件对象(目录), 流.输出.文件($输出));
             return $输出;
         } catch (Exception $错误) {}
         return null;
     }
     
     public void 清除缓存() {
-        文件工具.删除(目录);
+        文件.删除(目录);
     }
 
 }

@@ -33,7 +33,7 @@ public class 动态接口 implements InvocationHandler {
             
         }
         
-        Object $返回值 = 调用方法.事件($通用方法,$参数);
+        Object $返回值 = 调用.事件($通用方法,$参数);
         
         if ($返回类型 == v) $返回值 = null;
         

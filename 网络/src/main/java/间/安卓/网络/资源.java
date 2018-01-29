@@ -1,10 +1,13 @@
 package 间.安卓.网络;
 
-import android.graphics.*;
-import java.io.*;
-import okhttp3.*;
-import 间.工具.*;
-import 间.安卓.工具.*;
+import android.graphics.Bitmap;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import okhttp3.Response;
+import 间.安卓.工具.图片;
+import 间.安卓.工具.文件;
+import 间.工具.流;
 
 public class 资源 {
     
@@ -29,7 +32,7 @@ public class 资源 {
     }
     
     public Bitmap 取图片() {
-        return 图片工具.读取(取字节());
+        return 图片.读取(取字节());
     }
     
     public int 取状态码() {
@@ -45,10 +48,10 @@ public class 资源 {
     }
     
     public File 保存到(String $地址) {
-        FileOutputStream $流 = 流工具.输出.文件($地址);
-        流工具.保存($流,流工具.读取(对象.body().byteStream()));
-        流工具.关闭($流);
-        return 文件工具.取文件对象($地址);
+        FileOutputStream $流 = 流.输出.文件($地址);
+        流.保存($流,流.读取(对象.body().byteStream()));
+        流.关闭($流);
+        return 文件.取文件对象($地址);
     }
     
 }

@@ -25,7 +25,7 @@ public class JSON工具 {
 
     public static 哈希表 读取哈希表(String $内容) {
         try {
-            JSONObject $表 = JSON.parseObject(字符工具.读取($内容));
+            JSONObject $表 = JSON.parseObject(字符.读取($内容));
             return 处理($表);
         } catch (Exception $错误) {}
         return null;
@@ -33,7 +33,7 @@ public class JSON工具 {
 
     public static 集合 读取集合(String $内容) {
         try {
-            JSONArray $集合 = JSON.parseArray(字符工具.读取($内容));
+            JSONArray $集合 = JSON.parseArray(字符.读取($内容));
             return 处理($集合);
         } catch (Exception $错误) {}
         return null;

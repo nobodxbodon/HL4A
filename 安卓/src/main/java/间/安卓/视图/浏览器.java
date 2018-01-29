@@ -90,13 +90,13 @@ public class 浏览器 extends WebView implements 基本视图 {
 
         @Override
         public void onReceivedError(WebView $视图,int $错误码,String $描述,String $链接) {
-            调用方法.事件(加载错误事件, (浏览器)$视图, $错误码, $描述, $链接);
+            调用.事件(加载错误事件, (浏览器)$视图, $错误码, $描述, $链接);
         }
 
         @Override
         public void onPageStarted(WebView $视图,String $链接,Bitmap $图标) {
             super.onPageStarted($视图, $链接, $图标);
-            调用方法.事件(加载开始事件, (浏览器)$视图, $链接, $图标);
+            调用.事件(加载开始事件, (浏览器)$视图, $链接, $图标);
         }
 
         @Override
@@ -104,12 +104,12 @@ public class 浏览器 extends WebView implements 基本视图 {
             super.onPageFinished($视图, $链接);
             loadUrl("javascript:window.$__置源码.置源码('<head>'+" +
                     "document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-            调用方法.事件(加载完成事件, (浏览器)$视图, $链接);
+            调用.事件(加载完成事件, (浏览器)$视图, $链接);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView $视图,String $链接) {
-            if (字符工具.以开始($链接, "http") || 字符工具.以开始($链接, "file")) {
+            if (字符.以开始($链接, "http") || 字符.以开始($链接, "file")) {
                 $视图.loadUrl($链接);
                 return true;
             } else {

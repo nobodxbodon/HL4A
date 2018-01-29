@@ -35,7 +35,7 @@ public class CLASS {
     }
     
     public String 编译(String $地址) {
-        字节工具.保存($地址,编译器.toByteArray());
+        字节.保存($地址,编译器.toByteArray());
         return $地址;
     }
 

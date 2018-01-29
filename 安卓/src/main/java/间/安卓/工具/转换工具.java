@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 
 public class 转换工具 {
 
-    public static DisplayMetrics rdm = 上下文工具.取全局上下文().getResources().getDisplayMetrics();
+    public static DisplayMetrics rdm = 环境.取应用().getResources().getDisplayMetrics();
 
     public static Float px(int $值) {
         return 转换大小(TypedValue.COMPLEX_UNIT_PX, $值);

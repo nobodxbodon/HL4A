@@ -29,14 +29,14 @@ public class 视图工具 {
 
     public static Bitmap 检查图片(Object $图片) {
         if ($图片 instanceof String) {
-            if (文件工具.是文件((String)$图片)) {
-                return 图片工具.读取((String)$图片);
+            if (文件.是文件((String)$图片)) {
+                return 图片.读取((String)$图片);
             }
         }
         if ($图片 instanceof Bitmap) return (Bitmap)$图片;
-        if ($图片 instanceof byte[]) return 图片工具.读取((byte[])$图片);
-        if ($图片 instanceof InputStream) return 图片工具.读取((InputStream)$图片);
-        if ($图片 instanceof BitmapDrawable)return 图片工具.读取((BitmapDrawable)$图片);
+        if ($图片 instanceof byte[]) return 图片.读取((byte[])$图片);
+        if ($图片 instanceof InputStream) return 图片.读取((InputStream)$图片);
+        if ($图片 instanceof BitmapDrawable)return 图片.读取((BitmapDrawable)$图片);
         return null;
     }
 
@@ -81,7 +81,7 @@ public class 视图工具 {
     public static Integer 检查颜色(Object $颜色) {
         if ($颜色 instanceof Integer)
             return (Integer) $颜色;
-        if ($颜色 instanceof String && 字符工具.以开始((String)$颜色, "#"))
+        if ($颜色 instanceof String && 字符.以开始((String)$颜色, "#"))
             return 颜色工具.转换((String)$颜色);
         return null;
     }
@@ -99,8 +99,8 @@ public class 视图工具 {
             if ("".equals(((String)$大小).replaceAll("[0-9]",""))) {
                 return new Integer((String)$大小);
             }
-            String $结束 = 字符工具.小写(字符工具.取结束后((String)$大小, 2));
-            Integer $数量 = new Integer(字符工具.取结束前((String)$大小, 2));
+            String $结束 = 字符.小写(字符.取结束后((String)$大小, 2));
+            Integer $数量 = new Integer(字符.取结束前((String)$大小, 2));
             switch ($结束) {
                 case "px":return 转换工具.px($数量).intValue();
                 case "dp":return 转换工具.dp($数量).intValue();

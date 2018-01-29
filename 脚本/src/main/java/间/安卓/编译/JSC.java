@@ -19,9 +19,9 @@ public class JSC {
     String 输出;
 
     public JSC(String $文件) {
-        if (文件工具.是文件($文件)) {
-            文件名 = 文件工具.取名称($文件);
-            源码 = 字符工具.读取($文件);
+        if (文件.是文件($文件)) {
+            文件名 = 文件.取名称($文件);
+            源码 = 字符.读取($文件);
         } else 源码 = "";
         编译参数 = new CompilerEnvirons();
         编译器 = new ClassCompiler(编译参数);
@@ -57,7 +57,7 @@ public class JSC {
     public String 编译() {
 
         if (源码 != "") {
-            类名 = 字符工具.替换(文件名, ".", "$");
+            类名 = 字符.替换(文件名, ".", "$");
             类名 = 包名 + "." + 类名;
         }
 
@@ -66,10 +66,10 @@ public class JSC {
         if ($结果 == null || $结果.length == 0) return null;
 
         for (int j = 0; j != $结果.length; j += 2) {
-            String $路径 = 字符工具.替换((String)$结果[j], ".", "/");
+            String $路径 = 字符.替换((String)$结果[j], ".", "/");
             byte[] $字节 = (byte[])$结果[j + 1];
             String $保存 = 输出 + "/" + $路径 + ".class";
-            字节工具.保存($保存, $字节);
+            字节.保存($保存, $字节);
         }
 
         return "Packages." + 类名 + "()();";
@@ -93,7 +93,7 @@ public class JSC {
     }
 
     public JSC 置继承(String $类名) {
-        Class<?> $类 = 反射工具.取类($类名);
+        Class<?> $类 = 反射.取类($类名);
         编译器.setTargetExtends($类);
         return this;
     }
@@ -101,7 +101,7 @@ public class JSC {
     public JSC 置实现(String... $类名) {
         集合 $所有 = new 集合();
         for (String $单个 : $类名) {
-            Class $类 = 反射工具.取类($单个);
+            Class $类 = 反射.取类($单个);
             if ($类 != null) {
                 $所有.添加($类);
             }

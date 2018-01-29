@@ -13,7 +13,7 @@ public class 代码选中 implements OnSelectionChangedListener  {
     
     @Override
     public void onSelectionChanged(boolean active,int selStart,int selEnd) {
-       调用方法.事件(事件,active,selStart,selEnd);
+       调用.事件(事件,active,selStart,selEnd);
     }
     
 }

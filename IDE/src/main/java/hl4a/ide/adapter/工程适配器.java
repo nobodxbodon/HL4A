@@ -1,19 +1,20 @@
 package hl4a.ide.adapter;
 
-import android.view.*;
-import hl4a.ide.activity.*;
-import hl4a.ide.layout.*;
-import hl4a.ide.util.*;
-import java.io.*;
-import 间.接口.*;
-import 间.安卓.工具.*;
-import 间.安卓.弹窗.*;
-import 间.安卓.组件.*;
-import 间.安卓.视图.*;
-import 间.安卓.视图.适配器.*;
-import 间.安卓.资源.布局.*;
-import 间.工具.*;
-import 间.收集.*;
+import android.view.View;
+import hl4a.ide.activity.ProjActivity;
+import hl4a.ide.layout.布局_新建工程;
+import hl4a.ide.util.工程;
+import java.io.File;
+import 间.安卓.工具.提示工具;
+import 间.安卓.工具.文件;
+import 间.安卓.弹窗.基本弹窗;
+import 间.安卓.组件.基本界面;
+import 间.安卓.视图.列表视图;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.适配器.数组适配器;
+import 间.安卓.资源.布局.布局_适配器_数组;
+import 间.接口.方法;
+import 间.收集.哈希表;
 
 public class 工程适配器 extends 数组适配器 {
 
@@ -46,7 +47,7 @@ public class 工程适配器 extends 数组适配器 {
             String $工程名 = 新建工程布局.工程名.取文本();
             if ("".equals($包名)) {
                 提示工具.普通("包名不能为空 ~");
-            } else if(!工程.检查包名($包名)) {
+            } else if (!工程.检查包名($包名)) {
             } else if ("".equals($工程名)) {
                 提示工具.普通("工程名不能为空 ~");
             } else if (工程.检查($包名)) {
@@ -80,7 +81,7 @@ public class 工程适配器 extends 数组适配器 {
 
     public void 更新工程() {
         数据.清空();
-        File[] $所有 = 文件工具.取文件列表(工程.工程目录);
+        File[] $所有 = 文件.取文件列表(工程.工程目录);
         添加项目("新建工程", null);
         for (File $单个 : $所有) {
             if ($单个.isDirectory()) {
@@ -90,7 +91,7 @@ public class 工程适配器 extends 数组适配器 {
                         $工程.信息.包名 = $单个.getName();
                         $工程.保存();
                     }
-                    添加项目($工程.信息.工程名,$单个.getName());
+                    添加项目($工程.信息.工程名, $单个.getName());
                 }
             }
         }

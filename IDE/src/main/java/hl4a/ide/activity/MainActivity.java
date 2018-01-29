@@ -72,7 +72,7 @@ public class MainActivity extends 基本界面 {
 
     @Override
     public void 界面刷新事件() {
-        调用方法.事件(刷新);
+        调用.事件(刷新);
     }
 
 

@@ -45,7 +45,7 @@ public final class 文本实现 {
     }
 
     public static void 置文本字体(TextView $视图,String $地址) {
-        置文本字体($视图, 字体工具.取字体($地址));
+        置文本字体($视图, 字体.取字体($地址));
     }
 
     public static void 置文本字体(TextView $视图,Typeface $字体) {

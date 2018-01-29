@@ -13,7 +13,7 @@ public class 打印处理 extends PrintStream {
     }
 
     public void onPrint(Object... $参数) {
-        调用方法.事件(事件, $参数);
+        调用.事件(事件, $参数);
     }
 
     @Override

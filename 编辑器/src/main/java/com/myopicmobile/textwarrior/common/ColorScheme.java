@@ -106,7 +106,7 @@ public abstract class ColorScheme {
 
     // In ARGB format: 0xAARRGGBB
     private static final int BLACK = 视图工具.检查颜色("#000000");
-    private static final int BLUE = 主题工具.取主题颜色().取控件色();
+    private static final int BLUE = 主题.取主题颜色().取控件色();
     private static final int DARK_RED = 0xFFA31515;
     private static final int GREY = 视图工具.检查颜色("#F0F0F0");
     private static final int OLIVE_GREEN = 0xFF3F7F5F;

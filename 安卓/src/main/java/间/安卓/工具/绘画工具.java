@@ -21,7 +21,7 @@ public class 绘画工具 {
     }
 
     public static Drawable 主题() {
-        return 生成背景(主题工具.取主题颜色().取控件色(), 主题工具.取主题颜色().取基本色());
+        return 生成背景(主题.取主题颜色().取控件色(), 主题.取主题颜色().取基本色());
     }
 
     public static Drawable 生成背景(Object $普通,Object $按下) {
@@ -30,7 +30,7 @@ public class 绘画工具 {
             $波纹.setShape(new RectShape());
             InsetDrawable $绘画 = new InsetDrawable($波纹, -1);
             
-            RippleDrawable $涟漪 = new RippleDrawable(ColorStateList.valueOf(主题工具.取主题颜色().取淡色()), 绘画工具.颜色转绘画($普通), $绘画);
+            RippleDrawable $涟漪 = new RippleDrawable(ColorStateList.valueOf(主题.取主题颜色().取淡色()), 绘画工具.颜色转绘画($普通), $绘画);
             return $涟漪;
         } else {
             return new 按下变色绘画($普通, $按下);
@@ -43,11 +43,11 @@ public class 绘画工具 {
     }
 
     public static Drawable 图片转绘画(String $文件) {
-        return new BitmapDrawable(图片工具.读取($文件));
+        return new BitmapDrawable(图片.读取($文件));
     }
 
     public static Drawable 点九图转绘画(String $文件) {
-        return new 点九图绘画(图片工具.读取($文件));
+        return new 点九图绘画(图片.读取($文件));
     }
 
 }

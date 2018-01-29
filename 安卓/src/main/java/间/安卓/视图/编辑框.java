@@ -19,9 +19,9 @@ public class 编辑框 extends EditText implements 基本视图 {
         super($上下文);
         视图实现.初始化控件(this);
         置宽度("最大");
-        置文本颜色(主题工具.取主题颜色().取基本色());
-        置横杠颜色(主题工具.取主题颜色().取基本色());
-        置指针颜色(主题工具.取主题颜色().取基本色());
+        置文本颜色(主题.取主题颜色().取基本色());
+        置横杠颜色(主题.取主题颜色().取基本色());
+        置指针颜色(主题.取主题颜色().取基本色());
     }
 
     public 编辑框(ViewGroup $父视图) {
@@ -35,12 +35,12 @@ public class 编辑框 extends EditText implements 基本视图 {
 
     public void 置指针颜色(Object $颜色) {
         if (设备工具.取SDK() > 21) {
-            int $资源ID = 反射工具.取变量(this, "mCursorDrawableRes");
-            Object $编辑器 = 反射工具.取变量(this, "mEditor");
+            int $资源ID = 反射.取变量(this, "mCursorDrawableRes");
+            Object $编辑器 = 反射.取变量(this, "mEditor");
             Drawable[] $绘画组 = new Drawable[1];
             $绘画组[0] = getContext().getResources().getDrawable($资源ID);
             $绘画组[0].setColorFilter(视图工具.检查颜色($颜色), PorterDuff.Mode.SRC_IN);
-            反射工具.置变量($编辑器, "mCursorDrawable", $绘画组);
+            反射.置变量($编辑器, "mCursorDrawable", $绘画组);
         }
     }
 

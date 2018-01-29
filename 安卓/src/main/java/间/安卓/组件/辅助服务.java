@@ -48,7 +48,7 @@ public class 辅助服务 extends AccessibilityService {
             return;
         try {
             ComponentName $应用信息 = new ComponentName($最新包名文本, $最新类名文本);
-            最新界面 = 上下文工具.取全局上下文().getPackageManager().getActivityInfo($应用信息, 0).name;
+            最新界面 = 环境.取应用().getPackageManager().getActivityInfo($应用信息, 0).name;
         } catch (PackageManager.NameNotFoundException $错误) {
             return;
         }
