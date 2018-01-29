@@ -38,7 +38,7 @@ public class Kit
     public static Class<?> classOrNull(String className)
     {
        
-            return 反射.取类(className);
+            return 反射工具.取类(className);
        
     }
 
@@ -49,7 +49,7 @@ public class Kit
     public static Class<?> classOrNull(ClassLoader loader, String className)
     {
         
-            return 反射.取类(className,loader);
+            return 反射工具.取类(className,loader);
     }
 
     static Object newInstanceOrNull(Class<?> cl)

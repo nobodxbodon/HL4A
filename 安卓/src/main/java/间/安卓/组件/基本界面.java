@@ -259,7 +259,7 @@ public class 基本界面 extends Activity implements 可处理的 {
 
     public void 跳转界面(Integer $请求码,String $类,Object... $数据) {
 
-        Intent $意图 = new Intent(this, 反射.取类($类));
+        Intent $意图 = new Intent(this, 反射工具.取类($类));
         if ($数据 != null)
             $意图.putExtra("参数", (Serializable)$数据);
         if ($请求码 == null)
@@ -279,8 +279,8 @@ public class 基本界面 extends Activity implements 可处理的 {
     }
 
     public void 跳转脚本(Integer $请求码,String $类,Object... $数据) {
-        Class<?> $组件 = 反射.取类("放课后乐园部.安卓.脚本.组件.脚本界面");
-        Class<?> $界面 = 反射.取类("hl4a.runtime.ScriptActivity");
+        Class<?> $组件 = 反射工具.取类("间.安卓.脚本.组件.脚本界面");
+        Class<?> $界面 = 反射工具.取类("hl4a.runtime.ScriptActivity");
         if ($组件 == null) {
             错误工具.内容("没有引入脚本支持包 ~");
         } else if ($界面 == null) {

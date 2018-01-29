@@ -24,26 +24,29 @@ public class MainActivity extends 基本界面 {
     public void onCreate(Bundle $数据) {
         super.onCreate($数据);
         布局 = new 布局_主页(this);
-        弹出菜单 $菜单 = 布局.标题.取菜单();
+        final 弹出菜单 $菜单 = 布局.标题.取菜单();
         
-        $菜单.添加("使用手册", new 通用方法() {
+        $菜单.添加("帮助/手册", new 通用方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     跳转界面(HelpActivity.class);
+                    $菜单.隐藏();
                     return null;
                 }
             });
-        $菜单.添加("加入讨论群", new 通用方法() {
+        $菜单.添加("用户讨论群", new 通用方法() {
             @Override
                 public Object 调用(Object[] $参数) {
                     链接工具.QQ.乐园部();
+                    $菜单.隐藏();
                     return null;
                 }
             });
-        $菜单.添加("提建议/反馈错误", new 通用方法() {
+        $菜单.添加("建议/反馈", new 通用方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
                     链接工具.QQ.反馈();
+                    $菜单.隐藏();
                     return null;
                 }
             });
@@ -51,7 +54,13 @@ public class MainActivity extends 基本界面 {
         布局.适配器 = new 工程适配器(布局.列表);
         布局.布局.置刷新事件(刷新);
         打开布局(布局);
-        检查到处();
+        
+            检查导入();
+         测试();
+    }
+    
+    public void 测试() {
+       
     }
 
     public void 检查导入() {

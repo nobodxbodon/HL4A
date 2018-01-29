@@ -7,7 +7,7 @@ public class 调用方法 {
         return new 通用方法() {
             @Override
             public Object 调用(Object[] $参数) {
-                反射.调用方法($对象, $方法名, $参数);
+                反射工具.调用方法($对象, $方法名, $参数);
                 return null;
             }
         };

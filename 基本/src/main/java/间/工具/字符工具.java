@@ -87,7 +87,7 @@ public class 字符工具 {
         if ($文本 == null || $内容 == null)
             return false;
 
-        return $文本.indexOf($内容) != -1;
+        return $文本.contains($内容);
 
     }
 

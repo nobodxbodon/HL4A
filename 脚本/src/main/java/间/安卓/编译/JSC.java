@@ -93,7 +93,7 @@ public class JSC {
     }
 
     public JSC 置继承(String $类名) {
-        Class<?> $类 = 反射.取类($类名);
+        Class<?> $类 = 反射工具.取类($类名);
         编译器.setTargetExtends($类);
         return this;
     }
@@ -101,7 +101,7 @@ public class JSC {
     public JSC 置实现(String... $类名) {
         集合 $所有 = new 集合();
         for (String $单个 : $类名) {
-            Class $类 = 反射.取类($单个);
+            Class $类 = 反射工具.取类($单个);
             if ($类 != null) {
                 $所有.添加($类);
             }

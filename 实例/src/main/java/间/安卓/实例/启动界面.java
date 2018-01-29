@@ -1,14 +1,14 @@
-package 放课后乐园部.安卓.实例;
+package 间.安卓.实例;
 
 import android.os.*;
-import 放课后乐园部.事件.*;
-import 放课后乐园部.压缩.*;
-import 放课后乐园部.安卓.工具.*;
-import 放课后乐园部.安卓.组件.*;
-import 放课后乐园部.安卓.资源.布局.*;
-import 放课后乐园部.工具.*;
-import 放课后乐园部.线程.*;
-import 放课后乐园部.安卓.线程.*;
+import 间.事件.*;
+import 间.压缩.*;
+import 间.安卓.工具.*;
+import 间.安卓.组件.*;
+import 间.安卓.资源.布局.*;
+import 间.工具.*;
+import 间.线程.*;
+import 间.安卓.线程.*;
 import android.util.*;
 import java.io.*;
 

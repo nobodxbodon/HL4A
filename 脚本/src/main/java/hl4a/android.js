@@ -1,6 +1,6 @@
 "严格模式";
 
-var h = Packages.放课后乐园部;
+var h = Packages.间;
 var ha = h.安卓;
 
 var 导入包 = importPackage;

@@ -24,6 +24,7 @@ public class 编译工程 {
         界面 = $界面;
         工程 = $工程;
         弹窗 = new 加载中弹窗($界面);
+        弹窗.置可关闭(false);
         弹窗.更新("初始化");
     }
 
@@ -60,11 +61,11 @@ public class 编译工程 {
         ZIP工具.压缩(工程.取地址("源码/"), $脚本);
         字符工具.保存($脚本, 编码工具.Base64.编码(字节工具.读取($脚本)));
         弹窗.更新("编译应用类文件");
-        CLASS $应用 = new CLASS(工程.信息.包名 + ".Application", "放课后乐园部.安卓.组件.基本应用", "Application.java");
+        CLASS $应用 = new CLASS(工程.信息.包名 + ".Application", "间.安卓.组件.基本应用", "Application.java");
         $应用.初始化();
         $应用.编译(工程.取地址("编译", "类", 字符工具.替换(工程.信息.包名, ".", "/"), "Application.class"));
         弹窗.更新("编译启动界面");
-        CLASS $启动 = new CLASS(工程.信息.包名 + ".LaunchPad", "放课后乐园部.安卓.实例.启动界面", "LaunchPad.java");
+        CLASS $启动 = new CLASS(工程.信息.包名 + ".LaunchPad", "间.安卓.实例.启动界面", "LaunchPad.java");
         $启动.初始化();
         $启动.编译(工程.取地址("编译", "类", 字符工具.替换(工程.信息.包名, ".", "/"), "LaunchPad.class"));
         弹窗.更新("编译到Dex");

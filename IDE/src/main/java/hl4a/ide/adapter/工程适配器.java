@@ -23,7 +23,7 @@ public class 工程适配器 extends 数组适配器 {
     布局_新建工程 新建工程布局;
 
     public 工程适配器(列表视图 $视图) {
-        super($视图.getContext(), new 集合());
+        super($视图.getContext(), new String[0]);
         界面 = (基本界面)$视图.getContext();
         列表 = $视图;
         更新工程();
@@ -35,7 +35,6 @@ public class 工程适配器 extends 数组适配器 {
         新建工程.置内容(新建工程布局);
         新建工程.置中按钮("取消", 新建工程.隐藏);
         新建工程.置右按钮("创建", 创建);
-
     }
 
     基本弹窗 新建工程;

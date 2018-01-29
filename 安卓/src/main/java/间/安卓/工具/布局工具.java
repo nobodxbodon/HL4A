@@ -60,7 +60,7 @@ public class 布局工具 {
         } else if ($视图参数 instanceof String) {
             String $类名 = (String)$视图参数;
             $循环:for (String $单个 : 视图来源) {
-                $类 = 反射.取类("放课后乐园部.安卓." + $单个 + "." + $类名);
+                $类 = 反射工具.取类("间.安卓." + $单个 + "." + $类名);
                 if ($类 != null) {
                     break $循环;
                 }
@@ -69,7 +69,7 @@ public class 布局工具 {
                 throw new RuntimeException("解析布局:找不到类" + $视图参数);
             }
         }
-        Object $视图对象 = 反射.实例化($类, $父视图.getContext());
+        Object $视图对象 = 反射工具.实例化($类, $父视图.getContext());
         View $视图 = (View)$视图对象;
         if ($父视图 != null) {
             $父视图.addView($视图);
@@ -94,7 +94,7 @@ public class 布局工具 {
         for (String $单个 : $设置) {
             String $名称 = "置"+ $单个;
             //if (反射工具.有方法($视图, $名称)) {
-                反射.调用方法($视图,$名称,$参数.get($单个));
+                反射工具.调用方法($视图,$名称,$参数.get($单个));
             //}
         }
     }

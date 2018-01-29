@@ -4,9 +4,9 @@ import java.lang.reflect.*;
 import java.util.*;
 import 间.收集.*;
 
-public class 反射 {
+public class 反射工具 {
 
-    public static ClassLoader 最新加载器 = 反射.class.getClassLoader();
+    public static ClassLoader 最新加载器 = 反射工具.class.getClassLoader();
 
     public static Class<?> 取类(String $类名) {
         return 取类($类名, 最新加载器);
@@ -110,7 +110,7 @@ public class 反射 {
     public static Object 实例化(Object $类或类名,Object... $参数) {
         Class $类 = null;
         if ($类或类名 instanceof String) {
-            $类 = 反射.取类((String)$类或类名);
+            $类 = 反射工具.取类((String)$类或类名);
         } else if ($类或类名 instanceof Class) {
             $类 = (Class)$类或类名;
         } else {

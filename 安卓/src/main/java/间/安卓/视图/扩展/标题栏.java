@@ -66,7 +66,7 @@ public class 标题栏 extends 线性布局 {
     }
 
     public void 切换() {
-        标题对象.置文本颜色(颜色.黑色);
+        标题对象.置文本颜色(主题工具.取主题颜色().取控件色());
         置背景(颜色.白色);
         setTranslationZ(0);
     }

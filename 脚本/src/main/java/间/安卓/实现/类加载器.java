@@ -23,7 +23,7 @@ public class 类加载器 extends ClassLoader implements GeneratedClassLoader {
 
     public Class 取类(String $类名) {
         try {
-            return 反射.取类($类名, this);
+            return 反射工具.取类($类名, this);
         } catch (Exception $错误) {}
         return null;
     }

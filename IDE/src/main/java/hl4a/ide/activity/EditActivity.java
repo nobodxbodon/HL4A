@@ -227,7 +227,7 @@ public class EditActivity extends 基本界面 {
         }
         if (!文件工具.是文件(当前.取地址("源码/" + 打开))) {
             提示工具.普通("正在创建入口 ~");
-            字符工具.保存(当前.取地址("源码/" + 打开), JavaScript.实例);
+            字符工具.保存(当前.取地址("源码/" + 打开), 字符工具.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
         }
         布局.代码.读入(当前.取地址("源码/" + 打开));
         if (布局.适配器 != null) {

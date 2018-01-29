@@ -11,6 +11,7 @@ import 间.安卓.视图.适配器.*;
 import 间.工具.*;
 import java.io.*;
 import 间.收集.*;
+import 间.压缩.*;
 
 public class HelpActivity extends 基本界面 {
 
@@ -21,6 +22,8 @@ public class HelpActivity extends 基本界面 {
     @Override
     public void 界面创建事件(Bundle $恢复) {
         布局 = new 布局_帮助文档(this);
+        ZIP工具.解压(应用工具.取安装包位置(),"assets/help.zip","$cache/帮助.zip");
+        ZIP工具.解压("$cache/帮助.zip","$帮助");
         集合<String> $显示 = new 集合<>();
         File[] $所有 = 文件工具.取文件列表(地址);
         for (File $单个 : $所有) {

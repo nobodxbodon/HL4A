@@ -94,8 +94,6 @@ public class ProjActivity extends 基本界面 {
             链接工具.打开("http://www.gnu.org/licenses/gpl-3.0.html");
             return null;
         }
-
-
     };
 
     通用方法 直接运行 = new 通用方法() {
@@ -119,7 +117,7 @@ public class ProjActivity extends 基本界面 {
             String $输出 = 文件工具.取目录(当前.取地址()) + "/" + 当前.信息.工程名 + ".hpk";
             ZIP工具.压缩(当前.取地址(), $输出);
             字符工具.保存($输出, 编码工具.Base64.编码(字节工具.读取($输出)));
-            提示工具.普通("打包成功 ~ \n保存到 :" + $输出);
+            提示工具.普通("打包成功 ~ \n" + $输出);
             return null;
         }
     };
@@ -177,7 +175,6 @@ public class ProjActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             if (更改设置.调用() == null) return null;
                 打包APK.调用();
-           
             return null;
         }
     };
@@ -188,7 +185,7 @@ public class ProjActivity extends 基本界面 {
             if (检查())return null;
             String $内容 = 内容.编辑.取文本();
             String $类型 = 内容.类型;
-            String $原内容 = (String)反射.取变量(当前.信息, $类型);
+            String $原内容 = (String)反射工具.取变量(当前.信息, $类型);
             if ("".equals($内容)) {
                 提示工具.警告("请不要留空 ~");
                 return null;
@@ -209,7 +206,7 @@ public class ProjActivity extends 基本界面 {
                 提示工具.普通("更改成功 ~");
             }
             ((文本视图)所有.读取($类型)).置文本($内容);
-            反射.置变量(当前.信息, $类型, $内容);
+            反射工具.置变量(当前.信息, $类型, $内容);
             当前.保存();
             设置.隐藏();
             return 233;
@@ -259,7 +256,7 @@ public class ProjActivity extends 基本界面 {
             $布局.置高度("自动");
             文本视图 $内容 = new 文本视图($布局);
             $内容.置标签("内容");
-            $内容.置文本(反射.取变量(当前.信息,$设置).toString());
+            $内容.置文本(反射工具.取变量(当前.信息,$设置).toString());
             所有.设置($设置, $内容);
         }
     }

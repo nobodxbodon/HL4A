@@ -1,10 +1,10 @@
-package 放课后乐园部.压缩;
+package 间.压缩;
 
 import java.io.*;
 import net.lingala.zip4j.model.*;
 import net.lingala.zip4j.util.*;
 import net.lingala.zip4j.core.*;
-import 放课后乐园部.工具.*;
+import 间.工具.*;
 
 public class ZIP4J {
 
