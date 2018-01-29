@@ -20,6 +20,7 @@ import 间.安卓.视图.实现.视图实现;
 import 间.工具.字符;
 import 间.接口.方法;
 import 间.接口.调用;
+import 间.安卓.插件.界面插件;
 
 public class 浏览器 extends WebView implements 基本视图 {
 
@@ -28,7 +29,7 @@ public class 浏览器 extends WebView implements 基本视图 {
     public 浏览器(Context $上下文) {
         super($上下文);
         if ($上下文 instanceof 基本界面) {
-            ((基本界面)$上下文).所有浏览器.添加(this);
+            ((基本界面)$上下文).注册插件(new 浏览器插件());
         }
         视图实现.初始化控件(this);
         置宽度("最大");
@@ -41,6 +42,18 @@ public class 浏览器 extends WebView implements 基本视图 {
         setWebViewClient(new 浏览器实例());
         setWebChromeClient(new Chrome实例());
         addJavascriptInterface(new JS置源码(),"$__置源码");
+    }
+    
+    public class 浏览器插件 extends 界面插件 {
+
+        @Override
+        public void 界面销毁事件() {
+            浏览器.this.置网址("about:blank");
+            浏览器.this.removeAllViews();
+            ((ViewGroup)浏览器.this.getParent()).removeView(浏览器.this);
+            浏览器.this.destroy();
+        }
+        
     }
 
     @Override

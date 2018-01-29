@@ -8,6 +8,8 @@ import 间.安卓.脚本.*;
 import android.content.*;
 import 间.工具.*;
 import 间.收集.*;
+import 间.安卓.插件.界面插件;
+import android.view.KeyEvent;
 
 public class 脚本界面 extends 基本界面 {
 
@@ -16,9 +18,23 @@ public class 脚本界面 extends 基本界面 {
     public String 当前文件;
     public String 当前脚本;
 
+    public 哈希表<String,方法> 所有事件 = new 哈希表<>();
+
+    public void 注册事件(String $事件,方法 $方法) {
+        所有事件.设置($事件, $方法);
+    }
+
+    public boolean 检查事件(String $名称) {
+        return 所有事件.检查($名称);
+    }
+
+    public Object 调用事件(String $名称,Object... $参数) {
+        return 调用.事件(所有事件.读取($名称), $参数);
+    }
+
     @Override
     public void 界面创建事件(Bundle $恢复) {
-        String $脚本地址 = 读取字符串("脚本");
+        String $脚本地址 = getIntent().getStringExtra("脚本");
         if (文件.是文件($脚本地址)) {
             当前脚本 = 文件.检查地址($脚本地址);
             当前目录 = 文件.取目录(当前脚本);
@@ -26,9 +42,7 @@ public class 脚本界面 extends 基本界面 {
             当前环境 = new JavaScript();
             当前环境.压入变量("当前界面", this);
             当前环境.运行文件(当前脚本);
-            if (检查事件("界面创建事件")) {
-                调用事件("界面创建事件", $恢复);
-            }
+            new 脚本界面插件().注册(this);
         } else {
             结束界面();
         }
@@ -43,6 +57,64 @@ public class 脚本界面 extends 基本界面 {
         }
         super.跳转脚本($请求码, $类, $数据);
     }
-    
+
+    public class 脚本界面插件 extends 界面插件 {
+
+        @Override
+        public void 界面创建事件(Bundle $恢复) {
+            调用事件("界面创建事件", $恢复);
+        }
+
+        @Override
+        public void 界面启动事件() {
+            调用事件("界面启动事件");
+        }
+
+        @Override
+        public void 界面刷新事件() {
+            调用事件("界面刷新事件");
+        }
+
+        @Override
+        public void 界面遮挡事件() {
+            调用事件("界面遮挡事件");
+        }
+
+        @Override
+        public void 界面销毁事件() {
+            调用事件("界面销毁事件");
+        }
+
+        @Override
+        public void 界面回调事件(int $请求码,int $返回码,Intent $意图) {
+            调用事件("界面回调事件", $请求码, $返回码, $意图);
+        }
+
+        @Override
+        public void 离开界面事件() {
+            调用事件("离开界面事件");
+        }
+
+        @Override
+        public void 取得焦点事件() {
+            调用事件("取得焦点事件");
+        }
+
+        @Override
+        public void 失去焦点事件() {
+            调用事件("失去焦点事件");
+        }
+
+        @Override
+        public Boolean 按键按下事件(int $按键码,KeyEvent $事件) {
+            return (Boolean)调用事件("按键按下事件", $按键码, $事件);
+        }
+
+        @Override
+        public Boolean 返回按下事件() {
+            return (Boolean)调用事件("返回按下事件");
+        }
+
+    }
 
 }

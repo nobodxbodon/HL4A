@@ -6,6 +6,7 @@ import android.os.*;
 import java.util.*;
 import 间.接口.*;
 import 间.安卓.组件.*;
+import 间.安卓.插件.界面插件;
 
 public class 服务 {
 
@@ -31,10 +32,30 @@ public class 服务 {
         启动($界面,$类);
         连接处理 $处理 = new 连接处理($成功, $断开);
         $界面.bindService(new Intent($界面, $类), $处理, Context.BIND_AUTO_CREATE);
-        $界面.所有连接.添加($处理);
+        $界面.注册插件(new 服务插件($处理));
         return $处理;
     }
 
+    public static class 服务插件 extends 界面插件 {
+
+        private 连接处理 处理;
+        
+        public 服务插件(连接处理 $处理) {
+            处理 = $处理;
+        }
+        
+        @Override
+        public void 界面销毁事件() {
+            界面.unbindService(处理);
+        }
+
+        @Override
+        public void 保存状态事件(Bundle $输出) {
+            界面.unbindService(处理);
+        }
+        
+    }
+    
     public static class 连接处理 implements ServiceConnection {
 
         基本服务 服务;

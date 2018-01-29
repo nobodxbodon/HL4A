@@ -20,139 +20,139 @@ import 间.接口.方法;
 import 间.接口.调用;
 import 间.收集.哈希表;
 import 间.收集.集合;
+import 间.安卓.工具.环境;
+import 间.安卓.插件.界面插件;
+import 间.安卓.插件.应用插件;
 
 public class 基本界面 extends Activity {
 
-
     public Object[] 传入参数;
-    public 哈希表<String,方法> 所有事件 = new 哈希表<String,方法>();
-    public 集合<连接处理> 所有连接 = new 集合<>();
-    public 集合<浏览器> 所有浏览器 = new 集合<>();
 
-    public void 注册事件(String $事件,方法 $方法) {
-        所有事件.设置($事件, $方法);
-    }
+    public 集合<界面插件> 所有插件 = new 集合<>();
 
-    public boolean 检查事件(String $名称) {
-        return 所有事件.检查($名称);
-    }
-
-    public Object 调用事件(String $名称,Object... $参数) {
-        方法 $方法 = 所有事件.读取($名称);
-        return 调用.事件($方法, $参数);
+    public void 注册插件(界面插件 $插件) {
+        if ($插件 == null) return;
+        synchronized (所有插件) {
+            所有插件.添加($插件);
+            $插件.界面 = this;
+        }
     }
 
     @Override
     public void onCreate(Bundle $恢复) {
         super.onCreate($恢复);
         应用.初始化界面(this);
+        for (应用插件 $单个 : 环境.取应用().所有插件) {
+            $单个.界面新建(this);
+        }
         Intent $意图 = getIntent();
         if ($意图.hasExtra("参数")) {
             传入参数 = (Object[])$意图.getSerializableExtra("参数");
         }
-        if (检查事件("界面创建事件")) {
-            调用事件("界面创建事件", $恢复);
-        } else {
-            界面创建事件($恢复);
+        界面创建事件($恢复);
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面创建事件($恢复);
         }
     }
 
-    public String 读取字符串(String $内容) {
+    public String 读字符串(String $内容) {
         return getIntent().getStringExtra($内容);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (检查事件("界面启动事件")) {
-            调用事件("界面启动事件");
-        } else {
-            界面启动事件();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面启动事件();
         }
+        界面启动事件();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            if (检查事件("取得焦点事件")) {
-                调用事件("取得焦点事件");
-            } else {
-                取得焦点事件();
+            for (界面插件 $单个 : 所有插件) {
+                $单个.取得焦点事件();
             }
+            取得焦点事件();
         } else {
-            if (检查事件("失去焦点事件")) {
-                调用事件("失去焦点事件");
-            } else {
-                失去焦点事件();
+            for (界面插件 $单个 : 所有插件) {
+                $单个.失去焦点事件();
             }
+            失去焦点事件();
         }
     }
 
     @Override
     public void onNewIntent(Intent $意图) {
         super.onNewIntent($意图);
-        if (检查事件("收到意图事件")) {
-            调用事件("收到意图事件", $意图);
-        } else
-            收到意图事件($意图);
+        for (界面插件 $单个 : 所有插件) {
+            $单个.收到意图事件($意图);
+        }
+        收到意图事件($意图);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle $输出) {
         super.onSaveInstanceState($输出);
-        if (检查事件("保存状态事件")) {
-            调用事件("保存状态事件", $输出);
-        } else
-            保存状态事件($输出);
+        for (界面插件 $单个 : 所有插件) {
+            $单个.保存状态事件($输出);
+        }
+        保存状态事件($输出);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (检查事件("界面刷新事件")) {
-            调用事件("界面刷新事件");
-        } else
-            界面刷新事件();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面刷新事件();
+        }
+        界面刷新事件();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (检查事件("界面遮挡事件")) {
-            调用事件("界面遮挡事件");
-        } else
-            界面遮挡事件();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面遮挡事件();
+        }
+        界面遮挡事件();
     }
 
     private long 返回时间 = 时间.时间戳() - 23333;
 
     @Override
     public boolean onKeyDown(int keyCode,KeyEvent event) {
-        if (检查事件("按键按下事件")) {
-            return 调用事件("按键按下事件", keyCode, event) == true;
-        } else {
-            Boolean $返回 = 按键按下事件(keyCode, event);
+        for (界面插件 $单个 : 所有插件) {
+            Boolean $返回 = $单个.按键按下事件(keyCode, event);
             if ($返回 != null) {
                 return $返回;
             }
         }
+        Boolean $返回 = 按键按下事件(keyCode, event);
+        if ($返回 != null) {
+            return $返回;
+        }
+
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (检查事件("返回按下事件")) {
-                return 调用事件("返回按下事件") == true;
-            } else {
-                Boolean $返回 = 返回按下事件();
+            for (界面插件 $单个 : 所有插件) {
+                $返回 = $单个.返回按下事件();
                 if ($返回 != null) {
                     return $返回;
                 }
-                long 上次 = 返回时间;
-                if ((返回时间 = 时间.时间戳()) - 上次 < 2333) {
-                    finish();
-                    return true;
-                } else {
-                    提示.普通("再按一次返回键退出 ~");
-                    return false;
-                }
+            }
+            $返回 = 返回按下事件();
+            if ($返回 != null) {
+                return $返回;
+            }
+            long 上次 = 返回时间;
+            if ((返回时间 = 时间.时间戳()) - 上次 < 2333) {
+                finish();
+                return true;
+            } else {
+                提示.普通("再按一次返回键退出 ~");
+                return false;
             }
         }
         return super.onKeyDown(keyCode, event);
@@ -162,45 +162,39 @@ public class 基本界面 extends Activity {
     @Override
     public void onActivityResult(int $请求码,int $结果码,Intent $意图) {
         super.onActivityResult($请求码, $请求码, $意图);
-        if (检查事件("界面回调事件")) {
-            调用事件("界面回调事件", $请求码, $结果码, $意图);
-        } else
-            界面回调事件($请求码, $结果码, $意图);
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面回调事件($请求码, $结果码, $意图);
+        }
+        界面回调事件($请求码, $结果码, $意图);
     }
 
     @Override
     public void onStop() {
-        if (检查事件("离开界面事件")) {
-            调用事件("离开界面事件");
-        } else
-            离开界面事件();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.离开界面事件();
+        }
+        离开界面事件();
         super.onStop();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (检查事件("权限回调事件")) {
-            调用事件("权限回调事件", requestCode, permissions, grantResults);
-        } else
-            权限回调事件();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.权限回调事件();
+        }
+        权限回调事件();
     }
 
     @Override
     public void onDestroy() {
-        if (检查事件("界面销毁事件")) {
-            调用事件("界面销毁事件");
-        } else
-            界面销毁事件();
-        for (浏览器 $单个 : 所有浏览器) {
-            $单个.loadUrl("about:blank");
-            $单个.removeAllViews();
-            ((ViewGroup)$单个.getParent()).removeView($单个);
-            $单个.destroy();
+        for (界面插件 $单个 : 所有插件) {
+            $单个.界面销毁事件();
         }
-        for (连接处理 $单个 : 所有连接) {
-            unbindService($单个);
+        for (应用插件 $单个 : 环境.取应用().所有插件) {
+            $单个.界面结束(this);
         }
+        界面销毁事件();
         super.onDestroy();
     }
 
@@ -224,6 +218,9 @@ public class 基本界面 extends Activity {
     public View 当前视图;
 
     public void 打开布局(View $视图) {
+        for (界面插件 $单个 : 所有插件) {
+            $单个.打开布局事件($视图);
+        }
         当前视图 = $视图;
         布局.打开(this, $视图);
     }
@@ -261,7 +258,6 @@ public class 基本界面 extends Activity {
     }
 
     public void 跳转界面(Integer $请求码,String $类,Object... $数据) {
-
         Intent $意图 = new Intent(this, 反射.取类($类));
         if ($数据 != null)
             $意图.putExtra("参数", (Serializable)$数据);
@@ -282,6 +278,7 @@ public class 基本界面 extends Activity {
     }
 
     public void 跳转脚本(Integer $请求码,String $类,Object... $数据) {
+        $请求码 = $请求码 == null ? -1 : $请求码;
         Class<?> $组件 = 反射.取类("间.安卓.脚本.组件.脚本界面");
         Class<?> $界面 = 反射.取类("hl4a.runtime.ScriptActivity");
         if ($组件 == null) {
@@ -293,19 +290,18 @@ public class 基本界面 extends Activity {
         $意图.putExtra("脚本", $类);
         if ($数据 != null)
             $意图.putExtra("参数", (Serializable)$数据);
-        if ($请求码 == null)
-            startActivity($意图);
-        else
-            startActivityForResult($意图, $请求码);
+        startActivityForResult($意图, $请求码);
 
     }
-    
+
     public void 请求权限() {
         if (设备.取SDK() < 23) {
             权限回调事件();
             return;
         }
-        错误.内容("基本界面不支持权限");
+        for (界面插件 $单个 : 所有插件) {
+            $单个.请求权限事件();
+        }
     }
 
 

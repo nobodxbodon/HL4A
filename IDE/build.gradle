@@ -17,7 +17,7 @@ android {
 dependencies {
     compile project(':基本')
     compile project(':安卓')
-    compile project(':安卓附加4')
+    compile project(':附加')
     compile project(':网络')
 	compile project(':JSON')
 	compile project(':脚本')

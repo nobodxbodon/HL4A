@@ -5,6 +5,10 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.0"
     
+    defaultConfig {
+        minSdkVersion 19
+    }
+    
 }
 
 dependencies {

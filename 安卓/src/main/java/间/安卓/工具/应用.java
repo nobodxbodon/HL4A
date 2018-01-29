@@ -25,6 +25,8 @@ import 间.工具.线程;
 import 间.工具.错误;
 import 间.接口.方法;
 import 间.收集.集合;
+import 间.安卓.插件.应用插件;
+import 间.安卓.组件.基本应用;
 
 public class 应用 {
 
@@ -40,12 +42,12 @@ public class 应用 {
         }
     }
 
-    public static void 初始化界面(Activity $界面) {
+    public static void 初始化界面(基本界面 $界面) {
         新建界面($界面);
         自动设置主题($界面);
     }
 
-    public static void 新建界面(Activity $界面) {
+    public static void 新建界面(基本界面 $界面) {
         所有界面.添加($界面);
         竖屏($界面);
     }
@@ -79,7 +81,7 @@ public class 应用 {
         }
     };
 
-    public static void 初始化应用(Application $应用) {
+    public static void 初始化应用(基本应用 $应用) {
         环境.置应用($应用);
         文件.初始化();
         线程.置错误处理(错误处理);
