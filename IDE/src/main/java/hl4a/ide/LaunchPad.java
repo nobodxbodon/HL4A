@@ -12,6 +12,7 @@ public class LaunchPad extends 基本界面 {
     public void 界面创建事件(Bundle $恢复) {
         打开布局(new 布局_初始化(this));
         请求权限();
+
     }
 
     @Override

@@ -36,7 +36,7 @@ public class 辅助 {
     public static boolean 自动() {
         if (!检查()) {
             跳转();
-            提示工具.普通("请开启或重启 " + 应用.取应用名() + " ~\n重新开关后服务仍未运行请重启系统！");
+            提示.普通("请开启或重启 " + 应用.取应用名() + " ~\n重新开关后服务仍未运行请重启系统！");
             return false;
         }
         return true;
@@ -369,7 +369,7 @@ public class 辅助 {
 
         public boolean 插入(String $内容)  {
             if (为空()) return false;
-            设备工具.置剪切板($内容);
+            设备.置剪切板($内容);
             return 粘贴();
         }
 

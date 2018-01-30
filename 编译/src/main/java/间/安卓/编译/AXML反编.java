@@ -5,11 +5,11 @@ import 间.工具.*;
 import android.content.res.chunk.types.*;
 import java.io.*;
 
-public class AXML {
+public class AXML反编 {
 
     public AXMLResource $源码;
     
-    public AXML(String $地址) {
+    public AXML反编(String $地址) {
         $源码 = new AXMLResource();
         try {
             $源码.read(流.输入.文件($地址));

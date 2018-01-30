@@ -3,7 +3,7 @@ package 间.安卓.插件;
 import 间.安卓.组件.基本界面;
 import 间.安卓.工具.权限;
 
-public class 附加 extends 应用插件 {
+public class 附加插件 extends 应用插件 {
 
     @Override
     public void 界面新建(基本界面 $界面) {

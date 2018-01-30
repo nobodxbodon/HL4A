@@ -1,15 +1,15 @@
 package hl4a.ide.activity;
 
-import android.os.*;
-import hl4a.ide.adapter.*;
-import hl4a.ide.layout.*;
-import hl4a.ide.util.*;
-import 间.接口.*;
-import 间.安卓.工具.*;
-import 间.安卓.组件.*;
-import 间.安卓.视图.*;
-import 间.工具.*;
-import 间.安卓.资源.布局.*;
+import android.os.Bundle;
+import hl4a.ide.adapter.工程适配器;
+import hl4a.ide.layout.布局_主页;
+import hl4a.ide.util.工程;
+import 间.安卓.工具.提示;
+import 间.安卓.工具.链接;
+import 间.安卓.组件.基本界面;
+import 间.安卓.视图.弹出菜单;
+import 间.接口.方法;
+import 间.接口.调用;
 
 public class MainActivity extends 基本界面 {
 
@@ -25,7 +25,6 @@ public class MainActivity extends 基本界面 {
         super.onCreate($数据);
         布局 = new 布局_主页(this);
         final 弹出菜单 $菜单 = 布局.标题.取菜单();
-        
         $菜单.添加("帮助/手册", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {

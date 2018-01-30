@@ -16,4 +16,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':安卓')
 	compile project(':脚本')
+    //compile 'com.madgag.spongycastle:bcpkix-jdk15on:1.56.0.0'
 }

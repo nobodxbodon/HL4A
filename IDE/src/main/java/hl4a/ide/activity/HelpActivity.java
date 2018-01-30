@@ -1,21 +1,22 @@
 package hl4a.ide.activity;
 
-import android.os.*;
-import hl4a.ide.layout.*;
-import java.io.*;
-import 间.安卓.工具.*;
-import 间.安卓.组件.*;
-import 间.安卓.视图.适配器.*;
-import 间.安卓.资源.布局.*;
-import 间.工具.*;
-import 间.接口.*;
-import 间.收集.*;
-
+import android.os.Bundle;
+import hl4a.ide.layout.布局_帮助文档;
+import java.io.File;
+import 间.安卓.工具.应用;
 import 间.安卓.工具.文件;
+import 间.安卓.组件.基本界面;
+import 间.安卓.视图.适配器.数组适配器;
+import 间.安卓.资源.布局.布局_适配器_数组;
+import 间.工具.ZIP;
+import 间.工具.字符;
+import 间.接口.方法;
+import 间.收集.集合;
+import 间.安卓.工具.提示;
 
 public class HelpActivity extends 基本界面 {
 
-    public String 地址 = "$帮助";
+    public String 地址 = "%HL4A/帮助";
     public 布局_帮助文档 布局;
     public 数组适配器 适配器;
 
@@ -23,7 +24,7 @@ public class HelpActivity extends 基本界面 {
     public void 界面创建事件(Bundle $恢复) {
         布局 = new 布局_帮助文档(this);
         ZIP.解压(应用.取安装包位置(),"assets/help.zip","$cache/帮助.zip");
-        ZIP.解压("$cache/帮助.zip","$帮助");
+        ZIP.解压("$cache/帮助.zip",地址);
         集合<String> $显示 = new 集合<>();
         File[] $所有 = 文件.取文件列表(地址);
         for (File $单个 : $所有) {
@@ -40,7 +41,9 @@ public class HelpActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             String $内容 = ((布局_适配器_数组)$参数[1]).文本.取文本();
-            跳转界面(ViewActivity.class, $内容, 字符.读取(地址 + "/" + $内容 + ".txt"));
+            String $地址 = 地址 + "/" + $内容 + ".txt";
+            提示.普通(文件.是文件($地址));
+            跳转界面(ViewActivity.class, $内容, 字符.读取($地址));
             return null;
         }
     };

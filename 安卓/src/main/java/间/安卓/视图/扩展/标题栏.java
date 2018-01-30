@@ -10,6 +10,7 @@ import 间.安卓.视图.文本视图;
 import 间.安卓.视图.线性布局;
 import 间.安卓.资源.图标;
 import 间.接口.方法;
+import 间.安卓.工具.设备;
 
 public class 标题栏 extends 线性布局 {
 
@@ -27,6 +28,7 @@ public class 标题栏 extends 线性布局 {
 
         上下文 = $上下文;
         
+        if (设备.取SDK()  >= 21)
         setTranslationZ(视图.检查大小("4dp"));
         
         置标签("标题");

@@ -9,7 +9,7 @@ import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
 import 间.安卓.弹窗.加载中弹窗;
 import 间.安卓.组件.基本界面;
-import 间.安卓.编译.APK;
+import 间.安卓.编译.打包签名;
 import 间.安卓.编译.CLASS;
 import 间.安卓.编译.DEX;
 import 间.工具.ZIP;
@@ -96,7 +96,7 @@ public class 编译工程 {
             文件.复制($图标, 工程.取地址("编译", "打包", "res", "drawable", "icon.png"));
         }
         弹窗.更新("编译清单文件");
-        APK $签名 = new APK($打包);
+        打包签名 $签名 = new 打包签名($打包);
         final String $APK = $签名.初始化(工程.信息.包名);
         if (文件.是否存在($APK)) {
             文件.删除($APK);

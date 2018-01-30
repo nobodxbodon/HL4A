@@ -12,6 +12,7 @@ android {
         versionCode 81
         versionName "1.7.5"
     }
+    
 }
 
 dependencies {
@@ -23,4 +24,5 @@ dependencies {
 	compile project(':脚本')
    	compile project(':编辑器')
 	compile project(':编译')
+    compile project(':辅助')
 }

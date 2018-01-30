@@ -11,7 +11,6 @@ public class 文件 extends 间.工具.文件 {
     protected static void 初始化() {
         文件.替换地址("%", 取存储目录(""));
         文件.替换地址("$", 取数据目录(""));
-        文件.替换地址("#", 取存储目录("Android", "data", 应用.取包名(), ""));
     }
 
     public static void 打开(String $地址) {
@@ -20,7 +19,7 @@ public class 文件 extends 间.工具.文件 {
         $意图.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         环境.取应用().startActivity($意图);
     }
-    
+
     public static String 取MIME(String $地址) {
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(取后缀($地址));
     }
@@ -44,7 +43,7 @@ public class 文件 extends 间.工具.文件 {
     public static String 取下载缓存目录() {
         return Environment.getDownloadCacheDirectory().getPath();
     }
-    
+
     public static String 取下载缓存目录(String... $地址) {
         return 取下载缓存目录() + "/" + 字符.分解($地址, "/");
     }
@@ -55,6 +54,22 @@ public class 文件 extends 间.工具.文件 {
 
     public static String 取缓存目录(String... $地址) {
         return 取数据目录() + "/" + 字符.分解($地址, "/");
+    }
+
+    public static String 取存储数据目录() {
+        return 环境.取应用().getExternalCacheDir().getParent();
+    }
+
+    public static String 取存储数据目录(String... $地址) {
+        return 取存储数据目录() + "/" + 字符.分解($地址, "/");
+    }
+    
+    public static String 取存储缓存目录() {
+        return 环境.取应用().getExternalCacheDir().getPath();
+    }
+
+    public static String 取存储缓存目录(String... $地址) {
+        return 取存储数据目录() + "/" + 字符.分解($地址, "/");
     }
 
 }

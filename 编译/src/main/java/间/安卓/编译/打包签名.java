@@ -5,8 +5,10 @@ import pxb.android.tinysign.TinySign;
 import zhao.arsceditor.ResDecoder.ARSCDecoder;
 import 间.安卓.工具.文件;
 import 间.工具.流;
+import 间.工具.ZIP;
+import java.io.File;
 
-public class APK {
+public class 打包签名 {
 
     public String 包名;
     public String 目录;
@@ -16,7 +18,7 @@ public class APK {
     public String 资源文件;
     public String 清单文件;
 
-    public APK(String $编译目录) {
+    public 打包签名(String $编译目录) {
         目录 = $编译目录;
         清单文件 = 目录 + "/AndroidManifest.xml";
         资源文件 = 目录 + "/resources.arsc";
@@ -64,6 +66,15 @@ public class APK {
         try {
             String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
             TinySign.sign(文件.取文件对象(目录), 流.输出.文件($输出));
+            return $输出;
+        } catch (Exception $错误) {}
+        return null;
+    }
+    
+    public String 打包() {
+        try {
+            String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + "-未签名.apk";
+            ZIP.压缩(文件.检查地址(目录),$输出);
             return $输出;
         } catch (Exception $错误) {}
         return null;
