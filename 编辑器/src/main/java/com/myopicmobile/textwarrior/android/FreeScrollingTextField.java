@@ -3166,11 +3166,15 @@ implements Document.TextFieldMetrics{
                 getCaretPosition() - _composingCharCount,
                 _composingCharCount,
                 text.toString());
+                _composingCharCount = 0;
             _hDoc.endBatchEdit();
             //TODO reduce invalidate calls
             if(newCursorPosition > 1){
                 _fieldController.moveCaret(_caretPosition + newCursorPosition - 1);
             }
+            else if(newCursorPosition==1){
+                _fieldController.moveCaret(getCaretPosition() + newCursorPosition);
+         }
             else if (newCursorPosition <= 0){
                 _fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
             }
@@ -3265,7 +3269,15 @@ implements Document.TextFieldMetrics{
         @Override
         public boolean setSelection(int start, int end) {
             if(start == end){
-                _fieldController.moveCaret(start);
+                if(start==0)
+                               {
+                                    //适配搜狗输入法
+                                      if(getCaretPosition()>0) {
+                                               _fieldController.moveCaret(getCaretPosition() - 1);
+                                       }
+                              }else {
+                                      _fieldController.moveCaret(start);
+                				}
             }
             else{
                 _fieldController.setSelectionRange(start, end-start, false,true);

@@ -49,10 +49,10 @@ public class 基本界面 extends Activity {
         if ($意图.hasExtra("参数")) {
             传入参数 = (Object[])$意图.getSerializableExtra("参数");
         }
-        界面创建事件($恢复);
         for (界面插件 $单个 : 所有插件) {
             $单个.界面创建事件($恢复);
         }
+        界面创建事件($恢复);
     }
 
     public String 读字符串(String $内容) {
