@@ -1,13 +1,14 @@
 package hl4a.ide.util;
 
 import hl4a.ide.util.工程;
+import hl4a.ide.util.工程信息;
 import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
 import 间.工具.ZIP;
 import 间.工具.字符;
 import 间.工具.字节;
 import 间.工具.编码;
-import 间.数据.JSON工具;
+import 间.数据.JSON;
 
 public class 工程 {
 
@@ -18,7 +19,7 @@ public class 工程 {
     public 工程信息 信息;
 
     public void 保存() {
-        字符.保存(转换地址(地址), JSON工具.转换(信息));
+        JSON.保存(转换地址(地址), 信息);
     }
 
     public static boolean 检查包名(String $内容) {
@@ -58,7 +59,7 @@ public class 工程 {
         String $目录 = 文件.取缓存目录("导入", "目录", 文件.取名称($文件));
         ZIP.解压($缓存, $目录);
         if (!文件.是文件($目录, "应用.json"))return "导入失败 HPK损坏 ！";
-        工程信息 $信息 = (工程信息)JSON工具.解析类(字符.读取($目录, "应用.json"), 工程信息.class);
+        工程信息 $信息 = (工程信息)JSON.读取(字符.读取($目录, "应用.json"), 工程信息.class);
         if (工程.检查($信息.包名)) {
             return "导入失败 包名已占用~";
         }
@@ -70,7 +71,7 @@ public class 工程 {
         if (文件.是文件(转换地址($地址))) {
             工程 $工程 = new 工程();
             $工程.地址 = $地址;
-            $工程.信息 = (工程信息)JSON工具.解析类(字符.读取(转换地址($地址)), 工程信息.class);
+            $工程.信息 = (工程信息)JSON.读取(转换地址($地址), 工程信息.class);
             return $工程;
         }
         return null;
@@ -89,7 +90,7 @@ public class 工程 {
         if (文件.是文件($地址)) {
             工程 $工程 = new 工程();
             $工程.地址 = $地址;
-            $工程.信息 = (工程信息)JSON工具.解析类(字符.读取(转换地址($地址)), 工程信息.class);
+            $工程.信息 = (工程信息)JSON.读取(转换地址($地址), 工程信息.class);
             return $工程;
         }
         return null;
