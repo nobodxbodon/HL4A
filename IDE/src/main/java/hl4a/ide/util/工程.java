@@ -8,18 +8,18 @@ import 间.工具.ZIP;
 import 间.工具.字符;
 import 间.工具.字节;
 import 间.工具.编码;
-import 间.数据.JSON;
+import 间.数据.YAML;
 
 public class 工程 {
 
-    public static String 工程目录 = "%HL4A";
-    public static String 配置文件 = "应用.json";
+    public static String 工程目录 = "%HL4A2";
+    public static String 配置文件 = "应用.yml";
 
     public String 地址;
     public 工程信息 信息;
 
     public void 保存() {
-        JSON.保存(转换地址(地址), 信息);
+        YAML.保存(转换地址(地址), 信息);
     }
 
     public static boolean 检查包名(String $内容) {
@@ -58,8 +58,8 @@ public class 工程 {
         字节.保存($缓存, 编码.Base64.解码(字符.读取($文件)));
         String $目录 = 文件.取缓存目录("导入", "目录", 文件.取名称($文件));
         ZIP.解压($缓存, $目录);
-        if (!文件.是文件($目录, "应用.json"))return "导入失败 HPK损坏 ！";
-        工程信息 $信息 = (工程信息)JSON.读取($目录 + "/应用.json", 工程信息.class);
+        if (!文件.是文件($目录, 配置文件))return "导入失败 HPK损坏 ！";
+        工程信息 $信息 = (工程信息)YAML.读取($目录 + "/" + 配置文件, 工程信息.class);
         if (工程.检查($信息.包名)) {
             return "导入失败 包名已占用~";
         }
@@ -71,7 +71,7 @@ public class 工程 {
         if (文件.是文件(转换地址($地址))) {
             工程 $工程 = new 工程();
             $工程.地址 = $地址;
-            $工程.信息 = (工程信息)JSON.读取(转换地址($地址), 工程信息.class);
+            $工程.信息 = (工程信息)YAML.读取(转换地址($地址), 工程信息.class);
             return $工程;
         }
         return null;
@@ -90,7 +90,7 @@ public class 工程 {
         if (文件.是文件($地址)) {
             工程 $工程 = new 工程();
             $工程.地址 = $地址;
-            $工程.信息 = (工程信息)JSON.读取(转换地址($地址), 工程信息.class);
+            $工程.信息 = (工程信息)YAML.读取(转换地址($地址), 工程信息.class);
             return $工程;
         }
         return null;

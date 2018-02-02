@@ -217,7 +217,7 @@ public class EditActivity extends 基本界面 {
 
     @Override
     public void 界面刷新事件() {
-        if (!文件.是文件(当前.取地址("应用.json"))) {
+        if (!文件.是文件(当前.取地址(工程.配置文件))) {
             提示.警告("工程已损坏！");
             置返回值(233);
             //如果Proj检测到返回233就直接结束

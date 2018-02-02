@@ -39,7 +39,7 @@ public class ProjActivity extends 基本界面 {
     }
 
     public boolean 检查() {
-        if (!文件.是文件(当前.取地址("应用.json"))) {
+        if (!文件.是文件(当前.取地址(工程.配置文件))) {
             提示.警告("工程已损坏!");
             结束界面();
             return true;
