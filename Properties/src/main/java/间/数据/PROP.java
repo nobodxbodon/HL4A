@@ -64,7 +64,7 @@ public class PROP {
     public static Properties 转换(Object $对象) {
         if ($对象 == null) return null;
         try { 
-            PROP转换.writeValueAsProperties($对象);
+            return PROP转换.writeValueAsProperties($对象);
         } catch (IOException $错误) {}
         return null;
     }

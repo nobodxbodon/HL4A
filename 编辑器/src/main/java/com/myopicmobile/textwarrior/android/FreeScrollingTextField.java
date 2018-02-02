@@ -3059,233 +3059,259 @@ implements Document.TextFieldMetrics{
      * Does not provide ExtractedText related methods
      */
     private class TextFieldInputConnection extends BaseInputConnection{
-        private boolean _isComposing = false;
-        private int _composingCharCount = 0;
+		private boolean _isComposing = false;
+		private int _composingCharCount = 0;
 
-        public TextFieldInputConnection(FreeScrollingTextField v){
-            super(v, true);
-        }
+		public TextFieldInputConnection(FreeScrollingTextField v){
+			super(v, true);
+		}
 
-        public void resetComposingState(){
-            _composingCharCount = 0;
-            _isComposing = false;
-            _hDoc.endBatchEdit();
-        }
-        
-        @Override
-        public boolean performContextMenuAction(int id) {
-            switch(id){
-                case android.R.id.copy:
-                    copy();
-                    break;
-                case android.R.id.cut:
-                    cut();    
-                    break;
-                case android.R.id.paste:
-                    paste();
-                    break;
-                case android.R.id.startSelectingText:
-                case android.R.id.stopSelectingText:
-                case android.R.id.selectAll:
-                    selectAll();
-                    break;
-            }
-            
-            return false;
-        }
+		public void resetComposingState(){
+			_composingCharCount = 0;
+			_isComposing = false;
+			_hDoc.endBatchEdit();
+		}
+		
+		@Override
+		public boolean performContextMenuAction(int id) {
+			switch(id){
+				case android.R.id.copy:
+					copy();
+					break;
+				case android.R.id.cut:
+					cut();	
+					break;
+				case android.R.id.paste:
+					paste();
+					break;
+				case android.R.id.startSelectingText:
+				case android.R.id.stopSelectingText:
+				case android.R.id.selectAll:
+					selectAll();
+					break;
+			}
+			
+			return false;
+		}
+		
+		public boolean sendKeyEvent(KeyEvent event){
+			switch(event.getKeyCode()){
+				case KeyEvent.KEYCODE_SHIFT_LEFT:
+					if(isSelectText())
+						selectText(false);
+					else
+						selectText(true);
+					break;
+				case KeyEvent.KEYCODE_DPAD_LEFT:
+					moveCaretLeft();
+					break;
+				case KeyEvent.KEYCODE_DPAD_UP:
+					moveCaretUp();
+					break;
+				case KeyEvent.KEYCODE_DPAD_RIGHT:
+					moveCaretRight();
+					break;
+				case KeyEvent.KEYCODE_DPAD_DOWN:
+					moveCaretDown();
+					break;
+				case KeyEvent.KEYCODE_MOVE_HOME:
+					moveCaret(0);
+					break;
+				case KeyEvent.KEYCODE_MOVE_END:
+					moveCaret(_hDoc.length()-1);
+					break;
+				case KeyEvent.KEYCODE_ENTER:
+				case KeyEvent.KEYCODE_NUMPAD_ENTER:
+                    
+                    /*
+					if(_autoCompletePanel.isShow()){
+						_autoCompletePanel.selectFirst();
+					}
+					else
+					{
+						return super.sendKeyEvent(event);
+					}
+					break;
+                    */
+				default:
+					return super.sendKeyEvent(event);
+				}
+			return true;
+		}
+		
+		/**
+		 * Only true when the InputConnection has not been used by the IME yet.
+		 * Can be programatically cleared by resetComposingState()
+		 */
+		public boolean isComposingStarted() {
+			return _isComposing;
+		}
 
-            
-        
-        
-        public boolean sendKeyEvent(KeyEvent event){
-            switch(event.getKeyCode()){
-                case KeyEvent.KEYCODE_SHIFT_LEFT:
-                    if(isSelectText())
-                        selectText(false);
-                    else
-                        selectText(true);
-                    break;
-                case KeyEvent.KEYCODE_DPAD_LEFT:
-                    moveCaretLeft();
-                    break;
-                case KeyEvent.KEYCODE_DPAD_UP:
-                    moveCaretUp();
-                    break;
-                case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    moveCaretRight();
-                    break;
-                case KeyEvent.KEYCODE_DPAD_DOWN:
-                    moveCaretDown();
-                    break;
-                case KeyEvent.KEYCODE_MOVE_HOME:
-                    moveCaret(0);
-                    break;
-                case KeyEvent.KEYCODE_MOVE_END:
-                    moveCaret(_hDoc.length()-1);
-                    break;
-                default:
-                    return super.sendKeyEvent(event);
-                }
-            return true;
-        }
-        
-        /**
-         * Only true when the InputConnection has not been used by the IME yet.
-         * Can be programatically cleared by resetComposingState()
+		@Override
+		public boolean setComposingText(CharSequence text, int newCursorPosition){
+			_isComposing = true;
+			if(!_hDoc.isBatchEdit()){
+				_hDoc.beginBatchEdit();
+			}
+
+			_fieldController.replaceComposingText(
+				getCaretPosition() - _composingCharCount,
+				_composingCharCount,
+				text.toString());
+			_composingCharCount = text.length();
+
+			//TODO reduce invalidate calls
+			if(newCursorPosition > 1){
+				_fieldController.moveCaret(_caretPosition + newCursorPosition - 1);
+			}
+			else if (newCursorPosition <= 0){
+				_fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
+			}
+			log("setComposingText:"+text+","+newCursorPosition);
+			return true;
+		}
+
+		/**
+		 * 输入法传递过来的字符串
+		 * @param text
+		 * @param newCursorPosition
+         * @return
          */
-        public boolean isComposingStarted() {
-            return _isComposing;
-        }
+		@Override
+		public boolean commitText(CharSequence text, int newCursorPosition) {
+			log("commitText:"+text+","+newCursorPosition+","+_composingCharCount);
+			_fieldController.replaceComposingText(
+				getCaretPosition() - _composingCharCount,
+				_composingCharCount,
+				text.toString());
+			_composingCharCount = 0;
+			_hDoc.endBatchEdit();
+			//TODO reduce invalidate calls
+			if(newCursorPosition > 1){
+				_fieldController.moveCaret(_caretPosition + newCursorPosition - 1);
+			}
+//			else if(newCursorPosition==1){
+//				_fieldController.moveCaret(getCaretPosition() + newCursorPosition);
+//			}
+			else if (newCursorPosition <= 0){
+				_fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
+			}
+			_isComposing = false;
 
-        @Override
-        public boolean setComposingText(CharSequence text, int newCursorPosition){
-            _isComposing = true;
-            if(!_hDoc.isBatchEdit()){
-                _hDoc.beginBatchEdit();
-            }
-
-            _fieldController.replaceComposingText(
-                getCaretPosition() - _composingCharCount,
-                _composingCharCount,
-                text.toString());
-            _composingCharCount = text.length();
-
-            //TODO reduce invalidate calls
-            if(newCursorPosition > 1){
-                _fieldController.moveCaret(_caretPosition + newCursorPosition - 1);
-            }
-            else if (newCursorPosition <= 0){
-                _fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
-            }
-            return true;
-        }
-
-        @Override
-        public boolean commitText(CharSequence text, int newCursorPosition) {
-            _fieldController.replaceComposingText(
-                getCaretPosition() - _composingCharCount,
-                _composingCharCount,
-                text.toString());
-                _composingCharCount = 0;
-            _hDoc.endBatchEdit();
-            //TODO reduce invalidate calls
-            if(newCursorPosition > 1){
-                _fieldController.moveCaret(_caretPosition + newCursorPosition - 1);
-            }
-            else if(newCursorPosition==1){
-                _fieldController.moveCaret(getCaretPosition() + newCursorPosition);
-         }
-            else if (newCursorPosition <= 0){
-                _fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
-            }
-            _isComposing = false;
-            log("commitText:"+text+","+newCursorPosition);
-            return true;
-        }
+			return true;
+		}
 
 
-        @Override
-        public boolean deleteSurroundingText(int leftLength, int rightLength){
-            _fieldController.deleteAroundComposingText(leftLength, rightLength);
-            return true;
-        }
+		@Override
+		public boolean deleteSurroundingText(int leftLength, int rightLength){
+			if(_composingCharCount != 0){
+				Log.d("lua",
+					  "Warning: Implmentation of InputConnection.deleteSurroundingText" +
+					  " will not skip composing text");
+			}
 
-        @Override
-        public boolean finishComposingText() {
-            resetComposingState();
-            return true;
-        }
+			_fieldController.deleteAroundComposingText(leftLength, rightLength);
+			return true;
+		}
 
-        @Override
-        public int getCursorCapsMode(int reqModes) {
-            int capsMode = 0;
+		@Override
+		public boolean finishComposingText() {
+			resetComposingState();
+			return true;
+		}
 
-            // Ignore InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS; not used in TextWarrior
+		@Override
+		public int getCursorCapsMode(int reqModes) {
+			int capsMode = 0;
 
-            if((reqModes & InputType.TYPE_TEXT_FLAG_CAP_WORDS)
-               == InputType.TYPE_TEXT_FLAG_CAP_WORDS){
-                int prevChar = _caretPosition - 1;
-                if(prevChar < 0 || Lexer.getLanguage().isWhitespace(_hDoc.charAt(prevChar)) ){
-                    capsMode |= InputType.TYPE_TEXT_FLAG_CAP_WORDS;
+			// Ignore InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS; not used in TextWarrior
 
-                    //set CAP_SENTENCES if client is interested in it
-                    if((reqModes & InputType.TYPE_TEXT_FLAG_CAP_SENTENCES)
-                       == InputType.TYPE_TEXT_FLAG_CAP_SENTENCES){
-                        capsMode |= InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
-                    }
-                }
-            }
+			if((reqModes & InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+			   == InputType.TYPE_TEXT_FLAG_CAP_WORDS){
+				int prevChar = _caretPosition - 1;
+				if(prevChar < 0 || Lexer.getLanguage().isWhitespace(_hDoc.charAt(prevChar)) ){
+					capsMode |= InputType.TYPE_TEXT_FLAG_CAP_WORDS;
 
-            // Strangely, Android soft keyboard does not set TYPE_TEXT_FLAG_CAP_SENTENCES
-            // in reqModes even if it is interested in doing auto-capitalization.
-            // Android bug? Therefore, we assume TYPE_TEXT_FLAG_CAP_SENTENCES
-            // is always set to be on the safe side.
-            else {
-                Language lang = Lexer.getLanguage();
+					//set CAP_SENTENCES if client is interested in it
+					if((reqModes & InputType.TYPE_TEXT_FLAG_CAP_SENTENCES)
+					   == InputType.TYPE_TEXT_FLAG_CAP_SENTENCES){
+						capsMode |= InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
+					}
+				}
+			}
 
-                int prevChar = _caretPosition - 1;
-                int whitespaceCount = 0;
-                boolean capsOn = true;
+			// Strangely, Android soft keyboard does not set TYPE_TEXT_FLAG_CAP_SENTENCES
+			// in reqModes even if it is interested in doing auto-capitalization.
+			// Android bug? Therefore, we assume TYPE_TEXT_FLAG_CAP_SENTENCES
+			// is always set to be on the safe side.
+			else {
+				Language lang = Lexer.getLanguage();
 
-                // Turn on caps mode only for the first char of a sentence.
-                // A fresh line is also considered to start a new sentence.
-                // The position immediately after a period is considered lower-case.
-                // Examples: "abc.com" but "abc. Com"
-                while(prevChar >= 0){
-                    char c = _hDoc.charAt(prevChar);
-                    if(c == Language.NEWLINE){
-                        break;
-                    }
+				int prevChar = _caretPosition - 1;
+				int whitespaceCount = 0;
+				boolean capsOn = true;
 
-                    if(!lang.isWhitespace(c)){
-                        if(whitespaceCount == 0 || !lang.isSentenceTerminator(c) ){
-                            capsOn = false;
-                        }
-                        break;
-                    }
+				// Turn on caps mode only for the first char of a sentence.
+				// A fresh line is also considered to start a new sentence.
+				// The position immediately after a period is considered lower-case.
+				// Examples: "abc.com" but "abc. Com"
+				while(prevChar >= 0){
+					char c = _hDoc.charAt(prevChar);
+					if(c == Language.NEWLINE){
+						break;
+					}
 
-                    ++whitespaceCount;
-                    --prevChar;
-                }
+					if(!lang.isWhitespace(c)){
+						if(whitespaceCount == 0 || !lang.isSentenceTerminator(c) ){
+							capsOn = false;
+						}
+						break;
+					}
 
-                if(capsOn){
-                    capsMode |= InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
-                }
-            }
+					++whitespaceCount;
+					--prevChar;
+				}
 
-            return capsMode;
-        }
+				if(capsOn){
+					capsMode |= InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
+				}
+			}
 
-        @Override
-        public CharSequence getTextAfterCursor(int maxLen, int flags) {
-            return _fieldController.getTextAfterCursor(maxLen); //ignore flags
-        }
+			return capsMode;
+		}
 
-        @Override
-        public CharSequence getTextBeforeCursor(int maxLen, int flags) {
-            return _fieldController.getTextBeforeCursor(maxLen); //ignore flags
-        }
+		@Override
+		public CharSequence getTextAfterCursor(int maxLen, int flags) {
+			return _fieldController.getTextAfterCursor(maxLen); //ignore flags
+		}
 
-        @Override
-        public boolean setSelection(int start, int end) {
-            if(start == end){
-                if(start==0)
-                               {
-                                    //适配搜狗输入法
-                                      if(getCaretPosition()>0) {
-                                               _fieldController.moveCaret(getCaretPosition() - 1);
-                                       }
-                              }else {
-                                      _fieldController.moveCaret(start);
-                				}
-            }
-            else{
-                _fieldController.setSelectionRange(start, end-start, false,true);
-            }
-            return true;
-        }
+		@Override
+		public CharSequence getTextBeforeCursor(int maxLen, int flags) {
+			return _fieldController.getTextBeforeCursor(maxLen); //ignore flags
+		}
 
-    }// end inner class
+		@Override
+		public boolean setSelection(int start, int end) {
+			log("setSelection:"+start+","+end);
+
+			if(start == end){
+				if(start==0)
+				{
+					//适配搜狗输入法
+					if(getCaretPosition()>0) {
+						_fieldController.moveCaret(getCaretPosition() - 1);
+					}
+				}else {
+					_fieldController.moveCaret(start);
+				}
+			}
+			else{
+				_fieldController.setSelectionRange(start, end-start, false,true);
+			}
+			return true;
+		}
+
+	}// end inner class
 
 
     /*
