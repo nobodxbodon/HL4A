@@ -1,14 +1,13 @@
 package 间.数据;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.io.IOException;
 import 间.工具.字符;
 import 间.工具.文件;
 
 public class YAML {
 
-    private static final ObjectMapper YAML转换 = new ObjectMapper(new YAMLFactory());
+    private static final YAMLMapper YAML转换 = new YAMLMapper();
 
     public static String 转换(Object $对象) {
         if ($对象 == null) return null;

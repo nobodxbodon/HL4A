@@ -32,8 +32,8 @@ public class 转换 {
         return 转换大小(TypedValue.COMPLEX_UNIT_IN, $值);
     }
 
-    public static Float 数字(String $值) {
-        return new Float($值);
+    public static int 数字(String $值) {
+        return new Integer($值);
     }
     
     private static Float 转换大小(int $类型,int $值) {

@@ -42,7 +42,7 @@ public class 编辑框 extends EditText implements 基本视图 {
             int $资源ID = 反射.取变量(this, "mCursorDrawableRes");
             Object $编辑器 = 反射.取变量(this, "mEditor");
             Drawable[] $绘画组 = new Drawable[1];
-            $绘画组[0] = getContext().getResources().getDrawable($资源ID);
+            $绘画组[0] = getContext().getResources().getDrawable($资源ID,getContext().getTheme());
             $绘画组[0].setColorFilter(视图.检查颜色($颜色), PorterDuff.Mode.SRC_IN);
             反射.置变量($编辑器, "mCursorDrawable", $绘画组);
         }

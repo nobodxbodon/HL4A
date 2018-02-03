@@ -37,6 +37,8 @@ public abstract class 基本适配器 extends BaseAdapter {
             $视图 = 创建();
         }
         $视图 = 处理($视图,(哈希表)数据.读取($键值));
+        if ($视图.getTag() == null)
+        $视图.setTag(数据.读取($键值));
         return $视图;
     }
     

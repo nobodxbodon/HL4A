@@ -81,8 +81,8 @@ public class 集合<类型> extends ArrayList<类型> {
         clear();
     }
 
-    public Object[] 到数组(Class<?> $类) {
-        return toArray(数组.创建($类, 数量()));
+    public 类型[] 到数组(Class<类型> $类) {
+        return toArray((类型[])数组.创建($类, 数量()));
     }
 
     public Object[] 到数组() {

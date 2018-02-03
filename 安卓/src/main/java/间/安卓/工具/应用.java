@@ -2,7 +2,6 @@ package 间.安卓.工具;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import hl4a.runtime.ErrorActivity;
 import java.util.List;
+import 间.安卓.组件.基本应用;
 import 间.安卓.组件.基本界面;
 import 间.工具.字符;
 import 间.工具.散列;
@@ -25,8 +25,6 @@ import 间.工具.线程;
 import 间.工具.错误;
 import 间.接口.方法;
 import 间.收集.集合;
-import 间.安卓.插件.应用插件;
-import 间.安卓.组件.基本应用;
 
 public class 应用 {
 
@@ -82,6 +80,7 @@ public class 应用 {
     };
 
     public static void 初始化应用(基本应用 $应用) {
+        //System.setOut(new 打印处理(调用.代理(提示.class,"普通")));
         环境.置应用($应用);
         文件.初始化();
         线程.置错误处理(错误处理);

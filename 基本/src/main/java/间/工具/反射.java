@@ -3,6 +3,7 @@ package 间.工具;
 import java.lang.reflect.*;
 import java.util.*;
 import 间.收集.*;
+import android.util.Log;
 
 public class 反射 {
 
@@ -248,26 +249,29 @@ public class 反射 {
         Class[] $类组 = $单个.getParameterTypes();
         if ($类组.length == 0 && $参数.length == 0) {
             return $参数;
-        } else if ($类组.length == 0) {
+        } else if ($参数.length == 0) {
             return null;
         }
+        Log.e("f","s");
         if ($类组.length != $参数.length && !Object[].class.isAssignableFrom($类组[$类组.length - 1])) {
+            Log.e("反射","e");
             return null;
         }
         集合 $返回集合 = new 集合();
         for (int $键值 = 0;$键值 < $类组.length;$键值 ++) {
             Class $类 = $类组[$键值];
-            if ($键值 + 1 == $类组.length && Object[].class.isAssignableFrom($类)) {
-                int $参数长度 = $参数.length - $类组.length;
+            if ($键值 + 1 == $类组.length) {
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
                 集合 $返回参数 = new 集合($剩余参数);
+                Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
-                    if (!$类.isAssignableFrom($单个参数.getClass())) {
+                    if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
                         return null;
                     }
                 }
-                $返回集合.添加($返回参数.到数组($类));
+                $返回集合.addAll($返回参数);
             } else if (!$类.isAssignableFrom($参数[$键值].getClass())) {
+                Log.e("反射","n");
                 return null;
             } else {
                 $返回集合.添加($参数[$键值]);
@@ -280,7 +284,7 @@ public class 反射 {
         Class[] $类组 = $单个.getParameterTypes();
         if ($类组.length == 0 && $参数.length == 0) {
             return $参数;
-        } else if ($类组.length == 0) {
+        } else if ($参数.length == 0) {
             return null;
         }
         if ($类组.length != $参数.length && !Object[].class.isAssignableFrom($类组[$类组.length - 1])) {
@@ -293,8 +297,9 @@ public class 反射 {
                 int $参数长度 = $参数.length - $类组.length;
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
                 集合 $返回参数 = new 集合($剩余参数);
-                for (Object $单个参数 : $剩余参数) {
-                    if (!$类.isAssignableFrom($单个参数.getClass())) {
+                Class<?> $数组类型 = $类.getComponentType();
+                for (Object $单个参数 : $剩余参数) { 
+                    if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
                         return null;
                     }
                 }

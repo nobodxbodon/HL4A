@@ -23,6 +23,7 @@ import 间.收集.集合;
 import 间.安卓.工具.环境;
 import 间.安卓.插件.界面插件;
 import 间.安卓.插件.应用插件;
+import 间.安卓.工具.线程;
 
 public class 基本界面 extends Activity {
 
@@ -206,9 +207,19 @@ public class 基本界面 extends Activity {
         setResult($结果码, $意图);
     }
 
-
     public void 结束界面() {
         finish();
+    }
+
+    public void 结束界面(final int $延时) {
+        new 线程<Void>(new 方法<Void>() {
+                @Override
+                public Void 调用(Object[] $参数) {
+                    线程.暂停($延时);
+                    finish();
+                    return null;
+                }
+            }).启动();
     }
 
     public void 结束界面(Exception $错误) {
@@ -222,7 +233,7 @@ public class 基本界面 extends Activity {
             $单个.打开布局事件($视图);
         }
         当前视图 = $视图;
-        布局.打开(this, $视图);
+        间.安卓.工具.布局.打开(this, $视图);
     }
 
     public View 取视图(Object $标签) {

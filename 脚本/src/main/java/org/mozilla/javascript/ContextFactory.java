@@ -8,6 +8,7 @@
 
 package org.mozilla.javascript;
 import 间.安卓.实现.*;
+import 间.安卓.类加载器.基本加载器;
 
 
 
@@ -358,7 +359,20 @@ public class ContextFactory
             }
         });
         */
-        return new 类加载器(parent);
+        return new GeneratedClassLoader() {
+
+            public 基本加载器 加载器 = new 基本加载器(parent);
+            
+            @Override
+            public Class<?> defineClass(String name,byte[] data) {
+                return 加载器.defineClass(name,data);
+            }
+
+            @Override
+            public void linkClass(Class<?> cl) {
+                加载器.linkClass(cl);
+            }
+        };
     }
 
     /**

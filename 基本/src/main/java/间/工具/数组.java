@@ -36,6 +36,7 @@ public class 数组 {
     public static Object[] 截取(Class<?> $类,Object[] $数组,Integer $开始,Integer $结束) {
         int $开始位置 = $开始 == null ? 0 : $开始;
         int $结束位置 = $结束 == null ? $数组.length : $结束 + 1;
+        if ($开始位置 == 0)return $数组;
         int $长度 = $结束位置 - $开始位置;
         Object[] $返回 = 创建($类,$长度);
         int $当前位置 = 0;

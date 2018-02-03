@@ -1,4 +1,4 @@
-package 间.安卓.实现;
+package 间.安卓.类加载器;
 
 import com.android.dex.Dex;
 import com.android.dx.cf.direct.DirectClassFile;
@@ -11,18 +11,18 @@ import com.android.dx.merge.DexMerger;
 import dalvik.system.DexClassLoader;
 import java.io.File;
 import java.io.IOException;
-import org.mozilla.javascript.GeneratedClassLoader;
 import 间.安卓.工具.文件;
 import 间.工具.反射;
+import 间.安卓.视图.适配器.文件适配器;
+import 间.工具.时间;
 
-public class 类加载器 extends ClassLoader implements GeneratedClassLoader {
+public class 基本加载器 extends ClassLoader {
 
-    @Override
-    public void linkClass(Class<?> cl) {
+    public 基本加载器(ClassLoader $父加载器) {
+        super($父加载器);
     }
 
-    public 类加载器(ClassLoader $父加载器) {
-        super($父加载器);
+    public void linkClass(Class<?> $类) {
     }
 
     public Class 取类(String $类名) {
@@ -32,9 +32,9 @@ public class 类加载器 extends ClassLoader implements GeneratedClassLoader {
         return null;
     }
 
-    Dex oldDex;
+    private Dex oldDex;
+    private File 地址 = 文件.取文件对象("$code_cache/" + 时间.时间戳() + ".dex");
 
-    @Override
     public Class<?> defineClass(String name,byte[] data) {
         try {
             DexOptions dexOptions = new DexOptions();
@@ -53,13 +53,11 @@ public class 类加载器 extends ClassLoader implements GeneratedClassLoader {
         }
     }
 
-    public String 保存DEX = 文件.取数据目录("缓存/DX");
-
     public Class<?> loadClass(Dex dex,String name) throws ClassNotFoundException {
         try {
             oldDex = dex;
-            dex.writeTo(new File(保存DEX + "/js.dex"));
-            return new DexClassLoader(保存DEX + "js.dex", 保存DEX, "", getClass().getClassLoader()).loadClass(name);
+            dex.writeTo(地址);
+            return new DexClassLoader(地址.getPath(), 地址.getParent(), "", getClass().getClassLoader()).loadClass(name);
         } catch (IOException e) {}
         return null;
     }
