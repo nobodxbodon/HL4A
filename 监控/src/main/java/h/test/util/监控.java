@@ -42,5 +42,9 @@ public class 监控 {
     public static int 登录(监控信息 $信息) {
         return HCNetSDK.getInstance().NET_DVR_Login_V30($信息.地址,$信息.端口,$信息.用户,$信息.密码,new NET_DVR_DEVICEINFO_V30());
     }
+    
+    public static boolean 登出(int $会话) {
+        return HCNetSDK.getInstance().NET_DVR_Logout_V30($会话);
+    }
 
 }

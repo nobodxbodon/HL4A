@@ -39,17 +39,17 @@ public class 集合<类型> extends ArrayList<类型> {
         add($对象);
     }
 
-    public void 添加(类型[] $对象) {
+    public void 添加所有(类型[] $对象) {
         for (类型 $单个 : $对象) {
             add($单个);
         }
     }
 
-    public void 添加(int $键值,Collection<类型> $集合) {
+    public void 添加所有(int $键值,Collection<类型> $集合) {
         addAll($键值, $集合);
     }
 
-    public void 添加(Collection<类型> $集合) {
+    public void 添加所有(Collection<类型> $集合) {
         addAll($集合);
     }
 

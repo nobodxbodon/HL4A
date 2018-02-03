@@ -106,7 +106,7 @@ public class 错误 {
     }
 
     public static void 抛出(Exception $错误) {
-        throw new RuntimeException($错误);
+        throw new RuntimeException(取整个错误($错误));
     }
 
     public static void 内容(String $错误内容) {

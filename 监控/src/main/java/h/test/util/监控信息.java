@@ -1,6 +1,8 @@
 package h.test.util;
 
-public class 监控信息 {
+import java.io.Serializable;
+
+public class 监控信息 implements Serializable {
     
     public String 地址;
     public int 端口;

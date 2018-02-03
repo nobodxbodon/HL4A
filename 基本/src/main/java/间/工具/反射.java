@@ -104,7 +104,7 @@ public class 反射 {
     private static Constructor[] 取所有初始化方法(Class<?> $类) {
         if ($类 == null) return new Constructor[0];
         集合<Constructor> $所有 = new 集合<>();
-        $所有.添加($类.getDeclaredConstructors());
+        $所有.添加所有($类.getDeclaredConstructors());
         return (Constructor[])$所有.到数组(Constructor.class);
     }
 
@@ -160,7 +160,7 @@ public class 反射 {
                 $方法.添加($单个);
             }
         }
-        $方法.添加(取所有方法($实例.getSuperclass(), $名称));
+        $方法.添加所有(取所有方法($实例.getSuperclass(), $名称));
         return (Method[])$方法.到数组(Method.class);
     }
     
@@ -252,26 +252,22 @@ public class 反射 {
         } else if ($参数.length == 0) {
             return null;
         }
-        Log.e("f","s");
         if ($类组.length != $参数.length && !Object[].class.isAssignableFrom($类组[$类组.length - 1])) {
-            Log.e("反射","e");
             return null;
         }
         集合 $返回集合 = new 集合();
         for (int $键值 = 0;$键值 < $类组.length;$键值 ++) {
             Class $类 = $类组[$键值];
-            if ($键值 + 1 == $类组.length) {
+            if ($键值 + 1 == $类组.length && Object[].class.isAssignableFrom($类)) {
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
-                集合 $返回参数 = new 集合($剩余参数);
                 Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
                     if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
                         return null;
                     }
                 }
-                $返回集合.addAll($返回参数);
+                $返回集合.添加(数组.转换($数组类型,$剩余参数));
             } else if (!$类.isAssignableFrom($参数[$键值].getClass())) {
-                Log.e("反射","n");
                 return null;
             } else {
                 $返回集合.添加($参数[$键值]);
@@ -296,14 +292,13 @@ public class 反射 {
             if ($键值 + 1 == $类组.length && Object[].class.isAssignableFrom($类)) {
                 int $参数长度 = $参数.length - $类组.length;
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
-                集合 $返回参数 = new 集合($剩余参数);
                 Class<?> $数组类型 = $类.getComponentType();
-                for (Object $单个参数 : $剩余参数) { 
+                for (Object $单个参数 : $剩余参数) {
                     if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
                         return null;
                     }
                 }
-                $返回集合.添加($返回参数.到数组($类));
+                $返回集合.添加(数组.转换($数组类型,$剩余参数));
             } else if (!$类.isAssignableFrom($参数[$键值].getClass())) {
                 return null;
             } else {

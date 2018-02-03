@@ -17,6 +17,9 @@ import 间.接口.调用;
 import 间.安卓.工具.转换;
 import 间.安卓.弹窗.加载中弹窗;
 import 间.安卓.工具.处理;
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.INT_PTR;
+import 间.工具.反射;
 
 public class MainActivity extends 基本界面 {
 
@@ -60,11 +63,11 @@ public class MainActivity extends 基本界面 {
     public void 新建(Object[] $参数) {
         if (弹窗布局.地址.取文本().equals("")) {
             提示.警告("IP/域名不要留空 ~");
-        } else if(弹窗布局.端口.取文本().equals("")) {
+        } else if (弹窗布局.端口.取文本().equals("")) {
             提示.警告("端口不要留空 ~");
-        } else if(弹窗布局.用户.取文本().equals("")) {
+        } else if (弹窗布局.用户.取文本().equals("")) {
             提示.警告("用户名不要留空 ~");
-        } else if(弹窗布局.密码.取文本().equals("")) {
+        } else if (弹窗布局.密码.取文本().equals("")) {
             提示.警告("密码不要留空 ~");
         } else {
             监控信息 $信息 = new 监控信息();
@@ -74,16 +77,25 @@ public class MainActivity extends 基本界面 {
             $信息.密码 = 弹窗布局.密码.取文本();
             //监控.新建($信息);
             加载中弹窗 $进度 = new 加载中弹窗(this);
-            new 线程(this,"检查").启动($进度,$信息);
+            $进度.显示();
+            new 线程(this, "检查").启动($进度, $信息);
         }
     }
-    
+
     public void 检查(加载中弹窗 $进度,监控信息 $信息) {
         $进度.更新("正在检查连接 ~");
-        if (监控.登录($信息) == -1) {
-            提示.警告("无法连接设备 ~");
+        int $会话 = -1;
+        if (($会话 = 监控.登录($信息)) != -1) {
+            提示.普通("测试连接成功 ~ " + 监控.登出($会话));
+            监控.新建($信息);
+            $进度.隐藏();
+            新建弹窗.隐藏();
+            适配器.更新();
         } else {
-            提示.普通("测试连接成功 ~");
+            INT_PTR $错误 = new INT_PTR();
+            反射.置变量($错误, "value", HCNetSDK.getInstance().NET_DVR_GetLastError());
+            提示.警告("连接失败 ~ " + HCNetSDK.getInstance().NET_DVR_GetErrorMsg($错误));
+            $进度.隐藏();
         }
         处理.主线程($进度.隐藏);
     }
