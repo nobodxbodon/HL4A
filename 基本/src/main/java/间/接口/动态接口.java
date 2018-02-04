@@ -27,6 +27,10 @@ public class 动态接口 implements InvocationHandler {
         
         Object $方法对象 = 方法表.读取($方法.getName());
         
+        if ($方法对象 == null && 方法表.长度() == 1) {
+            $方法对象 = 方法表.values().iterator().next();
+        }
+        
         if ($方法对象 instanceof 方法) {
             
             $通用方法 = (方法)$方法对象;

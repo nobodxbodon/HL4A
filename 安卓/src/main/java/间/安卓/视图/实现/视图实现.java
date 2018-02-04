@@ -15,19 +15,19 @@ import 间.工具.*;
 public final class 视图实现 {
 
     private 视图实现() {}
-    
+
     // 因为侧滑界面和其他一些也需要设置这个，所以干脆反射了
-   
-    
+
+
     public static void 置布局重力(View $视图,String $重力) {
         ViewGroup.LayoutParams $设置 = $视图.getLayoutParams();
-        反射.置变量($设置,"gravity",视图.检查重力($重力));
+        反射.置变量($设置, "gravity", 视图.检查重力($重力));
         置设置($视图, $设置);
     }
-    
+
     public static void 置布局权重(View $视图,float $权重) {
         ViewGroup.LayoutParams $设置 = 取设置($视图);
-        反射.置变量($设置,"weight",$权重);
+        反射.置变量($设置, "weight", $权重);
         置设置($视图, $设置);
     }
 
@@ -69,6 +69,7 @@ public final class 视图实现 {
     public static void 置触摸事件(View $视图,方法 $事件) {
         $视图.setOnTouchListener(new 触摸($事件));
     }
+    
 
     public static void 置宽度(final View $视图,final Object $宽度) {
         处理.主线程(new 方法() {
@@ -120,6 +121,14 @@ public final class 视图实现 {
 
     public static void 置右边距(View $视图,Object $边距) {
         置边距($视图, null, null, null, $边距);
+    }
+
+    public static void 置上下边距(View $视图,Object $边距) {
+        置边距($视图, $边距, $边距, null, null);
+    }
+
+    public static void 置左右边距(View $视图,Object $边距) {
+        置边距($视图, null, null, $边距, $边距);
     }
 
     public static void 置边距实现(View $视图,Object $上,Object $下,Object $左,Object $右) {
@@ -245,6 +254,15 @@ public final class 视图实现 {
     public static void 置右填充(View $视图,Object $填充) {
         置填充($视图, null, null, null, $填充);
     }
+
+    public static void 置上下填充(View $视图,Object $填充) {
+        置填充($视图, $填充, $填充, null, null);
+    }
+
+    public static void 置左右填充(View $视图,Object $填充) {
+        置填充($视图, null, null, $填充, $填充);
+    }
+
 
     public static void 置填充(View $视图,Object $上,Object $下,Object $左,Object $右) {
 

@@ -19,6 +19,12 @@ public interface 基本视图 {
     public void 置长按事件(方法 $事件);
     public void 置触摸事件(方法 $事件);
 
+    /*
+    public void 置单击事件(Object $对象,String $方法);
+    public void 置长按事件(Object $对象,String $方法);
+    public void 置触摸事件(Object $对象,String $方法);
+    */
+    
     public void 置宽度(Object $宽度);
     public void 置高度(Object $高度);
 
@@ -34,6 +40,8 @@ public interface 基本视图 {
     public void 置下边距(Object $边距);
     public void 置左边距(Object $边距);
     public void 置右边距(Object $边距);
+    public void 置上下边距(Object $边距);
+    public void 置左右边距(Object $边距);
 
     public void 置填充(Object $填充);
     public void 置填充(Object $上,Object $下,Object $左,Object $右);
@@ -41,20 +49,22 @@ public interface 基本视图 {
     public void 置下填充(Object $填充);
     public void 置左填充(Object $填充);
     public void 置右填充(Object $填充);
+    public void 置上下填充(Object $填充);
+    public void 置左右填充(Object $填充);
 
     public void 置背景(Object $背景);
     public void 置背景颜色(Object $颜色);
 
     /*
-    
-         @Override
+
+    @Override
     public void 置布局重力(String $重力) {
-        视图实现.置布局重力(this,$重力);
+        视图实现.置布局重力(this, $重力);
     }
 
     @Override
     public void 置布局权重(float $权重) {
-        视图实现.置布局权重(this,$权重);
+        视图实现.置布局权重(this, $权重);
     }
 
     @Override
@@ -197,6 +207,26 @@ public interface 基本视图 {
         视图实现.置背景颜色(this, $颜色);
     }
 
-     */
+    @Override
+    public void 置上下边距(Object $边距) {
+        视图实现.置上下边距(this, $边距);
+    }
+
+    @Override
+    public void 置左右边距(Object $边距) {
+        视图实现.置左右边距(this, $边距);
+    }
+
+    @Override
+    public void 置上下填充(Object $填充) {
+        视图实现.置上下填充(this, $填充);
+    }
+
+    @Override
+    public void 置左右填充(Object $填充) {
+        视图实现.置左右填充(this, $填充);
+    }
+
+    */
 
 }

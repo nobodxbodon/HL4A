@@ -201,5 +201,25 @@ public class 网格视图 extends GridView implements 基本列表 {
         视图实现.置背景颜色(this, $颜色);
     }
     
+    @Override
+    public void 置上下边距(Object $边距) {
+        视图实现.置上下边距(this,$边距);
+    }
+
+    @Override
+    public void 置左右边距(Object $边距) {
+        视图实现.置左右边距(this,$边距);
+    }
+
+    @Override
+    public void 置上下填充(Object $填充) {
+        视图实现.置上下填充(this,$填充);
+    }
+
+    @Override
+    public void 置左右填充(Object $填充) {
+        视图实现.置左右填充(this,$填充);
+    }
+    
     
 }

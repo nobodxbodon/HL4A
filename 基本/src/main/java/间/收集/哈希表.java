@@ -11,6 +11,10 @@ public class 哈希表<键值, 内容> extends HashMap<键值, 内容> {
     public 哈希表(Map<键值,内容> $表) {
         super($表);
     }
+    
+    public int 长度() {
+        return size();
+    }
 
     public Boolean 检查(Object $键值) {
         return containsKey($键值);

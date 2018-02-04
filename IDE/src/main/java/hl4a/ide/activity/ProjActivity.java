@@ -17,15 +17,20 @@ import 间.安卓.工具.文件;
 
 public class ProjActivity extends 基本界面 {
 
-    布局_工程管理 布局;
-    String 地址;
-    工程 当前;
-    基本弹窗 设置;
-    基本弹窗 删除;
-    布局_设置弹窗 内容;
-    哈希表 所有 = new 哈希表();
-    基本弹窗 协议;
+    private 哈希表 所有 = new 哈希表();
 
+    private 布局_工程管理 布局;
+    private String 地址;
+    private 工程 当前;
+
+    private 基本弹窗 设置;
+    private 基本弹窗 删除;
+    private 基本弹窗 协议;
+    private 基本弹窗 签名;
+
+    private 布局_设置弹窗 内容;
+    private 布局_配置签名 签名布局;
+    
     @Override
     public void 界面回调事件(int $请求码,int $返回码,Intent $意图) {
         if ($返回码 == 233) {
@@ -46,6 +51,7 @@ public class ProjActivity extends 基本界面 {
         }
         return false;
     }
+    
     @Override
     public void 界面刷新事件() {
         检查();
@@ -76,25 +82,34 @@ public class ProjActivity extends 基本界面 {
         协议 = new 基本弹窗(this);
         协议.置标题("自由软件协议");
         协议.置内容("HL4A项目 基于GNU通用公共授权第三版\n您必须同意并在项目使用\nGNU公共授权才能制作独立应用");
-        协议.置左按钮("详细", 详细协议);
+        协议.置左按钮("详细", 调用.配置(链接.class,"打开","http://www.gnu.org/licenses/gpl-3.0.html"));
         协议.置中按钮("拒绝", 协议.隐藏);
         协议.置右按钮("同意", 打包APK);
-        //创建按钮("编辑权限").置单击事件(直接运行);
+        签名布局 = new 布局_配置签名(this);
+        签名 = new 基本弹窗(this);
+        签名.置标题("配置签名");
+        签名.置内容(签名布局);
+        签名.置中按钮("取消",签名.隐藏);
+        签名.置右按钮("配置",调用.代理(this,"配置"));
+        创建按钮("配置签名").置单击事件(签名.显示);
         创建按钮("直接运行").置单击事件(直接运行);
         创建按钮("进入编辑").置单击事件(进入编辑);
         创建按钮("打包HPK").置单击事件(打包HPK);
         创建按钮("打包APK").置单击事件(协议.显示);
         创建按钮("删除工程").置单击事件(删除工程);
     }
-
-    方法 详细协议 = new 方法() {
-        @Override
-        public Object 调用(Object[] $参数) {
-            链接.打开("http://www.gnu.org/licenses/gpl-3.0.html");
-            return null;
+    
+    public void 配置(Object[] $参数) {
+        String $地址 = 签名布局.地址.取文本();
+        if (!文件.是文件($地址)) {
+            $地址 = 当前.取地址($地址);
+            if (!文件.是文件($地址)) {
+                提示.警告("相对地址和简写地址都找不到 ~");
+                return;
+            }
         }
-    };
-
+    }
+    
     方法 直接运行 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
@@ -115,7 +130,6 @@ public class ProjActivity extends 基本界面 {
             if (检查()) return null;
             String $输出 = 文件.取目录(当前.取地址()) + "/" + 当前.信息.工程名 + ".hpk";
             ZIP.压缩(当前.取地址(), $输出);
-            字符.保存($输出, 编码.Base64.编码(字节.读取($输出)));
             提示.普通("打包成功 ~ \n" + $输出);
             return null;
         }

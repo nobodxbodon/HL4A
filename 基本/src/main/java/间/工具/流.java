@@ -76,6 +76,10 @@ public class 流 {
         } catch (IOException $错误) {
         }
     }
+    
+    public static void 保存(OutputStream $流, InputStream $内容) {
+        保存($流,读取($内容));
+    }
 
     public static class 输入 {
 

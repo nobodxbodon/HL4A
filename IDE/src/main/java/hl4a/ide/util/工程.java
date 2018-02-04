@@ -12,7 +12,7 @@ import 间.数据.YAML;
 
 public class 工程 {
 
-    public static String 工程目录 = "%HL4A2";
+    public static String 工程目录 = "%HL4A/工程";
     public static String 配置文件 = "应用.yml";
 
     public String 地址;
@@ -54,10 +54,8 @@ public class 工程 {
 
     public static String 导入(String $文件) {
         if (!"hpk".equals(文件.取后缀($文件))) return "导入失败 不是HPK！";
-        String $缓存 = 文件.取缓存目录("导入", "文件", 文件.取名称($文件));
-        字节.保存($缓存, 编码.Base64.解码(字符.读取($文件)));
         String $目录 = 文件.取缓存目录("导入", "目录", 文件.取名称($文件));
-        ZIP.解压($缓存, $目录);
+        ZIP.解压($文件, $目录);
         if (!文件.是文件($目录, 配置文件))return "导入失败 HPK损坏 ！";
         工程信息 $信息 = (工程信息)YAML.读取($目录 + "/" + 配置文件, 工程信息.class);
         if (工程.检查($信息.包名)) {

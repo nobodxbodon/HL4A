@@ -39,46 +39,50 @@ public class 文件 {
     public static String[] 取文件地址列表(String $目录) {
         if (是目录($目录))
             return 取文件对象($目录).list();
+        else if (是文件($目录)) 
+            return new String[] {检查地址($目录)};
         return new String[0];
     }
 
     public static File[] 取文件列表(String $目录) {
         if (是目录($目录))
             return 按文件排序(按日期排序(取文件对象($目录).listFiles()));
-        else
+        else if (是文件($目录)) 
+            return new File[] {取文件对象($目录)};
+        else 
             创建目录($目录);
         return new File[0];
     }
 
     public static File[] 按文件排序(File[] $文件) {
         Arrays.sort($文件, new Comparator<File>() {
-            public int compare(File f1, File f2) {
-                if (f1.isFile() && f2.isFile() || f1.isDirectory() && f2.isDirectory()) {
-                    return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());
-                } else {
-                    return f1.isFile() ? 1 : -1;
+                public int compare(File f1,File f2) {
+                    if (f1.isFile() && f2.isFile() || f1.isDirectory() && f2.isDirectory()) {
+                        return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());
+                    } else {
+                        return f1.isFile() ? 1 : -1;
+                    }
                 }
-            }
-        });
+            });
         return $文件;
     }
 
     public static File[] 按日期排序(File[] $文件) {
         Arrays.sort($文件, new Comparator<File>() {
-            public int compare(File f1, File f2) {
-                long diff = f1.lastModified() - f2.lastModified();
-                if (diff > 0)
-                    return 1;
-                else if (diff == 0)
-                    return 0;
-                else
-                    return -1;
-            }
-        });
+                public int compare(File f1,File f2) {
+                    long diff = f1.lastModified() - f2.lastModified();
+                    if (diff > 0)
+                        return 1;
+                    else if (diff == 0)
+                        return 0;
+                    else
+                        return -1;
+                }
+            });
         return $文件;
     }
 
-    public static 集合 找文件关键字(String $目录, String $关键字) {
+    public static 集合 找文件关键字(String $目录,String $关键字) {
 
         集合 $返回 = new 集合();
 
@@ -97,11 +101,11 @@ public class 文件 {
 
     }
 
-    public static 集合 找文件关键字(String $目录, String $前缀, String $后缀) {
+    public static 集合 找文件关键字(String $目录,String $前缀,String $后缀) {
         return 找文件关键字($目录, $前缀, $后缀, false);
     }
 
-    public static 集合 找文件关键字(String $目录, String $前缀, String $后缀, boolean $不包含) {
+    public static 集合 找文件关键字(String $目录,String $前缀,String $后缀,boolean $不包含) {
 
         集合 $返回 = new 集合();
 
@@ -153,7 +157,7 @@ public class 文件 {
 
     private static 集合<哈希表> 前缀替换 = new 集合<哈希表>();;
 
-    public static void 替换地址(String $前缀, String $目标) {
+    public static void 替换地址(String $前缀,String $目标) {
         哈希表 $替换 = new 哈希表();
         $替换.设置("前缀", $前缀);
         $替换.设置("目标", $目标);
@@ -176,7 +180,7 @@ public class 文件 {
         return new File($目录).getPath();
 
     }
-    
+
     public static String 取前缀(String $地址) {
         if (!字符.是否出现($地址, "."))
             return $地址;
@@ -227,7 +231,7 @@ public class 文件 {
         return 取文件对象($地址).length() == 0;
     }
 
-    public static void 复制(String $地址, String $新地址) {
+    public static void 复制(String $地址,String $新地址) {
         File $对象 = 取文件对象($地址);
         if ($对象.isFile()) {
             文件.删除($新地址);
@@ -244,7 +248,7 @@ public class 文件 {
         }
     }
 
-    public static void 剪切(String $地址, String $新地址) {
+    public static void 剪切(String $地址,String $新地址) {
         文件.删除($新地址);
         if (文件.取文件对象($地址).renameTo(文件.取文件对象($新地址)))
             return;
@@ -266,7 +270,7 @@ public class 文件 {
 
     }
 
-    public static void 删除关键字(String $地址, 哈希表 $关键字) {
+    public static void 删除关键字(String $地址,哈希表 $关键字) {
         File $对象 = 取文件对象($地址);
         if ($对象.exists())
             if ($对象.isFile() && $关键字.检查($对象.getName().toLowerCase())) {
@@ -280,7 +284,7 @@ public class 文件 {
 
     }
 
-    public static void 删除后缀(String $地址, String $后缀) {
+    public static void 删除后缀(String $地址,String $后缀) {
         File $对象 = 取文件对象($地址);
         if ($对象.exists())
             if ($对象.isFile() && 字符.以结束($对象.getName(), $后缀)) {
