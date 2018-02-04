@@ -4,6 +4,16 @@ import 间.工具.*;
 
 public class 调用 {
 
+    public static 方法 合并(final 方法 $方法,final 方法 $回调) {
+        return new 方法() {
+            @Override
+            public Object 调用(Object[] $参数) {
+                普通($方法);
+                return 普通($回调);
+            }
+        };
+    }
+
     public static 方法 代理(final Object $对象,final String $方法名) {
         return new 方法() {
             @Override
@@ -21,7 +31,6 @@ public class 调用 {
             }
         };
     }
-    
     
     public static 方法 异步代理(final Object $对象,final String $方法名) {
         return new 线程(代理($对象,$方法名)).启动;

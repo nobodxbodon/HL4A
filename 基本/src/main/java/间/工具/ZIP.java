@@ -49,7 +49,7 @@ public class ZIP {
         return false;
     }
 
-    public static void 压缩(String $地址,String $输出) {
+    public static boolean 压缩(String $地址,String $输出) {
         try {
             if (文件.是否存在($输出)) 文件.删除($输出);
             ZipOutputStream $输出流 = new ZipOutputStream(流.输出.文件($输出));
@@ -71,7 +71,9 @@ public class ZIP {
                 }
             }
             流.关闭($输出流);
+            return true;
         } catch (IOException $错误) {}
+        return false;
     }
 
     private static void 遍历压缩(ZipOutputStream $输出流,String $地址,String $附加) throws IOException {
