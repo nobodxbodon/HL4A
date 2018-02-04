@@ -2,6 +2,7 @@ package 间.工具;
 
 import android.content.*;
 import 间.接口.*;
+import java.lang.reflect.InvocationTargetException;
 
 public class 错误 {
 
@@ -102,6 +103,9 @@ public class 错误 {
     }
 
     public static String 取整个错误(Throwable $错误) {
+        if ($错误 instanceof InvocationTargetException) {
+            $错误 = ((InvocationTargetException)$错误).getTargetException();
+        }
         return 取错误类型($错误) + "\n" + 取错误信息($错误) + "\n" + 取错误位置($错误);
     }
 

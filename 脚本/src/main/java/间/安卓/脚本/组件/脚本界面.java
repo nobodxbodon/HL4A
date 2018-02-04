@@ -10,6 +10,7 @@ import 间.工具.*;
 import 间.收集.*;
 import 间.安卓.插件.界面插件;
 import android.view.KeyEvent;
+import 间.安卓.工具.文件;
 
 public class 脚本界面 extends 基本界面 {
 
@@ -35,17 +36,28 @@ public class 脚本界面 extends 基本界面 {
     @Override
     public void 界面创建事件(Bundle $恢复) {
         String $脚本地址 = getIntent().getStringExtra("脚本");
+        if ($恢复 != null) {
+            当前目录 = $恢复.getString("目录");
+            文件.替换地址("#", 当前目录 + "/");
+        }
         if (文件.是文件($脚本地址)) {
             当前脚本 = 文件.检查地址($脚本地址);
             当前目录 = 文件.取目录(当前脚本);
             当前文件 = 文件.取名称(当前脚本);
+            文件.替换地址("#", 当前目录 + "/");
             当前环境 = new JavaScript();
             当前环境.压入变量("当前界面", this);
             当前环境.运行文件(当前脚本);
             new 脚本界面插件().注册(this);
         } else {
-            结束界面();
+            错误.内容("找不到脚本 : " + $脚本地址);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle $输出) {
+        $输出.putString("目录", 当前目录);
+        super.onSaveInstanceState($输出);
     }
 
     @Override
