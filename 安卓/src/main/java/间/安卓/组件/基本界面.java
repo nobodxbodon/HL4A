@@ -43,7 +43,7 @@ public class 基本界面 extends Activity {
     public void onCreate(Bundle $恢复) {
         super.onCreate($恢复);
         应用.初始化界面(this);
-        for (应用插件 $单个 : 环境.取应用().所有插件) {
+        for (应用插件 $单个 : ((基本应用)环境.取应用()).所有插件) {
             $单个.界面新建(this);
         }
         Intent $意图 = getIntent();
@@ -192,7 +192,7 @@ public class 基本界面 extends Activity {
         for (界面插件 $单个 : 所有插件) {
             $单个.界面销毁事件();
         }
-        for (应用插件 $单个 : 环境.取应用().所有插件) {
+        for (应用插件 $单个 : ((基本应用)环境.取应用()).所有插件) {
             $单个.界面结束(this);
         }
         界面销毁事件();

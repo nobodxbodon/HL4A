@@ -13,7 +13,7 @@
     <application
         android:name=".Application"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
-        android:label="一个应用">
+        android:label="监控插件">
         <activity android:name=".LaunchPad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -104,7 +104,7 @@ public class ProjActivity extends 基本界面 {
         if (!文件.是文件($地址)) {
             $地址 = 当前.取地址($地址);
             if (!文件.是文件($地址)) {
-                提示.弹窗();
+                //提示.弹窗();
                 return;
             }
         }

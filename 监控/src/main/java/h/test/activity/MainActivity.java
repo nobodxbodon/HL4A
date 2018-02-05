@@ -34,6 +34,7 @@ public class MainActivity extends 基本界面 {
         打开布局(new 布局_主界面(this));
         布局 = (布局_主界面)当前视图;
         适配器 = new 监控适配器(this);
+        
         布局.列表.置适配器(适配器);
         布局.列表.置项目单击事件($单击);
         弹窗布局 = new 布局_添加设备(this);
@@ -48,7 +49,7 @@ public class MainActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             int $键值 = $参数[2];
-            if ($键值 == 0) {
+            if ($键值 == -1) {
                 新建弹窗.显示();
             } else {
                 View $项目 = (View)$参数[1];

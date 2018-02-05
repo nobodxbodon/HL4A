@@ -13,9 +13,15 @@ public class 动态接口 implements InvocationHandler {
     public 动态接口(Map<String,方法> $列表) {
         方法表 = new 哈希表<>($列表);
     }
+    
+    public 动态接口(方法 $方法) {
+        方法表 = new 哈希表<>();
+        方法表.设置("通用",$方法);
+    }
+    
 
     public Object 代理(Class<?> $类) {
-        return Proxy.newProxyInstance(getClass().getClassLoader(), $类.getInterfaces(), this);
+        return Proxy.newProxyInstance($类.getClassLoader(), $类.getInterfaces(), this);
     }
 
     @Override
@@ -27,8 +33,8 @@ public class 动态接口 implements InvocationHandler {
         
         Object $方法对象 = 方法表.读取($方法.getName());
         
-        if ($方法对象 == null && 方法表.长度() == 1) {
-            $方法对象 = 方法表.values().iterator().next();
+        if ($方法对象 == null) {
+            $方法对象 = 方法表.读取("通用");
         }
         
         if ($方法对象 instanceof 方法) {

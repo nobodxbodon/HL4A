@@ -2,6 +2,7 @@ package 间.安卓.工具;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import hl4a.runtime.ErrorActivity;
 import java.util.List;
-import 间.安卓.组件.基本应用;
 import 间.安卓.组件.基本界面;
 import 间.工具.字符;
 import 间.工具.散列;
@@ -40,14 +40,13 @@ public class 应用 {
         }
     }
 
-    public static void 初始化界面(基本界面 $界面) {
+    public static void 初始化界面(Activity $界面) {
         新建界面($界面);
         自动设置主题($界面);
     }
 
-    public static void 新建界面(基本界面 $界面) {
+    public static void 新建界面(Activity $界面) {
         所有界面.添加($界面);
-        竖屏($界面);
     }
 
     public static void 结束界面() {
@@ -79,7 +78,7 @@ public class 应用 {
         }
     };
 
-    public static void 初始化应用(基本应用 $应用) {
+    public static void 初始化应用(Application $应用) {
         //System.setOut(new 打印处理(调用.代理(提示.class,"普通")));
         环境.置应用($应用);
         文件.初始化();
@@ -257,7 +256,6 @@ public class 应用 {
     }
 
     public static void 全屏(Activity $界面) {
-        $界面.requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = $界面.getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;

@@ -57,6 +57,10 @@ public class 基本弹窗 extends AlertDialog {
         布局.右按钮.置单击事件(new 弹窗按钮单击(this,$单击));
     }
     
+    public void 置隐藏事件(方法 $事件) {
+        setOnDismissListener(new 弹窗隐藏($事件));
+    }
+    
     public 方法 显示 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
