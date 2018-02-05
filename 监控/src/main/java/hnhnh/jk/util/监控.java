@@ -1,4 +1,4 @@
-package h.jk.util;
+package hnhnh.jk.util;
 
 import com.hikvision.netsdk.HCNetSDK;
 import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;

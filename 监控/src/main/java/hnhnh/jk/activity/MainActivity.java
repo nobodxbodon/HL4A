@@ -1,15 +1,15 @@
-package h.jk.activity;
+package hnhnh.jk.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import com.hikvision.netsdk.HCNetSDK;
 import com.hikvision.netsdk.INT_PTR;
-import h.jk.activity.ViewActivity;
-import h.jk.adapter.监控适配器;
-import h.jk.layout.布局_主界面;
-import h.jk.layout.布局_添加设备;
-import h.jk.util.监控;
-import h.jk.util.监控信息;
+import hnhnh.jk.activity.ViewActivity;
+import hnhnh.jk.adapter.监控适配器;
+import hnhnh.jk.layout.布局_主界面;
+import hnhnh.jk.layout.布局_添加设备;
+import hnhnh.jk.util.监控;
+import hnhnh.jk.util.监控信息;
 import 间.安卓.工具.处理;
 import 间.安卓.工具.提示;
 import 间.安卓.工具.线程;

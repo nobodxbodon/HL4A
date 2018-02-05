@@ -1,4 +1,4 @@
-package h.jk.util;
+package hnhnh.jk.util;
 
 import java.io.Serializable;
 

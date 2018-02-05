@@ -94,6 +94,8 @@ public class 编译工程 {
         String $图标 = 工程.取地址("图标.png");
         if (文件.是文件($图标)) {
             文件.复制($图标, 工程.取地址("编译", "打包", "res", "drawable", "icon.png"));
+        } else {
+            ZIP.解压(应用.取安装包位置(),"assets/android.png",工程.取地址("编译", "打包", "res", "drawable", "icon.png"));
         }
         弹窗.更新("编译清单文件");
         打包签名 $签名 = new 打包签名($打包);

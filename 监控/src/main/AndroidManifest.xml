@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="h.jk"
+      package="hnhnh.jk"
       android:versionCode="1"
       android:versionName="1.0">
     <uses-sdk
-        android:minSdkVersion="21"
+        android:minSdkVersion="19"
         android:targetSdkVersion="23"/>
     <!--
     <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
@@ -12,6 +12,7 @@
     -->
     <application
         android:name=".Application"
+        android:icon="@android:drawable/sym_def_app_icon"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:label="某不知名高中">
         <activity android:name=".LaunchPad">

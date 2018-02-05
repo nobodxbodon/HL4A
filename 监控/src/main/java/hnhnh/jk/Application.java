@@ -1,8 +1,8 @@
-package  h.jk;
+package  hnhnh.jk;
 
 import android.content.Intent;
-import h.jk.activity.MainActivity;
-import h.jk.util.监控;
+import hnhnh.jk.activity.MainActivity;
+import hnhnh.jk.util.监控;
 import 间.安卓.工具.应用;
 import 间.安卓.工具.提示;
 import 间.安卓.工具.线程;

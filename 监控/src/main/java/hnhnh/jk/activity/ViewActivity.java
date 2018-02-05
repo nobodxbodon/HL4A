@@ -1,4 +1,4 @@
-package h.jk.activity;
+package hnhnh.jk.activity;
 
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.FrameLayout;
 import com.hikvision.netsdk.HCNetSDK;
 import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
 import com.hikvision.netsdk.RealPlayCallBack;
-import h.jk.util.监控;
-import h.jk.util.监控信息;
+import hnhnh.jk.util.监控;
+import hnhnh.jk.util.监控信息;
 import org.MediaPlayer.PlayM4.Player;
 import 间.安卓.工具.提示;
 import 间.安卓.工具.线程;
