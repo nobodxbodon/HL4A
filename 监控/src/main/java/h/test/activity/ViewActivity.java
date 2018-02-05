@@ -24,6 +24,8 @@ import android.widget.FrameLayout;
 import android.content.pm.ActivityInfo;
 import 间.安卓.资源.布局.布局_基本界面;
 import 间.安卓.资源.图标;
+import 间.接口.错误处理;
+import 间.工具.错误;
 
 public class ViewActivity extends 基本界面 implements Callback {
 
@@ -299,6 +301,7 @@ public class ViewActivity extends 基本界面 implements Callback {
 
     @Override
     public void 界面创建事件(Bundle $恢复) {
+        try {
         布局_基本界面 布局 = new 布局_基本界面(this);
         布局.打开(this);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -321,13 +324,29 @@ public class ViewActivity extends 基本界面 implements Callback {
         m_iChanNum = 信息.通道;
         弹窗 = new 列表弹窗(this);
         弹窗.置标题("选择通道");
-        String[] $数组 = new String[信息.通道 + 1];
+        String[] $数组 = new String[信息.通道 - 8];
         for (int $键值 = 0;$键值 < $数组.length;$键值 ++) {
             $数组[$键值] = "" + $键值;
         }
         弹窗.置数组($数组);
         弹窗.置单击(调用.代理(this, "选择"));
         布局.标题.右按钮(图标.搜索, 弹窗.显示);
+        
+        if (传入参数.length == 2) {
+            Integer $通道 = (Integer)传入参数[1];
+            m_iStartChan = 信息.起始+ $通道;
+            if (startSinglePreview()) {
+                提示.普通("正在准备播放 ~");
+            } else {
+                提示.警告("连接失败 ~");
+                跳转界面(ViewActivity.class,信息,$通道);
+                结束界面();
+            }
+            return;
+        }
+        }catch(Exception $错误) {
+           throw new RuntimeException( 错误.取整个错误($错误));
+        }
         弹窗.显示();
     }
 
@@ -336,13 +355,13 @@ public class ViewActivity extends 基本界面 implements Callback {
     public void 选择(Object[] $参数) {
         弹窗.隐藏();
         int $端口 = new Integer((((布局_适配器_数组)((Object[])($参数[0]))[1])).文本.取文本());
-        m_iStartChan +=  $端口;
+        m_iStartChan = 信息.起始+ $端口;
         stopSinglePreview();
         if (startSinglePreview()) {
             提示.普通("正在准备播放 ~");
         } else {
             提示.警告("连接失败 ~");
-            跳转界面(ViewActivity.class,信息,$端口);
+            //跳转界面(ViewActivity.class,信息,$端口);
             结束界面();
         }
     }

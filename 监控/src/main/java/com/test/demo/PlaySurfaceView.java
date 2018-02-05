@@ -34,7 +34,7 @@ public class PlaySurfaceView extends SurfaceView implements Callback {
 		super(demoActivity);
 		// TODO Auto-generated constructor stub
 		getHolder().addCallback(this);
-        视图实现.置背景颜色(this,颜色.白色);
+        //视图实现.置背景颜色(this,颜色.);
 	}
 
 	@Override
