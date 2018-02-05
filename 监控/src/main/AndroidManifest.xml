@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="h.test"
+      package="h.jk"
       android:versionCode="1"
       android:versionName="1.0">
     <uses-sdk
@@ -13,7 +13,7 @@
     <application
         android:name=".Application"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
-        android:label="监控插件">
+        android:label="某不知名高中">
         <activity android:name=".LaunchPad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

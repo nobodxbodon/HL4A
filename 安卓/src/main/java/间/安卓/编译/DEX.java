@@ -1,13 +1,16 @@
 package 间.安卓.编译;
 
-import com.android.dex.*;
-import com.android.dx.cf.direct.*;
-import com.android.dx.command.dexer.*;
-import com.android.dx.dex.*;
-import com.android.dx.dex.cf.*;
-import com.android.dx.merge.*;
-import java.io.*;
-import 间.工具.*;
+import com.android.dex.Dex;
+import com.android.dx.cf.direct.DirectClassFile;
+import com.android.dx.cf.direct.StdAttributeFactory;
+import com.android.dx.command.dexer.Main;
+import com.android.dx.dex.DexOptions;
+import com.android.dx.dex.cf.CfOptions;
+import com.android.dx.dex.cf.CfTranslator;
+import com.android.dx.merge.DexMerger;
+import java.io.IOException;
+import 间.安卓.工具.文件;
+import 间.工具.字节;
 
 public class DEX {
 

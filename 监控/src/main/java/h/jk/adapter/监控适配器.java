@@ -1,13 +1,10 @@
-package h.test.adapter;
+package h.jk.adapter;
 
 import android.content.Context;
-import java.io.File;
-import 间.安卓.工具.文件;
+import h.jk.util.监控;
+import h.jk.util.监控信息;
 import 间.安卓.视图.适配器.数组适配器;
-import 间.数据.JSON;
-import h.test.util.监控信息;
 import 间.收集.哈希表;
-import h.test.util.监控;
 
 public class 监控适配器 extends 数组适配器 {
 
@@ -32,7 +29,7 @@ public class 监控适配器 extends 数组适配器 {
     private void 添加监控(监控信息 $信息) {
         哈希表 $参数 = new 哈希表();
         $参数.设置("信息", $信息);
-        $参数.设置("内容", "监控" + $信息.端口);
+        $参数.设置("内容", $信息.名称);
         数据.添加($参数);
     }
 

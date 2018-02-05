@@ -1,25 +1,26 @@
-package h.test.activity;
+package h.jk.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import h.test.adapter.监控适配器;
-import h.test.layout.布局_主界面;
-import h.test.layout.布局_添加设备;
-import h.test.util.监控信息;
-import 间.安卓.弹窗.基本弹窗;
-import 间.安卓.组件.基本界面;
-import 间.接口.方法;
-import 间.收集.哈希表;
-import h.test.util.监控;
-import 间.安卓.工具.提示;
-import 间.安卓.工具.线程;
-import 间.接口.调用;
-import 间.安卓.工具.转换;
-import 间.安卓.弹窗.加载中弹窗;
-import 间.安卓.工具.处理;
 import com.hikvision.netsdk.HCNetSDK;
 import com.hikvision.netsdk.INT_PTR;
+import h.jk.activity.ViewActivity;
+import h.jk.adapter.监控适配器;
+import h.jk.layout.布局_主界面;
+import h.jk.layout.布局_添加设备;
+import h.jk.util.监控;
+import h.jk.util.监控信息;
+import 间.安卓.工具.处理;
+import 间.安卓.工具.提示;
+import 间.安卓.工具.线程;
+import 间.安卓.工具.转换;
+import 间.安卓.弹窗.加载中弹窗;
+import 间.安卓.弹窗.基本弹窗;
+import 间.安卓.组件.基本界面;
 import 间.工具.反射;
+import 间.接口.方法;
+import 间.接口.调用;
+import 间.收集.哈希表;
 
 public class MainActivity extends 基本界面 {
 

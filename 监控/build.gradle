@@ -14,6 +14,5 @@ android {
 dependencies {
     compile project(':安卓')
     compile project(':附加')
-    compile project(':JSON')
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

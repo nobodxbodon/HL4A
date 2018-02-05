@@ -1,8 +1,8 @@
-package h.test;
+package h.jk;
 
 import android.net.Uri;
 import android.os.Bundle;
-import h.test.activity.MainActivity;
+import h.jk.activity.MainActivity;
 import 间.安卓.组件.基本界面;
 import 间.安卓.资源.布局.布局_初始化;
 

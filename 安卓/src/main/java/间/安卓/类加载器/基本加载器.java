@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import 间.安卓.工具.文件;
 import 间.工具.反射;
-import 间.安卓.视图.适配器.文件适配器;
 import 间.工具.时间;
 
 public class 基本加载器 extends ClassLoader {

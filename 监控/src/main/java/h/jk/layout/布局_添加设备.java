@@ -1,4 +1,4 @@
-package h.test.layout;
+package h.jk.layout;
 
 import android.content.Context;
 import 间.安卓.视图.线性布局;

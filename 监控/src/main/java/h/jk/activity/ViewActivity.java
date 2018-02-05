@@ -1,4 +1,4 @@
-package h.test.activity;
+package h.jk.activity;
 
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -7,25 +7,24 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import android.widget.FrameLayout;
 import com.hikvision.netsdk.HCNetSDK;
-import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
 import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
 import com.hikvision.netsdk.RealPlayCallBack;
-import h.test.util.监控;
-import h.test.util.监控信息;
+import h.jk.util.监控;
+import h.jk.util.监控信息;
 import org.MediaPlayer.PlayM4.Player;
 import 间.安卓.工具.提示;
+import 间.安卓.工具.线程;
 import 间.安卓.弹窗.列表弹窗;
 import 间.安卓.组件.基本界面;
-import 间.安卓.资源.布局.布局_适配器_数组;
-import 间.接口.调用;
-import 间.安卓.工具.线程;
-import android.widget.FrameLayout;
-import android.content.pm.ActivityInfo;
-import 间.安卓.资源.布局.布局_基本界面;
 import 间.安卓.资源.图标;
-import 间.接口.错误处理;
+import 间.安卓.资源.布局.布局_基本界面;
+import 间.安卓.资源.布局.布局_适配器_数组;
 import 间.工具.错误;
+import 间.接口.调用;
+import 间.收集.哈希表;
+import 间.收集.集合;
 
 public class ViewActivity extends 基本界面 implements Callback {
 
@@ -298,6 +297,8 @@ public class ViewActivity extends 基本界面 implements Callback {
         // release net SDK resource
         HCNetSDK.getInstance().NET_DVR_Cleanup();
     }
+    
+    private 哈希表<String,Integer> 内容 = new 哈希表<>();
 
     @Override
     public void 界面创建事件(Bundle $恢复) {
@@ -311,7 +312,6 @@ public class ViewActivity extends 基本界面 implements Callback {
         播放.setLayoutParams(params);
         布局.标题.置标题("实时预览");
         布局.底层.加入子元素(播放);
-
         信息 = (监控信息)传入参数[0];
         int $号码 = 监控.登录(信息);
         if ($号码 == -1) {
@@ -324,11 +324,14 @@ public class ViewActivity extends 基本界面 implements Callback {
         m_iChanNum = 信息.通道;
         弹窗 = new 列表弹窗(this);
         弹窗.置标题("选择通道");
-        String[] $数组 = new String[信息.通道 - 8];
-        for (int $键值 = 0;$键值 < $数组.length;$键值 ++) {
-            $数组[$键值] = "" + $键值;
+        集合<String> $列表 = new 集合<>();
+        
+        for (String[] $单个 : 信息.内容) {
+            if ($单个[1].equals("删除"))continue;
+            $列表.添加($单个[1]);
+            内容.设置($单个[1],new Integer($单个[0]));
         }
-        弹窗.置数组($数组);
+        弹窗.置数组($列表.到数组(String.class));
         弹窗.置单击(调用.代理(this, "选择"));
         布局.标题.右按钮(图标.搜索, 弹窗.显示);
         
@@ -354,7 +357,7 @@ public class ViewActivity extends 基本界面 implements Callback {
 
     public void 选择(Object[] $参数) {
         弹窗.隐藏();
-        int $端口 = new Integer((((布局_适配器_数组)((Object[])($参数[0]))[1])).文本.取文本());
+        int $端口 = 内容.读取((((布局_适配器_数组)((Object[])($参数[0]))[1])).文本.取文本());
         m_iStartChan = 信息.起始+ $端口;
         stopSinglePreview();
         if (startSinglePreview()) {
