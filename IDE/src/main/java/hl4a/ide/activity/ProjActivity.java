@@ -1,19 +1,28 @@
 package hl4a.ide.activity;
 
-import android.content.*;
-import android.os.*;
-import hl4a.ide.layout.*;
-import hl4a.ide.util.*;
-import 间.安卓.工具.*;
-import 间.安卓.弹窗.*;
-import 间.安卓.组件.*;
-import 间.安卓.视图.*;
-import 间.安卓.资源.*;
-import 间.工具.*;
-import 间.接口.*;
-import 间.收集.*;
-
+import android.content.Intent;
+import android.os.Bundle;
+import hl4a.ide.layout.布局_工程管理;
+import hl4a.ide.layout.布局_设置弹窗;
+import hl4a.ide.layout.布局_配置签名;
+import hl4a.ide.util.工程;
+import hl4a.ide.util.编译工程;
+import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
+import 间.安卓.工具.线程;
+import 间.安卓.工具.链接;
+import 间.安卓.弹窗.基本弹窗;
+import 间.安卓.组件.基本界面;
+import 间.安卓.编译.秘钥签名;
+import 间.安卓.视图.文本视图;
+import 间.安卓.视图.线性布局;
+import 间.安卓.资源.图标;
+import 间.工具.ZIP;
+import 间.工具.反射;
+import 间.接口.方法;
+import 间.接口.调用;
+import 间.收集.哈希表;
+import 间.安卓.弹窗.加载中弹窗;
 
 public class ProjActivity extends 基本界面 {
 
@@ -30,11 +39,12 @@ public class ProjActivity extends 基本界面 {
 
     private 布局_设置弹窗 内容;
     private 布局_配置签名 签名布局;
-    
+
     @Override
     public void 界面回调事件(int $请求码,int $返回码,Intent $意图) {
-        if ($返回码 == 233) {
-            结束界面();
+        switch ($返回码) {
+            case 233:
+                结束界面();return;
         }
     }
 
@@ -51,7 +61,7 @@ public class ProjActivity extends 基本界面 {
         }
         return false;
     }
-    
+
     @Override
     public void 界面刷新事件() {
         检查();
@@ -82,16 +92,17 @@ public class ProjActivity extends 基本界面 {
         协议 = new 基本弹窗(this);
         协议.置标题("自由软件协议");
         协议.置内容("HL4A项目 基于GNU通用公共授权第三版\n您必须同意并在项目使用\nGNU公共授权才能制作独立应用");
-        协议.置左按钮("详细", 调用.配置(链接.class,"打开","http://www.gnu.org/licenses/gpl-3.0.html"));
+        协议.置左按钮("详细", 调用.配置(链接.class, "打开", "http://www.gnu.org/licenses/gpl-3.0.html"));
         协议.置中按钮("拒绝", 协议.隐藏);
         协议.置右按钮("同意", 打包APK);
         签名布局 = new 布局_配置签名(this);
         签名 = new 基本弹窗(this);
         签名.置标题("配置签名");
         签名.置内容(签名布局);
-        签名.置中按钮("取消",签名.隐藏);
-        签名.置右按钮("配置",调用.代理(this,"配置"));
-        创建按钮("配置签名").置单击事件(签名.显示);
+        签名.置左按钮("新建", 调用.代理(this, "新建"));
+        签名.置中按钮("取消", 签名.隐藏);
+        签名.置右按钮("配置", 调用.代理(this, "配置"));
+        创建按钮("配置签名").置单击事件(调用.代理(this,"配置签名"));
         创建按钮("直接运行").置单击事件(直接运行);
         创建按钮("进入编辑").置单击事件(进入编辑);
         创建按钮("打包HPK").置单击事件(打包HPK);
@@ -99,17 +110,45 @@ public class ProjActivity extends 基本界面 {
         创建按钮("删除工程").置单击事件(删除工程);
     }
     
-    public void 配置(Object[] $参数) {
-        String $地址 = 签名布局.地址.取文本();
-        if (!文件.是文件($地址)) {
-            $地址 = 当前.取地址($地址);
-            if (!文件.是文件($地址)) {
-                //提示.弹窗();
-                return;
-            }
-        }
+    public void 配置签名(Object[] $参数) {
+        签名布局.地址.置文本(当前.信息.秘钥地址);
+        签名布局.密码.置文本(当前.信息.秘钥密码);
+        签名布局.别名.置文本(当前.信息.秘钥别名);
+        签名布局.别名密码.置文本(当前.信息.秘钥别名密码);
+        签名.显示();
+    }
+
+    public void 新建(Object[] $参数) {
+        
     }
     
+    public void 配置(Object[] $参数) {
+        String $地址 = 签名布局.地址.取文本();
+        if (!文件.是文件(当前.取地址($地址))) {
+            提示.警告("秘钥不存在 ~");
+            return;
+        }
+        new 线程(this, "加载秘钥").启动($地址);
+    }
+
+    public void 加载秘钥(String $地址) {
+        String $密码 = 签名布局.密码.取文本();
+        String $别名 = 签名布局.别名.取文本();
+        String $别名密码 = 签名布局.别名密码.取文本();
+        秘钥签名 $秘钥 = 秘钥签名.加载(当前.取地址($地址), $密码, $别名, $别名密码);
+        if ($秘钥 == null) {
+            提示.警告("密码错误或文件损坏 ~");
+            return;
+        }
+        当前.信息.秘钥地址 = $地址;
+        当前.信息.秘钥密码 = $密码;
+        当前.信息.秘钥别名 = $别名;
+        当前.信息.秘钥别名密码 = $别名密码;
+        当前.保存();
+        提示.普通("配置成功 ~");
+        签名.隐藏();
+    }
+
     方法 直接运行 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
@@ -187,7 +226,7 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (更改设置.调用() == null) return null;
-                打包APK.调用();
+            打包APK.调用();
             return null;
         }
     };
@@ -269,7 +308,7 @@ public class ProjActivity extends 基本界面 {
             $布局.置高度("自动");
             文本视图 $内容 = new 文本视图($布局);
             $内容.置标签("内容");
-            $内容.置文本(反射.取变量(当前.信息,$设置).toString());
+            $内容.置文本(反射.取变量(当前.信息, $设置).toString());
             所有.设置($设置, $内容);
         }
     }

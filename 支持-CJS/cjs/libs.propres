@@ -1,0 +1,11 @@
+{
+    "include":[
+    {"name":"libs/hfc.dex.js"},
+    {"name":"src/main.js"},
+    ],
+    "libs":[],
+    "info":[{"The_creator": "MikaGuraN",
+                "Correction": "MikaGuraN",
+                "for":"Android"}],
+    "versioncode":[{"code":2,"updateuri":"https://hnhnh.cn/support/cjs/update.json"}]
+}
