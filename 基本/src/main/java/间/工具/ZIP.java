@@ -12,9 +12,9 @@ public class ZIP {
             ZipFile $压缩 = new ZipFile(文件.取文件对象($文件));
             ZipEntry $进入 = $压缩.getEntry($地址);
             if ($进入.isDirectory()) {
-                return false;
+                return false;/*
             } else if ($进入.getSize() == 0) {
-                文件.创建文件($输出);
+                文件.创建文件($输出);*/
             } else {
                 字节.保存($输出, 字节.读取($压缩.getInputStream($进入)));
             }

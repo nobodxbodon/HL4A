@@ -61,23 +61,20 @@ public class 打包签名 {
         
         */
     }
-
-    public String 打包签名() {
+    
+    public String 打包() {
         try {
             String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
-            TinySign.sign(文件.取文件对象(目录), 流.输出.文件($输出));
+            ZIP.压缩(文件.检查地址(目录),$输出);
             return $输出;
         } catch (Exception $错误) {}
         return null;
     }
     
-    public String 打包() {
-        try {
-            String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + "-未签名.apk";
-            ZIP.压缩(文件.检查地址(目录),$输出);
-            return $输出;
-        } catch (Exception $错误) {}
-        return null;
+    public String 签名(秘钥签名 $签名) {
+        String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
+        $签名.签名($输出);
+        return $输出;
     }
     
     public void 清除缓存() {

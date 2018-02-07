@@ -14,6 +14,9 @@ public class 工程 {
 
     public static String 工程目录 = "%HL4A/工程";
     public static String 配置文件 = "应用.yml";
+    
+    public static String 源码目录 = "源码";
+    public static String 秘钥目录 = "秘钥";
 
     public String 地址;
     public 工程信息 信息;

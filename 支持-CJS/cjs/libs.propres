@@ -6,6 +6,6 @@
     "libs":[],
     "info":[{"The_creator": "MikaGuraN",
                 "Correction": "MikaGuraN",
-                "for":"Android"}],
-    "versioncode":[{"code":2,"updateuri":"https://hnhnh.cn/support/cjs/update.json"}]
+                "for":"CreateJS"}],
+    "versioncode":[{"code":3,"updateuri":"https://hnhnh.cn/support/cjs/update.json"}]
 }

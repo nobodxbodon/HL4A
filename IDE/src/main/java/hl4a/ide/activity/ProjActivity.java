@@ -3,6 +3,7 @@ package hl4a.ide.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import hl4a.ide.layout.布局_工程管理;
+import hl4a.ide.layout.布局_新建签名;
 import hl4a.ide.layout.布局_设置弹窗;
 import hl4a.ide.layout.布局_配置签名;
 import hl4a.ide.util.工程;
@@ -22,7 +23,9 @@ import 间.工具.反射;
 import 间.接口.方法;
 import 间.接口.调用;
 import 间.收集.哈希表;
+import 间.安卓.编译.签名创建;
 import 间.安卓.弹窗.加载中弹窗;
+import 间.安卓.工具.处理;
 
 public class ProjActivity extends 基本界面 {
 
@@ -36,9 +39,11 @@ public class ProjActivity extends 基本界面 {
     private 基本弹窗 删除;
     private 基本弹窗 协议;
     private 基本弹窗 签名;
+    private 基本弹窗 新建;
 
     private 布局_设置弹窗 内容;
     private 布局_配置签名 签名布局;
+    private 布局_新建签名 新建布局;
 
     @Override
     public void 界面回调事件(int $请求码,int $返回码,Intent $意图) {
@@ -94,23 +99,73 @@ public class ProjActivity extends 基本界面 {
         协议.置内容("HL4A项目 基于GNU通用公共授权第三版\n您必须同意并在项目使用\nGNU公共授权才能制作独立应用");
         协议.置左按钮("详细", 调用.配置(链接.class, "打开", "http://www.gnu.org/licenses/gpl-3.0.html"));
         协议.置中按钮("拒绝", 协议.隐藏);
-        协议.置右按钮("同意", 打包APK);
+        协议.置右按钮("同意", 调用.配置(this, "打包APK"));
         签名布局 = new 布局_配置签名(this);
         签名 = new 基本弹窗(this);
         签名.置标题("配置签名");
         签名.置内容(签名布局);
-        签名.置左按钮("新建", 调用.代理(this, "新建"));
+        签名.置左按钮("新建", 调用.配置(this, "新建"));
         签名.置中按钮("取消", 签名.隐藏);
-        签名.置右按钮("配置", 调用.代理(this, "配置"));
-        创建按钮("配置签名").置单击事件(调用.代理(this,"配置签名"));
+        签名.置右按钮("配置", 调用.配置(this, "配置"));
+        新建布局 = new 布局_新建签名(this);
+        新建 = new 基本弹窗(this);
+        新建.置标题("新建签名");
+        新建.置内容(新建布局);
+        新建.置中按钮("取消", 新建.隐藏);
+        新建.置右按钮("新建", 调用.配置(this, "新建签名"));
+        进度 = new 加载中弹窗(this);
+        进度.置可关闭(false);
+        创建按钮("配置签名").置单击事件(调用.配置(this, "配置签名"));
         创建按钮("直接运行").置单击事件(直接运行);
         创建按钮("进入编辑").置单击事件(进入编辑);
         创建按钮("打包HPK").置单击事件(打包HPK);
         创建按钮("打包APK").置单击事件(协议.显示);
         创建按钮("删除工程").置单击事件(删除工程);
     }
-    
-    public void 配置签名(Object[] $参数) {
+
+    private 加载中弹窗 进度;
+
+    public void 新建签名() {
+        String $名称 = 新建布局.名称.取文本();
+        String $别名 = 新建布局.别名.取文本();
+        String $密码 = 新建布局.密码.取文本();
+        String $别名密码 = 新建布局.别名密码.取文本();
+        if ($别名.equals("")) {
+            提示.警告("别名不要留空 ~");
+            return;
+        } else if (文件.是文件(当前.取地址(工程.秘钥目录 + "/" + $别名 + ".jks"))) {
+            提示.警告("秘钥已存在！请检查");
+            return;
+        } else if ($密码.equals("")) {
+            提示.警告("密码不要留空 ~");
+            return;
+        } else if ($别名密码.equals("")) {
+            提示.警告("别名密码不要留空 ~");
+            return;
+        }
+        进度.更新("正在加工 ~");
+        进度.显示();
+        new 线程(this, "线程新建").启动($名称, $别名, $密码, $别名密码);
+    }
+
+    public void 线程新建(String $名称,String $别名,String $密码,String $别名密码) {
+        签名创建 $新建 = new 签名创建($别名, $密码, $别名密码);
+        $新建.置名称($名称);
+        $新建.创建(当前.取地址(工程.秘钥目录 + "/" + $别名 + ".jks"));
+        进度.隐藏();
+        提示.普通("新建成功 ~");
+        处理.主线程(this, "新建回调", $别名, $密码, $别名密码);
+    }
+
+    public void 新建回调(String $别名,String $密码,String $别名密码) {
+        签名布局.地址.置文本($别名 + ".jks");
+        签名布局.密码.置文本($密码);
+        签名布局.别名.置文本($别名);
+        签名布局.别名密码.置文本($别名密码);
+        新建.隐藏();
+    }
+
+    public void 配置签名() {
         签名布局.地址.置文本(当前.信息.秘钥地址);
         签名布局.密码.置文本(当前.信息.秘钥密码);
         签名布局.别名.置文本(当前.信息.秘钥别名);
@@ -118,13 +173,13 @@ public class ProjActivity extends 基本界面 {
         签名.显示();
     }
 
-    public void 新建(Object[] $参数) {
-        
+    public void 新建() {
+        新建.show();
     }
-    
-    public void 配置(Object[] $参数) {
+
+    public void 配置() {
         String $地址 = 签名布局.地址.取文本();
-        if (!文件.是文件(当前.取地址($地址))) {
+        if (!文件.是文件(当前.取地址(工程.秘钥目录,$地址))) {
             提示.警告("秘钥不存在 ~");
             return;
         }
@@ -135,7 +190,7 @@ public class ProjActivity extends 基本界面 {
         String $密码 = 签名布局.密码.取文本();
         String $别名 = 签名布局.别名.取文本();
         String $别名密码 = 签名布局.别名密码.取文本();
-        秘钥签名 $秘钥 = 秘钥签名.加载(当前.取地址($地址), $密码, $别名, $别名密码);
+        秘钥签名 $秘钥 = 秘钥签名.加载(当前.取地址(工程.秘钥目录,$地址), $密码, $别名, $别名密码);
         if ($秘钥 == null) {
             提示.警告("密码错误或文件损坏 ~");
             return;
@@ -153,7 +208,7 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (检查()) return null;
-            String $入口 = 当前.取地址("源码", "入口.js");
+            String $入口 = 当前.取地址(工程.源码目录, "入口.js");
             if (!文件.是文件($入口)) {
                 提示.普通("没有入口文件 ！");
             } else {
@@ -174,23 +229,27 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    方法 打包APK = new 方法() {
-        @Override
-        public Object 调用(Object[] $参数) {
-            if (检查()) return null;
-            协议.隐藏();
-            if (!工程.检查包名(当前.信息.包名)) {
-                内容.类型 = "包名";
-                设置.置标题("包名不符合规范");
-                内容.编辑.置默认文本("新的包名");
-                设置.置右按钮("打包", 更改打包);
-                设置.显示();
-                return null;
-            }
-            new 编译工程(ProjActivity.this, 当前).启动();
-            return null;
+    public void 打包APK(Object[] $参数) {
+        if (检查()) return;
+        协议.隐藏();
+        if (!工程.检查包名(当前.信息.包名)) {
+            内容.类型 = "包名";
+            设置.置标题("包名不符合规范");
+            内容.编辑.置默认文本("新的包名");
+            设置.置右按钮("打包", 更改打包);
+            设置.显示();
+            return;
         }
-    };
+        秘钥签名 $签名 = 秘钥签名.加载(当前.取地址(工程.秘钥目录,当前.信息.秘钥地址), 当前.信息.秘钥别名, 当前.信息.秘钥密码, 当前.信息.秘钥别名密码);
+        if ($签名 == null) {
+            提示.警告("签名秘钥不可用 ~");
+            配置签名();
+            return;
+        }
+        new 编译工程(ProjActivity.this, 当前, $签名).启动();
+        return;
+    }
+
 
     方法 删除工程 = new 方法() {
         @Override
@@ -212,7 +271,6 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-
     方法 进入编辑 = new 方法() {
         @Override
         public Object 调用(Object[] $参数) {
@@ -226,7 +284,7 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (更改设置.调用() == null) return null;
-            打包APK.调用();
+            打包APK(null);
             return null;
         }
     };

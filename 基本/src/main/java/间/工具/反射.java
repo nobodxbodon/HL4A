@@ -249,8 +249,6 @@ public class 反射 {
         Class[] $类组 = $单个.getParameterTypes();
         if ($类组.length == 0 && $参数.length == 0) {
             return $参数;
-        } else if ($参数.length == 0) {
-            return null;
         }
         if ($类组.length != $参数.length && !Object[].class.isAssignableFrom($类组[$类组.length - 1])) {
             return null;

@@ -59,6 +59,7 @@ public class 签名创建 {
     
     public void 创建(String $输出) {
         $输出 = 文件.检查地址($输出);
+        文件.创建目录(文件.取目录($输出));
         if (文件.是文件($输出)) 文件.删除($输出);
         CertCreator.createKeystoreAndKey($输出, 密码.toCharArray(), "RSA", 2048, 别名, 别名密码.toCharArray(), "SHA1withRSA",30, 设置);
     }

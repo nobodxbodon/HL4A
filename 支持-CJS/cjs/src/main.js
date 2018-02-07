@@ -1,5 +1,3 @@
-"use strict"
-
 let $当前版本 = 2;
 let $类库文件 = libs_inthis.getFilesDir().getParent() + "/hl4a" + $当前版本 + ".dex";
 

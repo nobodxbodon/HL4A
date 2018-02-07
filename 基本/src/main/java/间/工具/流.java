@@ -56,10 +56,13 @@ public class 流 {
         if ($流 == null)
             return null;
         try {
-            int $长度 = $流.available();
-            byte[] $字节 = new byte[$长度];
-            $流.read($字节);
-            return $字节;
+            ByteArrayOutputStream $输出 = 流.输出.字节();
+            int $长度 = 0;
+            byte[] $缓冲 = new byte[$流.available()];
+            while (($长度 = $流.read($缓冲)) > 0) {
+                $输出.write($缓冲, 0, $长度);
+            }
+            return $输出.toByteArray();
         } catch (IOException $错误) {
         }
         return null;
@@ -104,9 +107,6 @@ public class 流 {
     }
 
     public static class 输出 {
-
-        private 输出() {
-        };
 
         public static ByteArrayOutputStream 字节() {
             return new ByteArrayOutputStream();

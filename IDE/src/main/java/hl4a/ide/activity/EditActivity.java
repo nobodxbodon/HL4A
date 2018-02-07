@@ -38,7 +38,7 @@ public class EditActivity extends 基本界面 {
 
     public boolean 检查代码(String $目录) {
         if ($目录 == null) {
-            $目录 = 当前.取地址("源码");
+            $目录 = 当前.取地址(工程.源码目录);
         }
         File[] $文件 = 文件.取文件列表($目录);
         try {
@@ -78,7 +78,7 @@ public class EditActivity extends 基本界面 {
         布局.侧滑标题.置标题("打开文件");
         打开 = (String)设置.读取从文件("上次打开", 当前.地址);
         界面刷新事件();
-        布局.适配器 = new 文件适配器(布局.列表, 文件单击, 长按, 当前.取地址("源码"));
+        布局.适配器 = new 文件适配器(布局.列表, 文件单击, 长按, 当前.取地址(工程.源码目录));
         布局.列表.置适配器(布局.适配器);
         侧滑右按钮 = 布局.侧滑标题.右按钮(打开侧滑菜单);
         菜单 = new 弹出菜单(侧滑右按钮);
@@ -152,7 +152,7 @@ public class EditActivity extends 基本界面 {
                 提示.普通("请不要留空 ~");
                 return null;
             }
-            String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
+            String $目标 = 当前.取地址(工程.源码目录, 布局.适配器.附加, $内容);
             if (文件.是否存在($目标)) {
                 提示.普通("文件/夹 已存在 ~");
                 return null;
@@ -177,7 +177,7 @@ public class EditActivity extends 基本界面 {
                 提示.普通("请不要留空 ~");
                 return null;
             }
-            String $目标 = 当前.取地址("源码", 布局.适配器.附加, $内容);
+            String $目标 = 当前.取地址(工程.源码目录, 布局.适配器.附加, $内容);
             if (文件.是否存在($目标)) {
                 提示.普通("文件/夹 已存在 ~");
                 return null;
@@ -200,7 +200,7 @@ public class EditActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             界面遮挡事件();
             if (检查代码(null)) {
-                跳转脚本(当前.取地址("源码/入口.js"));
+                跳转脚本(当前.取地址(工程.源码目录+"/入口.js"));
             } 
             return null;
         }
@@ -208,11 +208,11 @@ public class EditActivity extends 基本界面 {
 
     @Override
     public void 界面遮挡事件() {
-        String $文件 = 当前.取地址("源码/" + 打开);
+        String $文件 = 当前.取地址(工程.源码目录+"/" + 打开);
         if (!文件.是文件($文件)) {
             return;
         }
-        布局.代码.保存(当前.取地址("源码/" + 打开));
+        布局.代码.保存(当前.取地址(工程.源码目录+"/" + 打开));
     }
 
     @Override
@@ -225,14 +225,15 @@ public class EditActivity extends 基本界面 {
             结束界面();
             return;
         }
-        if (!文件.是文件(当前.取地址("源码/" + 打开)) || 打开 == null) {
+        String $打开 = 工程.源码目录+"/"+打开;
+        if (打开 == null || !文件.是文件(当前.取地址($打开))) {
             打开 = "入口.js";
         }
-        if (!文件.是文件(当前.取地址("源码/" + 打开))) {
+        if (!文件.是文件(当前.取地址($打开))) {
             提示.普通("正在创建入口 ~");
-            字符.保存(当前.取地址("源码/" + 打开), 字符.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
+            字符.保存(当前.取地址($打开), 字符.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
         }
-        布局.代码.读入(当前.取地址("源码/" + 打开));
+        布局.代码.读入(当前.取地址($打开));
         if (布局.适配器 != null) {
             布局.适配器.刷新();
         }
