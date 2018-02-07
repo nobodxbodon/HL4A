@@ -14,7 +14,7 @@ public class 打包签名 {
     public String 目录;
     public ARSCDecoder 资源;
     public ManifestEditor 清单;
-    
+
     public String 资源文件;
     public String 清单文件;
 
@@ -28,7 +28,8 @@ public class 打包签名 {
         清单 = new ManifestEditor(清单文件);
         清单.setPackageName($包名);
         包名 = $包名;
-        return 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
+        地址 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
+        return 地址;
     }
 
     public void 置工程名(String $名称) {
@@ -52,31 +53,26 @@ public class 打包签名 {
 
     public void 编译资源() {
         /*
-        try {
-            ARSCDecoder $编译 = new ARSCDecoder(流工具.输入.文件(资源文件), null, false);
-            ByteArrayOutputStream $输出 = 流工具.输出.字节();
-            $编译.CloneArsc($输出, 包名, true);
-            字节工具.保存(资源文件, $输出.toByteArray());
-        } catch (Exception $错误) {}
-        
-        */
+         try {
+         ARSCDecoder $编译 = new ARSCDecoder(流工具.输入.文件(资源文件), null, false);
+         ByteArrayOutputStream $输出 = 流工具.输出.字节();
+         $编译.CloneArsc($输出, 包名, true);
+         字节工具.保存(资源文件, $输出.toByteArray());
+         } catch (Exception $错误) {}
+
+         */
     }
-    
-    public String 打包() {
-        try {
-            String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
-            ZIP.压缩(文件.检查地址(目录),$输出);
-            return $输出;
-        } catch (Exception $错误) {}
-        return null;
+
+    private String 地址;
+
+    public void 打包() {
+        ZIP.压缩(文件.检查地址(目录), 地址);
     }
-    
-    public String 签名(秘钥签名 $签名) {
-        String $输出 = 文件.取目录(文件.取目录(文件.取目录(目录))) + "/" + 包名 + ".apk";
-        $签名.签名($输出);
-        return $输出;
+
+    public void 签名(秘钥签名 $签名) {
+        $签名.签名(地址);
     }
-    
+
     public void 清除缓存() {
         文件.删除(目录);
     }

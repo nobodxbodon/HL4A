@@ -19,6 +19,7 @@ import 间.工具.线程;
 import 间.工具.编码;
 import 间.接口.方法;
 import 间.安卓.编译.秘钥签名;
+import 间.安卓.编译.JSC;
 
 public class 编译工程 {
 
@@ -64,7 +65,21 @@ public class 编译工程 {
         }
         文件.删除($打包 + "/assets");
         弹窗.更新("打包脚本/资源");
-        文件.遍历文件();
+        String $缓存 = 工程.取地址("编译","脚本");
+        文件.复制(工程.取地址("源码"),$缓存);
+        File[] $所有 = 文件.遍历文件($缓存);
+        弹窗.更新("编译脚本");
+        String $输出 = 工程.取地址("编译", "类");
+        for (File $单个 : $所有) {
+            if ($单个.getName().endsWith(".js")) {
+                JSC $JS = new JSC($单个.getPath());
+                $JS.置包名(工程.信息.包名);
+                $JS.置输出($输出);
+                String $返回 = $JS.编译();
+                字符.保存($单个.getPath(),$返回);
+            }
+        }
+        ZIP.压缩($缓存,工程.取地址("编译","打包","classes1.dex"));
         弹窗.更新("编译应用类文件");
         CLASS $应用 = new CLASS(工程.信息.包名 + ".Application", "间.安卓.实例.实例应用", "Application.java");
         $应用.初始化();

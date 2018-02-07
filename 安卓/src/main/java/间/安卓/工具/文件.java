@@ -18,11 +18,19 @@ public class 文件 extends 间.工具.文件 {
     public static boolean 自身变更() {
         return 有变更(应用.取安装包位置());
     }
+
+    public static boolean 自身变更(String $文件) {
+        return 有变更(应用.取安装包位置(),$文件);
+    }
     
     public static boolean 有变更(String $地址) {
-        Integer $上次 =  new Long(文件.取文件对象($地址).lastModified()).intValue();
-        Integer $记录 = (Integer)设置.读取("文件变更",$地址);
-        设置.保存("文件变更",$地址,$上次);
+        return 有变更($地址,"默认变更");
+    }
+
+    public static boolean 有变更(String $地址,String $文件) {
+        Integer $上次 =  new Long(文件.取文件对象($文件,$地址).lastModified()).intValue();
+        Integer $记录 = (Integer)设置.读取($文件, $地址);
+        设置.保存($文件, $地址, $上次);
         return $记录 == null || !$上次.equals($记录);
     }
 
@@ -76,7 +84,7 @@ public class 文件 extends 间.工具.文件 {
     public static String 取存储数据目录(String... $地址) {
         return 取存储数据目录() + "/" + 字符.分解($地址, "/");
     }
-    
+
     public static String 取存储缓存目录() {
         return 环境.取应用().getExternalCacheDir().getPath();
     }
@@ -84,11 +92,11 @@ public class 文件 extends 间.工具.文件 {
     public static String 取存储缓存目录(String... $地址) {
         return 取存储数据目录() + "/" + 字符.分解($地址, "/");
     }
-    
+
     public static String 取自身目录() {
         return 取数据目录("自身");
     }
-    
+
     public static String 取自身目录(String... $地址) {
         return 取自身目录() + "/" + 字符.分解($地址, "/");
     }

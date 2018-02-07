@@ -50,6 +50,7 @@ public class 秘钥签名 {
         $输出 = 文件.检查地址($输出);
         if ($文件.toLowerCase().equals($输出.toLowerCase())) {
             String $缓存 = 文件.取存储缓存目录("签名-" + 时间.时间戳());
+            文件.复制($文件,$缓存);
             签名.signZip($缓存, $输出);
             文件.删除($缓存);
             return;
