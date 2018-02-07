@@ -9,8 +9,8 @@ android {
         applicationId "hl4a.ide"
       	minSdkVersion 19
       	targetSdkVersion 23
-        versionCode 88
-        versionName "1.7.9"
+        versionCode 90
+        versionName "1.8.0"
     }
     
 }

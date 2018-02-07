@@ -25,6 +25,9 @@ import 间.工具.线程;
 import 间.工具.错误;
 import 间.接口.方法;
 import 间.收集.集合;
+import 间.接口.调用;
+import 间.安卓.插件.应用插件;
+import 间.安卓.组件.基本应用;
 
 public class 应用 {
 
@@ -62,28 +65,27 @@ public class 应用 {
              else $单个.finish();
         }
     }
-
-
-    public static 方法 错误处理 = new 方法() {
-        @Override
-        public Object 调用(Object[] $参数) {
-            Exception $错误 = (Exception)$参数[1];
-            应用.结束界面($错误);
-            Intent $意图 = new Intent(环境.取应用(), ErrorActivity.class);
-            $意图.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            $意图.putExtra("错误", "当前应用版本 :" + 应用.取版本名() + "\n" + 错误.取整个错误($错误));
-            环境.取应用().startActivity($意图);
-            字符.保存(文件.取存储缓存目录("错误日志/" + 时间.格式() + ".log"), 错误.取整个错误($错误));
-            System.exit(0);
-            return null;
+    
+    public static void 错误处理(Thread $线程,Exception $错误) {
+        Application $应用 = 环境.取应用();
+        if ($应用 instanceof 基本应用)
+        for (应用插件 $单个 : ((基本应用)$应用).所有插件) {
+            $单个.应用出错($线程,$错误);
         }
-    };
+        应用.结束界面($错误);
+        Intent $意图 = new Intent(环境.取应用(), ErrorActivity.class);
+        $意图.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        $意图.putExtra("错误", "当前应用版本 :" + 应用.取版本名() + "\n" + 错误.取整个错误($错误));
+        环境.取应用().startActivity($意图);
+        字符.保存(文件.取存储缓存目录("错误日志/",时间.格式(),".log"), 错误.取整个错误($错误));
+        System.exit(0);
+    }
 
     public static void 初始化应用(Application $应用) {
         //System.setOut(new 打印处理(调用.代理(提示.class,"普通")));
         环境.置应用($应用);
         文件.初始化();
-        线程.置错误处理(错误处理);
+        线程.置错误处理(调用.代理(应用.class,"错误处理"));
         主题.置圆角大小("3dp");
         主题.置大文本大小("8dp");
         主题.置文本大小("5dp");

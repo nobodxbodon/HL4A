@@ -7,10 +7,12 @@ public class 线程<返回值> extends Thread {
     private Object[] 参数;
     private 方法<返回值> 方法;
     private 回调<返回值> 返回;
+    private UncaughtExceptionHandler 处理;
     
     public 线程(方法<返回值> $方法) {
         方法 = $方法;
         返回 = new 回调<返回值> ();
+        处理 = 线程.取错误处理对象();
     }
     
     public 线程(Object $对象,String $方法名) {
@@ -19,6 +21,7 @@ public class 线程<返回值> extends Thread {
 
     @Override
     public void run() {
+       线程.置错误处理对象(处理);
        返回.返回((返回值)调用.事件(方法,参数));
     }
 
@@ -57,9 +60,14 @@ public class 线程<返回值> extends Thread {
         置错误处理对象(new 错误处理($处理));
     }
 
-    public static void 置错误处理对象(错误处理 $处理) {
+    public static void 置错误处理对象(UncaughtExceptionHandler $处理) {
         Thread.setDefaultUncaughtExceptionHandler($处理);
     }
+    
+    public static UncaughtExceptionHandler 取错误处理对象() {
+        return Thread.getDefaultUncaughtExceptionHandler();
+    }
+    
 
     public 方法 启动 = new 方法() {
         @Override

@@ -9,12 +9,11 @@ public class 线程<返回值> extends 间.工具.线程<返回值> {
     
     public 线程(方法<返回值> $方法) {
         super($方法);
-        置错误处理(应用.错误处理);
+        
     }
 
     public 线程(Object $对象,String $方法名) {
         super($对象,$方法名);
-        置错误处理(应用.错误处理);
     }
 
     @Override
