@@ -5,19 +5,19 @@
  * with full text available at http://www.apache.org/licenses/LICENSE-2.0.html
  *
  * This software is provided "as is". Use at your own risk.
-o */
+ */
 package com.myopicmobile.textwarrior.common;
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import 间.安卓.脚本.JavaScript;
+import java.io.*;
 
 /**
  * Does lexical analysis of a text for C-like languages.
  * The programming language syntax used is set as a static class variable.
  */
-public class Lexer {
+public class Lexer
+{
     private final static int MAX_KEYWORD_LENGTH = 127;
 
     public final static int UNKNOWN = -1;
@@ -65,11 +65,13 @@ public class Lexer {
     public final static int SINGLE_SYMBOL_DELIMITED_B = 51;
 
     private static Language _globalLanguage = LanguageNonProg.getInstance();
-    synchronized public static void setLanguage(Language lang) {
+    synchronized public static void setLanguage(Language lang)
+    {
         _globalLanguage = lang;
     }
 
-    synchronized public static Language getLanguage() {
+    synchronized public static Language getLanguage()
+    {
         return _globalLanguage;
     }
 
@@ -78,44 +80,56 @@ public class Lexer {
     private LexThread _workerThread = null;
     LexCallback _callback = null;
 
-    public Lexer(LexCallback callback) {
+    public Lexer(LexCallback callback)
+    {
         _callback = callback;
     }
 
-    public void tokenize(DocumentProvider hDoc) {
-        if (!Lexer.getLanguage().isProgLang()) {
+    public void tokenize(DocumentProvider hDoc)
+    {
+        if (!Lexer.getLanguage().isProgLang())
+        {
             return;
         }
 
         //tokenize will modify the state of hDoc; make a copy
         setDocument(new DocumentProvider(hDoc));
-        if (_workerThread == null) {
+        if (_workerThread == null)
+        {
             _workerThread = new LexThread(this);
             _workerThread.start();
-        } else {
+        }
+        else
+        {
             _workerThread.restart();
         }
     }
 
-    void tokenizeDone(List<Pair> result) {
-        if (_callback != null) {
+    void tokenizeDone(List<Pair> result)
+    {
+        if (_callback != null)
+        {
             _callback.lexDone(result);
         }
         _workerThread = null;
     }
 
-    public void cancelTokenize() {
-        if (_workerThread != null) {
+    public void cancelTokenize()
+    {
+        if (_workerThread != null)
+        {
             _workerThread.abort();
             _workerThread = null;
         }
     }
 
-    public synchronized void setDocument(DocumentProvider hDoc) {
+    public synchronized void setDocument(DocumentProvider hDoc)
+    {
         _hDoc = hDoc;
     }
 
-    public synchronized DocumentProvider getDocument() {
+    public synchronized DocumentProvider getDocument()
+    {
         return _hDoc;
     }
 
@@ -123,7 +137,8 @@ public class Lexer {
 
 
 
-    private class LexThread extends Thread {
+    private class LexThread extends Thread
+    {
         private boolean rescan = false;
         private final Lexer _lexManager;
         /** can be set by another thread to stop the scan immediately */
@@ -135,13 +150,15 @@ public class Lexer {
          */
         private List<Pair> _tokens;
 
-        public LexThread(Lexer p) {
+        public LexThread(Lexer p)
+        {
             _lexManager = p;
             _abort = new Flag();
         }
 
         @Override
-        public void run() {
+        public void run()
+        {
             do{
                 rescan = false;
                 _abort.clear();
@@ -149,18 +166,21 @@ public class Lexer {
             }
             while(rescan);
 
-            if (!_abort.isSet()) {
+            if (!_abort.isSet())
+            {
                 // lex complete
                 _lexManager.tokenizeDone(_tokens);
             }
         }
 
-        public void restart() {
+        public void restart()
+        {
             rescan = true;
             _abort.set();
         }
 
-        public void abort() {
+        public void abort()
+        {
             _abort.set();
         }
         /**
@@ -186,14 +206,14 @@ public class Lexer {
          * ------------------------------
          * 它的特点：first记录从哪开始有标记，second记录标记的类型
          */
-        public void tokenize() {
+        public void tokenize(){
             DocumentProvider hDoc = getDocument();
             Language language = Lexer.getLanguage();
             //这里用ArrayList速度会发生质的飞跃
             List<Pair> tokens = new ArrayList<>();
 
             //language.isProgLang()返回真
-            if (!language.isProgLang()) {
+            if(!language.isProgLang()){
                 tokens.add(new Pair(0, NORMAL));
                 _tokens = tokens;
                 return;
@@ -204,9 +224,9 @@ public class Lexer {
             try {
                 JavaScriptType cType=null;
                 int idx=0;
-                while ((cType = cLexer.yylex()) != JavaScriptType.EOF) {
-                    String name = cLexer.yytext();
-                    switch (cType) {
+                while ((cType=cLexer.yylex())!= JavaScriptType.EOF){
+                    switch (cType)
+                    {
                         case KEYWORD:
                             tokens.add(new Pair(idx, KEYWORD));
                             break;
@@ -219,32 +239,41 @@ public class Lexer {
                             tokens.add(new Pair(idx, SINGLE_SYMBOL_DELIMITED_A));
                             break;
                         default:
-                            if (JavaScript.替换关键字表.检查(name)) {
-                                tokens.add(new Pair(idx, KEYWORD));
-                                break;
-                            } else if(name.length() == 1 && language.isOperator(name.charAt(0))) {
-                                tokens.add(new Pair(idx,OPERATOR));
-                                break;
-                            }
                             tokens.add(new Pair(idx, NORMAL));
                     }
-                    idx += name.length();
+                    idx+=cLexer.yytext().length();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (tokens.isEmpty()) {
+            if (tokens.isEmpty()){
                 // return value cannot be empty
                 tokens.add(new Pair(0, NORMAL));
             }
             //printList(tokens);
-            _tokens = tokens;
+                _tokens=tokens;
         }
 
-   
+    }//end inner class
+
+    private  void log(String log)
+    {
+        System.out.println("------------------>Lexer:"+log);
     }
 
-    public interface LexCallback {
+    private  void printList(List<Pair> list)
+    {
+        System.out.println("------------------>:Lexer start,Lexer len:"+list.size());
+        for (int i=0;i<list.size();i++) {
+            Pair pair=list.get(i);
+            System.out.println("---------------->"+pair.toString());//不打印？
+        }
+        System.out.println("------------------>:Lexer end");
+
+    }
+
+    public interface LexCallback
+    {
         public void lexDone(List<Pair> results);
     }
 }

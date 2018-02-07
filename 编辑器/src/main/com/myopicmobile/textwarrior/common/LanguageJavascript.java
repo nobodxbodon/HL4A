@@ -40,13 +40,12 @@ public class LanguageJavascript extends Language {
         keywords = $返回.到数组(String.class);
         
     }
-    /*
+    
     private final static char[] BASIC_OPERATORS = {
             '(', ')', '{', '}', '.', ',', ';', '=', '+', '-',
             '/', '*', '&', '!', '|', ':', '[', ']', '<', '>',
             '?', '~', '%', '^'
     };
-    */
     private  final  static  String[] funtions={
 
             "print"
@@ -61,8 +60,10 @@ public class LanguageJavascript extends Language {
     
     private LanguageJavascript(){
         setKeywords(keywords);
-        }
-        
+        setOperators(BASIC_OPERATORS);
+        setNames(funtions);
+    }
+
     public boolean isLineAStart(char c){
         return false;
     }
