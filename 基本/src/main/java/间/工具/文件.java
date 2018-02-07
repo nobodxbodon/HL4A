@@ -82,9 +82,9 @@ public class 文件 {
         return $文件;
     }
 
-    public static 集合 找文件关键字(String $目录,String $关键字) {
+    public static File[] 找文件关键字(String $目录,String $关键字) {
 
-        集合 $返回 = new 集合();
+        集合<File> $返回 = new 集合 <>();
 
         File[] $列表 = 文件.取文件列表($目录);
 
@@ -92,22 +92,22 @@ public class 文件 {
             if ($单个.isFile() && 字符.是否出现($单个.getName(), $关键字)) {
                 $返回.添加($单个);
             } else {
-                $返回.addAll(找文件关键字($单个.getPath(), $关键字));
+                $返回.添加所有(找文件关键字($单个.getPath(), $关键字));
             }
 
         }
 
-        return $返回;
+        return $返回.到数组(File.class);
 
     }
 
-    public static 集合 找文件关键字(String $目录,String $前缀,String $后缀) {
+    public static File[] 找文件关键字(String $目录,String $前缀,String $后缀) {
         return 找文件关键字($目录, $前缀, $后缀, false);
     }
 
-    public static 集合 找文件关键字(String $目录,String $前缀,String $后缀,boolean $不包含) {
+    public static File[] 找文件关键字(String $目录,String $前缀,String $后缀,boolean $不包含) {
 
-        集合 $返回 = new 集合();
+        集合<File> $返回 = new 集合<>();
 
         File[] $列表 = 文件.取文件列表($目录);
 
@@ -118,12 +118,32 @@ public class 文件 {
                     continue;
                 $返回.添加($单个);
             } else if ($单个.isDirectory()) {
-                $返回.addAll(找文件关键字($单个.getPath(), $前缀, $后缀, $不包含));
+                $返回.添加所有(找文件关键字($单个.getPath(), $前缀, $后缀, $不包含));
             }
 
         }
 
-        return $返回;
+        return $返回.到数组(File.class);
+
+    }
+    
+    public static File[] 遍历文件(String $目录) {
+
+        集合<File> $返回 = new 集合<>();
+
+        File[] $列表 = 文件.取文件列表($目录);
+
+        for (File $单个 : $列表) {
+
+            if ($单个.isFile()) {
+                $返回.添加($单个);
+            } else if ($单个.isDirectory()) {
+                $返回.添加所有(遍历文件($单个.getPath()));
+            }
+
+        }
+
+        return $返回.到数组(File.class);
 
     }
 
