@@ -103,6 +103,10 @@ public class 错误 {
     }
 
     public static String 取整个错误(Throwable $错误) {
+        
+        if ($错误.getCause() != null && !$错误.equals($错误.getCause())) {
+            return 取整个错误($错误.getCause());
+        }
         if ($错误 instanceof InvocationTargetException) {
             $错误 = ((InvocationTargetException)$错误).getTargetException();
         }

@@ -168,6 +168,11 @@ public class 文件 {
 
         if ($目录 == null)
             return null;
+            
+        InputStream $输入 = 流.输入.自身($目录);
+        if ($输入 != null) {
+            $目录 = "$自身/"+$目录;
+        }
 
         for (哈希表 $替换 : 前缀替换) {
             String $前缀 = (String) $替换.读取("前缀");

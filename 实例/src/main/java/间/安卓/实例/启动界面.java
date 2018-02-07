@@ -17,22 +17,23 @@ public class 启动界面 extends 基本界面 {
 
     @Override
     public void 界面创建事件(Bundle $恢复) {
-        文件.替换地址("#", 文件.检查地址("$脚本") + "/");
+        文件.替换地址("./", 文件.检查地址("$脚本") + "/");
         打开布局(new 布局_初始化(this));
         请求权限();
     }
 
     public void 初始化() {
-        String $文件 = "lib/armeabi/libHL4A.so";
+        String $文件 = "classes1.dex";
         String $安装包 = 应用.取安装包位置();
         Integer $上次 =  new Long(new File($安装包).lastModified()).intValue();
         Integer $记录 = (Integer)设置.读取("上次安装");
         if ($记录 == null || !$上次.equals($记录)) {
-            文件.删除("#");
-            String $缓存 = "$cache/lib.so";
-            String $字符 = 字符.读取(getClassLoader().getResourceAsStream($文件));                字节.保存($缓存, 编码.Base64.解码($字符));
-            文件.删除("#");
-            ZIP.解压($缓存, "#");
+            文件.删除("./");
+            String $缓存 = "$cache/js.zip";
+            String $字符 = 字节.读取(getClassLoader().getResourceAsStream($文件));
+            字节.保存($缓存, 编码.Base64.解码($字符));
+            文件.删除("./");
+            ZIP.解压($缓存, "./");
             文件.删除($缓存);
             设置.保存("安装包哈希", $记录);
         }

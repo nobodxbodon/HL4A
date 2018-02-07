@@ -53,9 +53,8 @@ public class MainActivity extends 基本界面 {
         布局.适配器 = new 工程适配器(布局.列表);
         布局.布局.置刷新事件(刷新);
         打开布局(布局);
-        
-            检查导入();
-         测试();
+        检查导入();
+        测试();
     }
     
     public void 测试() {

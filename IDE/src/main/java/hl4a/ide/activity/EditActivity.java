@@ -38,13 +38,13 @@ public class EditActivity extends 基本界面 {
 
     public boolean 检查代码(String $目录) {
         if ($目录 == null) {
-            $目录 = 当前.取地址(工程.源码目录);
+            $目录 = 当前.取源码();
         }
         File[] $文件 = 文件.取文件列表($目录);
         try {
             for (File $单个 : $文件) {
                 if ($单个.isDirectory()) {
-                    检查代码($单个.getPath());
+                    if (!检查代码($单个.getPath()))return false;
                 } else if ($单个.getName().toLowerCase().endsWith(".js")) {
                     环境.编译代码(字符.读取($单个.getPath()), $单个.getName());
                 }
@@ -76,7 +76,8 @@ public class EditActivity extends 基本界面 {
         布局.标题.右按钮(图标.撤销,撤销);
         布局.标题.右按钮(图标.重做,重做);
         布局.侧滑标题.置标题("打开文件");
-        打开 = (String)设置.读取从文件("上次打开", 当前.地址);
+        打开 = (String)设置.读取("上次打开");
+        打开 = 打开 == null ? "入口.js" : 打开;
         界面刷新事件();
         布局.适配器 = new 文件适配器(布局.列表, 文件单击, 长按, 当前.取地址(工程.源码目录));
         布局.列表.置适配器(布局.适配器);
@@ -139,6 +140,7 @@ public class EditActivity extends 基本界面 {
             String $名称 = (String)$参数[3];
             打开 = new File($附加 + "/" + $名称).getPath();
             界面刷新事件();
+            设置.保存("上车打开",打开);
             提示.普通("打开文件 " + $名称);
             return null;
         }
@@ -200,7 +202,7 @@ public class EditActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             界面遮挡事件();
             if (检查代码(null)) {
-                跳转脚本(当前.取地址(工程.源码目录+"/入口.js"));
+                跳转脚本(当前.取源码("入口.js"));
             } 
             return null;
         }
@@ -208,11 +210,11 @@ public class EditActivity extends 基本界面 {
 
     @Override
     public void 界面遮挡事件() {
-        String $文件 = 当前.取地址(工程.源码目录+"/" + 打开);
+        String $文件 = 当前.取源码(打开);
         if (!文件.是文件($文件)) {
             return;
         }
-        布局.代码.保存(当前.取地址(工程.源码目录+"/" + 打开));
+        布局.代码.保存(当前.取源码(打开));
     }
 
     @Override
@@ -225,15 +227,12 @@ public class EditActivity extends 基本界面 {
             结束界面();
             return;
         }
-        String $打开 = 工程.源码目录+"/"+打开;
-        if (打开 == null || !文件.是文件(当前.取地址($打开))) {
+        if (!文件.是文件(当前.取源码(打开))) {
             打开 = "入口.js";
-        }
-        if (!文件.是文件(当前.取地址($打开))) {
             提示.普通("正在创建入口 ~");
-            字符.保存(当前.取地址($打开), 字符.读取(getClass().getClassLoader().getResourceAsStream("assets/client.js")));
+            字符.保存(当前.取源码(打开), 字符.读取("#assets/client.js"));
         }
-        布局.代码.读入(当前.取地址($打开));
+        布局.代码.读入(当前.取源码(打开));
         if (布局.适配器 != null) {
             布局.适配器.刷新();
         }

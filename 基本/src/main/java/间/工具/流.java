@@ -86,9 +86,10 @@ public class 流 {
 
     public static class 输入 {
 
-        private 输入() {
-        };
-
+        public static InputStream 自身(String... $相对) {
+            return 输入.class.getClassLoader().getResourceAsStream(字符.分解($相对,"/"));
+        }
+        
         public static ByteArrayInputStream 字节(byte[] $字节) {
             return new ByteArrayInputStream($字节);
         }

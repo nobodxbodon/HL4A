@@ -42,7 +42,6 @@ public class HelpActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             String $内容 = ((布局_适配器_数组)$参数[1]).文本.取文本();
             String $地址 = 地址 + "/" + $内容 + ".txt";
-            提示.普通(文件.是文件($地址));
             跳转界面(ViewActivity.class, $内容, 字符.读取($地址));
             return null;
         }

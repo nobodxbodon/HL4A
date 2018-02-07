@@ -59,6 +59,7 @@ public class 应用 {
         for (Activity $单个 : 所有界面) {
             if ($单个 instanceof 基本界面)
                 ((基本界面)$单个).结束界面($错误);
+             else $单个.finish();
         }
     }
 
@@ -72,7 +73,7 @@ public class 应用 {
             $意图.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             $意图.putExtra("错误", "当前应用版本 :" + 应用.取版本名() + "\n" + 错误.取整个错误($错误));
             环境.取应用().startActivity($意图);
-            字符.保存("#错误日志/" + 时间.格式() + ".log", 错误.取整个错误($错误));
+            字符.保存(文件.取存储缓存目录("错误日志/" + 时间.格式() + ".log"), 错误.取整个错误($错误));
             System.exit(0);
             return null;
         }

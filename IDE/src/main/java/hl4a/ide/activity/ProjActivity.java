@@ -179,7 +179,7 @@ public class ProjActivity extends 基本界面 {
 
     public void 配置() {
         String $地址 = 签名布局.地址.取文本();
-        if (!文件.是文件(当前.取地址(工程.秘钥目录,$地址))) {
+        if (!文件.是文件(当前.取地址(工程.秘钥目录, $地址))) {
             提示.警告("秘钥不存在 ~");
             return;
         }
@@ -190,9 +190,10 @@ public class ProjActivity extends 基本界面 {
         String $密码 = 签名布局.密码.取文本();
         String $别名 = 签名布局.别名.取文本();
         String $别名密码 = 签名布局.别名密码.取文本();
-        秘钥签名 $秘钥 = 秘钥签名.加载(当前.取地址(工程.秘钥目录,$地址), $密码, $别名, $别名密码);
-        if ($秘钥 == null) {
-            提示.警告("密码错误或文件损坏 ~");
+        try {
+            new 秘钥签名(当前.取地址(工程.秘钥目录, $地址), $密码, $别名, $别名密码);
+        } catch (Exception e) {
+            提示.警告(e.getMessage());
             return;
         }
         当前.信息.秘钥地址 = $地址;
@@ -212,7 +213,9 @@ public class ProjActivity extends 基本界面 {
             if (!文件.是文件($入口)) {
                 提示.普通("没有入口文件 ！");
             } else {
+                try {
                 跳转脚本($入口);
+                }catch(Exception $错误) {}
             }
             return null;
         }
@@ -240,16 +243,15 @@ public class ProjActivity extends 基本界面 {
             设置.显示();
             return;
         }
-        秘钥签名 $签名 = 秘钥签名.加载(当前.取地址(工程.秘钥目录,当前.信息.秘钥地址), 当前.信息.秘钥别名, 当前.信息.秘钥密码, 当前.信息.秘钥别名密码);
-        if ($签名 == null) {
-            提示.警告("签名秘钥不可用 ~");
-            配置签名();
-            return;
-        }
-        new 编译工程(ProjActivity.this, 当前, $签名).启动();
-        return;
-    }
 
+        try {
+            秘钥签名 $签名 = new 秘钥签名(当前.取地址(工程.秘钥目录, 当前.信息.秘钥地址), 当前.信息.秘钥别名, 当前.信息.秘钥密码, 当前.信息.秘钥别名密码);
+            new 编译工程(ProjActivity.this, 当前, $签名).启动();
+        } catch (Exception e) {
+            提示.警告(e.getMessage());
+            配置签名();
+        }
+    }
 
     方法 删除工程 = new 方法() {
         @Override

@@ -6,13 +6,11 @@ import hl4a.ide.activity.*;
 import 间.安卓.组件.*;
 import 间.安卓.资源.布局.*;
 
-public class LaunchPad extends 基本界面 {
+public class LaunchPad extends 启动界面 {
 
     @Override
-    public void 界面创建事件(Bundle $恢复) {
-        打开布局(new 布局_初始化(this));
+    public void 初始化完成事件() {
         请求权限();
-
     }
 
     @Override
