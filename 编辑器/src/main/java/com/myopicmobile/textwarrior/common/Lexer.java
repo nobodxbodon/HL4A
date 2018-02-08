@@ -5,7 +5,7 @@
  * with full text available at http://www.apache.org/licenses/LICENSE-2.0.html
  *
  * This software is provided "as is". Use at your own risk.
-o */
+ o */
 package com.myopicmobile.textwarrior.common;
 
 import java.io.StringReader;
@@ -213,17 +213,20 @@ public class Lexer {
                         case COMMENT:
                             tokens.add(new Pair(idx, DOUBLE_SYMBOL_DELIMITED_MULTILINE));
                             break;
-
                         case STRING:
                         case CHARACTER_LITERAL:
                             tokens.add(new Pair(idx, SINGLE_SYMBOL_DELIMITED_A));
+                            break;                        
+                        case INTEGER_LITERAL:
+                        case FLOATING_POINT_LITERAL:
+                            tokens.add(new Pair(idx, OPERATOR));
                             break;
                         default:
                             if (JavaScript.替换关键字表.检查(name)) {
                                 tokens.add(new Pair(idx, KEYWORD));
                                 break;
-                            } else if(name.length() == 1 && language.isOperator(name.charAt(0))) {
-                                tokens.add(new Pair(idx,OPERATOR));
+                            } else if (JavaScript.是工具类(name) || (name.length() == 1 && language.isOperator(name.charAt(0)))) {
+                                tokens.add(new Pair(idx, OPERATOR));
                                 break;
                             }
                             tokens.add(new Pair(idx, NORMAL));
@@ -241,7 +244,7 @@ public class Lexer {
             _tokens = tokens;
         }
 
-   
+
     }
 
     public interface LexCallback {

@@ -85,36 +85,30 @@ public abstract class ColorScheme {
 
         // High-contrast, black-on-white color scheme
         HashMap<Colorable, Integer> colors = new HashMap<Colorable, Integer>(Colorable.values().length);
-        colors.put(Colorable.FOREGROUND, WHITE);//前景色
-        colors.put(Colorable.BACKGROUND, WHITE);
-        colors.put(Colorable.SELECTION_FOREGROUND, WHITE);//选择文本的前景色
-        colors.put(Colorable.SELECTION_BACKGROUND, BLUE);//选择文本的背景色
-        colors.put(Colorable.CARET_FOREGROUND, BLACK);
-        colors.put(Colorable.CARET_BACKGROUND, LIGHT_BLUE2);
-        colors.put(Colorable.CARET_DISABLED, BLACK);
+        
+        colors.put(Colorable.FOREGROUND, 白色);//前景色
+        colors.put(Colorable.BACKGROUND, 白色);
+        colors.put(Colorable.SELECTION_FOREGROUND, 白色);//选择文本的前景色
+        colors.put(Colorable.SELECTION_BACKGROUND, 蓝色);//选择文本的背景色
+        colors.put(Colorable.CARET_FOREGROUND, 蓝色);
+        colors.put(Colorable.CARET_BACKGROUND, 蓝色);
+        colors.put(Colorable.CARET_DISABLED, 蓝色);
         colors.put(Colorable.LINE_HIGHLIGHT, 0x20888888);
 
-        colors.put(Colorable.NON_PRINTING_GLYPH, BLUE);//行号
-        colors.put(Colorable.COMMENT, OLIVE_GREEN); //注释
-        colors.put(Colorable.KEYWORD, DARK_RED); //关键字
-        colors.put(Colorable.NAME, BLUE); // Eclipse default color
-        colors.put(Colorable.LITERAL, BLUE); // Eclipse default color
-        colors.put(Colorable.STRING, DARK_RED); //字符串
-        colors.put(Colorable.SECONDARY, 0xff6f008a);//宏
+        colors.put(Colorable.NON_PRINTING_GLYPH, 蓝色);//行号
+        colors.put(Colorable.COMMENT, 绿色); //注释
+        colors.put(Colorable.KEYWORD, 蓝色); //关键字
+        colors.put(Colorable.NAME, 蓝色); // Eclipse default color
+        colors.put(Colorable.LITERAL, 蓝色); // Eclipse default color
+        colors.put(Colorable.STRING, 暗红); //字符串
+        colors.put(Colorable.SECONDARY, 淡蓝);//宏
         return colors;
     }
 
-    // In ARGB format: 0xAARRGGBB
-    private static final int BLACK = 视图.检查颜色("#000000");
-    private static final int BLUE = 主题.取主题颜色().取控件色();
-    private static final int DARK_RED = 0xFFA31515;
-    private static final int GREY = 视图.检查颜色("#F0F0F0");
-    private static final int OLIVE_GREEN = 0xFF3F7F5F;
-    private static final int PURPLE = 0xFFDD4488;
-    private static final int RED = 0xFFFF0000;
-    private static final int WHITE = 视图.检查颜色("#FFFFFF");
-    private static final int PURPLE2 = 0xFFFF00FF;
-    private static final int LIGHT_BLUE = 0xFF6080FF;
-    private static final int LIGHT_BLUE2 = 0xFF40B0FF;
-    private static final int GREEN = 0xFF88AA88;
+    public static int 淡蓝 = 颜色.蓝色.取控件色();
+    public static int 蓝色 = 颜色.靛蓝.取控件色();
+    public static int 白色 = 颜色.转换(颜色.白色);
+    private static final int 暗红 = 0xFFA31515;
+    private static final int 绿色 = 0xFF3F7F5F;
+    
 }

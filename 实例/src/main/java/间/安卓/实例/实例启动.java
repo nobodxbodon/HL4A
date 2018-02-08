@@ -17,6 +17,7 @@ public class 实例启动 extends 启动界面 {
 
     @Override
     public void 初始化完成事件() {
+        文件.替换地址("@",文件.检查地址("$自身/assets") + "/");
         文件.替换地址("./",文件.检查地址("$脚本") + "/");
         new 线程(this,"初始化脚本").启动();
     }
@@ -24,6 +25,7 @@ public class 实例启动 extends 启动界面 {
     @Override
     public void 权限回调事件() {
         跳转脚本("./入口.js");
+        结束界面();
     }
     
     public void 初始化脚本() {

@@ -47,11 +47,6 @@ public class LanguageJavascript extends Language {
             '?', '~', '%', '^'
     };
     */
-    private  final  static  String[] funtions={
-
-            "print"
-
-    };
     public static Language getInstance(){
         if(_theOne == null){
             _theOne = new LanguageJavascript();

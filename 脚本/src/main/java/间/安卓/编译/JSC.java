@@ -54,13 +54,13 @@ public class JSC {
         return this;
     }
 
-    public String 编译() {
+    public String 编译() throws Exception {
 
         if (源码 != "") {
             类名 = 字符.替换(文件名, ".", "$");
             类名 = 包名 + "." + 类名;
         }
-
+        
         Object[] $结果 =  编译器.compileToClassFiles(源码, 文件名, 1, 类名);
 
         if ($结果 == null || $结果.length == 0) return null;

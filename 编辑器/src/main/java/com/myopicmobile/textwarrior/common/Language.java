@@ -27,20 +27,12 @@ public abstract class Language
     public final static String GLYPH_TAB = "\u00bb";
 
 
-    /*
+  
     public final static char[] BASIC_C_OPERATORS = {
         '(', ')', '{', '}', '.', ',', ';', '=', '+', '-',
         '/', '*', '&', '!', '|', ':', '[', ']', '<', '>',
         '?', '~', '%', '^'
     };
-    */
-    
-    public final static char[] BASIC_C_OPERATORS = {
-        '(', ')', '{', '}', '.', ',', ';', '=', '+', '-',
-        '/', '*', '&', '!', '|', ':', '[', ']', '<', '>',
-        '?', '~', '%', '^'
-    };
-
 
     protected HashMap<String, Integer> _keywords = new HashMap<String, Integer>(0);
     protected HashMap<String, Integer> _names = new HashMap<String, Integer>(0);

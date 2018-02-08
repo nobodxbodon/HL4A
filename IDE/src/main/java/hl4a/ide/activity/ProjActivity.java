@@ -8,13 +8,17 @@ import hl4a.ide.layout.布局_设置弹窗;
 import hl4a.ide.layout.布局_配置签名;
 import hl4a.ide.util.工程;
 import hl4a.ide.util.编译工程;
+import 间.安卓.工具.处理;
 import 间.安卓.工具.提示;
 import 间.安卓.工具.文件;
 import 间.安卓.工具.线程;
 import 间.安卓.工具.链接;
+import 间.安卓.弹窗.加载中弹窗;
 import 间.安卓.弹窗.基本弹窗;
 import 间.安卓.组件.基本界面;
 import 间.安卓.编译.秘钥签名;
+import 间.安卓.编译.签名创建;
+import 间.安卓.脚本.JavaScript;
 import 间.安卓.视图.文本视图;
 import 间.安卓.视图.线性布局;
 import 间.安卓.资源.图标;
@@ -23,9 +27,6 @@ import 间.工具.反射;
 import 间.接口.方法;
 import 间.接口.调用;
 import 间.收集.哈希表;
-import 间.安卓.编译.签名创建;
-import 间.安卓.弹窗.加载中弹窗;
-import 间.安卓.工具.处理;
 
 public class ProjActivity extends 基本界面 {
 
@@ -213,9 +214,10 @@ public class ProjActivity extends 基本界面 {
             if (!文件.是文件($入口)) {
                 提示.普通("没有入口文件 ！");
             } else {
+                文件.替换地址("@", 当前.取地址("资源") + "/");
                 try {
-                跳转脚本($入口);
-                }catch(Exception $错误) {}
+                    跳转脚本($入口);
+                } catch (Exception $错误) {}
             }
             return null;
         }
@@ -243,9 +245,8 @@ public class ProjActivity extends 基本界面 {
             设置.显示();
             return;
         }
-
         try {
-            秘钥签名 $签名 = new 秘钥签名(当前.取地址(工程.秘钥目录, 当前.信息.秘钥地址), 当前.信息.秘钥别名, 当前.信息.秘钥密码, 当前.信息.秘钥别名密码);
+            秘钥签名 $签名 = new 秘钥签名(当前.取秘钥(当前.信息.秘钥地址), 当前.信息.秘钥密码, 当前.信息.秘钥别名, 当前.信息.秘钥别名密码);
             new 编译工程(ProjActivity.this, 当前, $签名).启动();
         } catch (Exception e) {
             提示.警告(e.getMessage());

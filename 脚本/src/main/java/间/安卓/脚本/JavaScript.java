@@ -56,6 +56,48 @@ public class JavaScript implements 基本脚本 {
         替换关键字(默认替换表);
     }
 
+    private static String[] 工具类前缀 = {
+        "间.安卓.插件","间.安卓.组件",
+        "间.安卓.工具","间.安卓.弹窗",
+        "间.安卓.网络","间.安卓.组件",
+        "间.安卓.绘画","间.安卓.视图",
+        "间.安卓.视图.扩展","间.安卓.视图.适配器",
+        "间.工具","间.数据","间.收集","间.接口",
+    };
+    
+    public static 哈希表<String,Class<?>> 类缓存表 = new 哈希表<>();
+    public static 哈希表<String,Boolean> 类检查表 = new 哈希表<>();
+    
+    public static boolean 是工具类(String $名称) {
+        if (类检查表.检查($名称)) {
+            return 类检查表.读取($名称) == true;
+        }
+        Class<?> $类;
+        for (String $单个 : 工具类前缀) {
+            if (($类 = 反射.取类($单个 + "." + $名称))!= null) {
+                类检查表.设置($名称,true);
+                类缓存表.设置($名称,$类);
+                return true;
+            }
+        }
+        类检查表.设置($名称,false);
+        return false;
+    }
+    
+    public static Class<?> 找工具类(String $名称) {
+        if (类缓存表.检查($名称)) {
+            return 类缓存表.读取($名称);
+        }
+        Class<?> $类;
+        for (String $单个 : 工具类前缀) {
+            if (($类 = 反射.取类($单个 + "." + $名称))!= null) {
+                类缓存表.设置($名称,$类);
+                return $类;
+            }
+        }
+        return null;
+    }
+
     public static void 替换关键字(String $新,String $旧) {
         替换关键字表.设置($新, $旧);
     }
@@ -81,7 +123,7 @@ public class JavaScript implements 基本脚本 {
         压入变量("是复制环境", false);
         压入变量("当前应用", 环境.取应用());
         执行代码(字符.读取(getClass().getClassLoader().getResourceAsStream("hl4a/android.js")));
-        
+
     }
 
     public JavaScript(JavaScript $被继承) {
@@ -161,13 +203,12 @@ public class JavaScript implements 基本脚本 {
 
     public Script 编译代码(String $内容,String $环境名) {
         if ($内容 == null) $内容 = "";
-            return JS上下文.compileString($内容, $环境名, 1, null);
+        return JS上下文.compileString($内容, $环境名, 1, null);
     }
 
     public Object 执行代码(String $内容,String $环境名) {
         if ($内容 == null) $内容 = "";
         return JS上下文.evaluateString(函数环境, $内容.toString(), $环境名, 1, null);
-
     }
 
     @Override

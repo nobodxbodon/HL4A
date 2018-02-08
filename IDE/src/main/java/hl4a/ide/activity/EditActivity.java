@@ -202,6 +202,7 @@ public class EditActivity extends 基本界面 {
         public Object 调用(Object[] $参数) {
             界面遮挡事件();
             if (检查代码(null)) {
+                文件.替换地址("@",当前.取地址("资源") + "/");
                 跳转脚本(当前.取源码("入口.js"));
             } 
             return null;

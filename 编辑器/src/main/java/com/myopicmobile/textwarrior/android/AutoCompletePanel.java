@@ -20,6 +20,10 @@ import com.myopicmobile.textwarrior.common.Flag;
 import com.myopicmobile.textwarrior.common.Language;
 import com.myopicmobile.textwarrior.common.LanguageNonProg;
 import java.util.ArrayList;
+import 间.安卓.脚本.JavaScript;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import 间.安卓.工具.提示;
 
 public class AutoCompletePanel {
 
@@ -229,53 +233,31 @@ public class AutoCompletePanel {
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
 
-                    
-                    // 此处实现过滤
+
+                    // 此实现过滤
                     // 过滤后利用FilterResults将过滤结果返回
+                    
                     ArrayList <String>buf = new ArrayList<String>();
+                    /*
                     String keyword = String.valueOf(constraint).toLowerCase();
                     String[] ss=keyword.split("\\.");
-                    if (ss.length >= 2) {
-                        String pkg=ss[0];
-                        keyword = ss[1];
-                        if (_globalLanguage.isBasePackage(pkg)) {
-                            String[] keywords=_globalLanguage.getBasePackage(pkg);
-                            for (String k:keywords) {
-                                if (k.toLowerCase().startsWith(keyword))
-                                    buf.add(k);
-                            }
-                        }
-                    } else if (ss.length == 1) {
-                        if (keyword.charAt(keyword.length() - 1) == '.') {
-                            String pkg=keyword.substring(0, keyword.length() - 1);
-                            keyword = "";
-                            if (_globalLanguage.isBasePackage(pkg)) {
-                                String[] keywords=_globalLanguage.getBasePackage(pkg);
-                                for (String k:keywords) {
-                                    buf.add(k);
+                    if ((ss.length == 1 && ss[0].endsWith(".")) || ss.length == 2) {
+                        Class<?> $类 = JavaScript.找工具类(ss[0]);
+                        if ($类 != null) {
+                            Method[] $方法 = $类.getMethods();
+                            for (Method $单个 : $方法) {
+                                提示.普通(ss.length);
+                                if (ss.length == 1 || $单个.getName().startsWith(ss[2])) {
+                                    if ($单个.getTypeParameters().length == 0)
+                                        buf.add(ss[0] + "." + $单个.getName() + "()");
+                                    else buf.add(ss[0] + "." + $单个.getName() + "(");
                                 }
-                            }
-                        } else {
-                            String[] keywords = _globalLanguage.getUserWord();
-                            for (String k:keywords) {
-                                if (k.toLowerCase().startsWith(keyword))
-                                    buf.add(k);
-                            }
-                            keywords = _globalLanguage.getKeywords();
-                            for (String k:keywords) {
-                                if (k.indexOf(keyword) == 0)
-                                    buf.add(k);
-                            }
-                            keywords = _globalLanguage.getNames();
-                            for (String k:keywords) {
-                                if (k.toLowerCase().startsWith(keyword))
-                                    buf.add(k);
                             }
                         }
                     }
-
-
+                    
                     _constraint = keyword;
+                    */
                     FilterResults filterResults = new FilterResults();
                     filterResults.values = buf;   // results是上面的过滤结果
                     filterResults.count = buf.size();  // 结果数量
