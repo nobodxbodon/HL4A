@@ -50,18 +50,18 @@ public class 编译工程 {
             return null;
         }
     };
-    
+
     public void 主程序() {
         弹窗.更新("检查资源名称");
         File[] $文件 = 文件.遍历文件(工程.取地址("资源"));
         for (File $单个 : $文件) {
-            if (!$单个.getName().replaceAll("[a-zA-Z0-9. ]","").equals("")) {
+            if (!$单个.getName().replaceAll("[a-zA-Z0-9. ]", "").equals("")) {
                 提示.警告("资源名称不合法 可能导致无法安装 : " + $单个.getName());
             }
         }
         String $编译 = 工程.取地址("编译");
         if (文件.是文件($编译)) {
-             文件.删除($编译);
+            文件.删除($编译);
         }
         String $打包 = 工程.取地址("编译", "打包");
         文件.创建目录($打包);
