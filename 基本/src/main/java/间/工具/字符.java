@@ -250,7 +250,7 @@ public class 字符 {
         if (end == -1)
             return null;
 
-        return $文本.substring(start, end);
+        return $文本.substring(0, end);
 
     }
 
@@ -280,7 +280,7 @@ public class 字符 {
         if (end == -1)
             return null;
 
-        return $文本.substring(start, end);
+        return $文本.substring(0, end);
 
     }
 
@@ -308,9 +308,11 @@ public class 字符 {
         if (end == -1)
             return null;
 
-        return $文本.substring(start, end);
+        return $文本.substring(0, end);
     }
 
+    // 这个方法没有写完 233333 没用的哦
+    
     public static String 截取(String $文本,String $开始,String $结束,Integer $开始数量,Integer $结束数量) {
         if ($文本 == null)
             return null;
