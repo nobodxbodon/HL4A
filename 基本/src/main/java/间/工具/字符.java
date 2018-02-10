@@ -17,24 +17,24 @@ public class 字符 {
         return 转换(字节.读取($流));
     }
 
-    public static void 保存(String $地址, String $内容) {
-        if ($内容 == null)
-            return;
-        字节.保存($地址, $内容.getBytes());
-    }
-    
-    public static void 保存(OutputStream $地址, String $内容) {
+    public static void 保存(String $地址,String $内容) {
         if ($内容 == null)
             return;
         字节.保存($地址, $内容.getBytes());
     }
 
-    public static void 追加(String $地址, String $内容) {
+    public static void 保存(OutputStream $地址,String $内容) {
+        if ($内容 == null)
+            return;
+        字节.保存($地址, $内容.getBytes());
+    }
+
+    public static void 追加(String $地址,String $内容) {
         if ($内容 == null)
             return;
         字节.追加($地址, $内容.getBytes());
     }
-    
+
     public static String 转换十六(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
@@ -53,37 +53,37 @@ public class 字符 {
         return new String($字节);
     }
 
-    public static String 取开始前(String $文本, Integer $开始) {
+    public static String 取开始前(String $文本,Integer $开始) {
         if ($文本 == null || $开始 == null)
             return null;
         return $文本.substring(0, $开始);
     }
 
-    public static String 取开始后(String $文本, Integer $开始) {
+    public static String 取开始后(String $文本,Integer $开始) {
         if ($文本 == null || $开始 == null)
             return null;
         return $文本.substring($开始);
     }
 
-    public static String 取结束前(String $文本, Integer $结束) {
+    public static String 取结束前(String $文本,Integer $结束) {
         if ($文本 == null || $结束 == null)
             return null;
         return $文本.substring(0, $文本.length() - $结束);
     }
 
-    public static String 取结束后(String $文本, Integer $结束) {
+    public static String 取结束后(String $文本,Integer $结束) {
         if ($文本 == null || $结束 == null)
             return null;
         return $文本.substring($文本.length() - $结束, $文本.length());
     }
 
-    public static String 取中间(String $文本, Integer $开始, Integer $结束) {
+    public static String 取中间(String $文本,Integer $开始,Integer $结束) {
         if ($文本 == null || $开始 == null || $结束 == null)
             return null;
         return $文本.substring($开始, $结束);
     }
 
-    public static Boolean 是否出现(String $文本, String $内容) {
+    public static Boolean 是否出现(String $文本,String $内容) {
         if ($文本 == null || $内容 == null)
             return false;
 
@@ -91,7 +91,7 @@ public class 字符 {
 
     }
 
-    public static Boolean 是否出现(String $文本, String $内容, Integer $开始位置) {
+    public static Boolean 是否出现(String $文本,String $内容,Integer $开始位置) {
         if ($文本 == null || $内容 == null)
             return false;
         if ($开始位置 == null)
@@ -99,13 +99,13 @@ public class 字符 {
         return $文本.indexOf($内容, $开始位置) != -1;
     }
 
-    public static Boolean 以开始(String $文本, String $开始) {
+    public static Boolean 以开始(String $文本,String $开始) {
         if ($文本 == null || $开始 == null)
             return false;
         return $文本.startsWith($开始);
     }
 
-    public static Boolean 以开始(String $文本, String $开始, Integer $开始位置) {
+    public static Boolean 以开始(String $文本,String $开始,Integer $开始位置) {
         if ($文本 == null || $开始 == null)
             return false;
         if ($开始位置 == null)
@@ -113,13 +113,13 @@ public class 字符 {
         return $文本.startsWith($开始, $开始位置);
     }
 
-    public static Boolean 以结束(String $文本, String $结束) {
+    public static Boolean 以结束(String $文本,String $结束) {
         if ($文本 == null || $结束 == null)
             return false;
         return $文本.endsWith($结束);
     }
 
-    public static String[] 合成数组(String[] $数组, String[] $数组2) {
+    public static String[] 合成数组(String[] $数组,String[] $数组2) {
         String[] $新数组 = new String[$数组.length + $数组2.length];
         int $键值 = 0;
         for (String $单个 : $数组) {
@@ -133,7 +133,7 @@ public class 字符 {
         return $新数组;
     }
 
-    public static String[] 到数组(String $文本, String $分隔) {
+    public static String[] 到数组(String $文本,String $分隔) {
         if ($文本 == null)
             return null;
         if ($分隔 == null)
@@ -141,7 +141,7 @@ public class 字符 {
         return $文本.split($分隔);
     }
 
-    public static String[] 到数组(String $文本, String $分隔, Integer $最大位数) {
+    public static String[] 到数组(String $文本,String $分隔,Integer $最大位数) {
         if ($最大位数 == null)
             return 到数组($文本, $分隔);
         if ($文本 == null)
@@ -155,7 +155,7 @@ public class 字符 {
         return 分解($数组, "");
     }
 
-    public static String 分解(Object $数组[], String $分隔) {
+    public static String 分解(Object $数组[],String $分隔) {
 
         if ($数组 == null)
             return null;
@@ -187,45 +187,45 @@ public class 字符 {
 
     }
 
-    public static String 替换(String $文本, String $旧文本, String $新文本) {
+    public static String 替换(String $文本,String $旧文本,String $新文本) {
         if (是否为空($文本, $旧文本, $新文本))
             return null;
         return $文本.replace($旧文本, $新文本);
     }
 
-    public static String 正则匹配(String $文本, String $正则表达式) {
+    public static String 正则匹配(String $文本,String $正则表达式) {
         Matcher $结果 = Pattern.compile($正则表达式).matcher($文本);
         if ($结果.find())
             return $结果.group();
         return null;
     }
 
-    public static String 正则匹配(String $文本, String $正则表达式, Integer $次数) {
+    public static String 正则匹配(String $文本,String $正则表达式,Integer $次数) {
         Matcher $结果 = Pattern.compile($正则表达式).matcher($文本);
         if ($结果.find($次数))
             return $结果.group($次数);
         return null;
     }
 
-    public static String 正则替换(String $文本, String $表达式, String $新文本) {
+    public static String 正则替换(String $文本,String $表达式,String $新文本) {
         return $文本.replaceAll($表达式, $新文本);
     }
 
-    public static String 逐行替换(String $文本, String $表达式, String $新文本) {
+    public static String 逐行替换(String $文本,String $表达式,String $新文本) {
         String[] $所有 = 到数组($文本, "\n");
         for (int $键值 = 0; $键值 != $所有.length; $键值 += 1)
             $所有[$键值] = 替换($所有[$键值], $表达式, $新文本);
         return 分解($所有, "\n");
     }
 
-    public static String 逐行正则(String $文本, String $表达式, String $新文本) {
+    public static String 逐行正则(String $文本,String $表达式,String $新文本) {
         String[] $所有 = 到数组($文本, "\n");
         for (int $键值 = 0; $键值 != $所有.length; $键值 += 1)
             $所有[$键值] = 正则替换($所有[$键值], $表达式, $新文本);
         return 分解($所有, "\n");
     }
 
-    public static String 截取开始(String $文本, String $开始, String $结束) {
+    public static String 截取开始(String $文本,String $开始,String $结束) {
 
         Integer start = null;
         Integer end = null;
@@ -243,9 +243,10 @@ public class 字符 {
 
         if ($结束 == null)
             return $文本.substring(start);
-        else
+        else {
+            $文本 =  $文本.substring(start);
             end = $文本.indexOf($结束);
-
+        }
         if (end == -1)
             return null;
 
@@ -253,7 +254,7 @@ public class 字符 {
 
     }
 
-    public static String 截取中间(String $文本, String $开始, String $结束) {
+    public static String 截取中间(String $文本,String $开始,String $结束) {
 
         Integer start = null;
         Integer end = null;
@@ -271,8 +272,10 @@ public class 字符 {
 
         if ($结束 == null)
             return $文本.substring(start);
-        else
+        else {
+            $文本 =  $文本.substring(start);
             end = $文本.lastIndexOf($结束);
+        }
 
         if (end == -1)
             return null;
@@ -281,7 +284,7 @@ public class 字符 {
 
     }
 
-    public static String 截取结束(String $文本, String $开始, String $结束) {
+    public static String 截取结束(String $文本,String $开始,String $结束) {
         Integer start = null;
         Integer end = null;
 
@@ -298,16 +301,17 @@ public class 字符 {
 
         if ($结束 == null)
             return $文本.substring(start);
-        else
+        else {
+            $文本 =  $文本.substring(start);
             end = $文本.lastIndexOf($结束);
-
+        }
         if (end == -1)
             return null;
 
         return $文本.substring(start, end);
     }
 
-    public static String 截取(String $文本, String $开始, String $结束, Integer $开始数量, Integer $结束数量) {
+    public static String 截取(String $文本,String $开始,String $结束,Integer $开始数量,Integer $结束数量) {
         if ($文本 == null)
             return null;
         if ($开始 == null)
@@ -351,7 +355,7 @@ public class 字符 {
         return 字符.取开始后($文本, $当前位置);
     }
 
-    public static Integer 取出现位置(String $文本, String $内容) {
+    public static Integer 取出现位置(String $文本,String $内容) {
         if ($文本 == null)
             return null;
         if ($内容 == null)
@@ -362,7 +366,7 @@ public class 字符 {
         return $位置;
     }
 
-    public static Integer 取出现位置(String $文本, String $内容, Integer $开始位置) {
+    public static Integer 取出现位置(String $文本,String $内容,Integer $开始位置) {
         if ($文本 == null)
             return null;
         if ($内容 == null)
@@ -376,7 +380,7 @@ public class 字符 {
             return 取出现位置($文本, $内容);
     }
 
-    public static Integer 取出现位置下标(String $文本, String $内容) {
+    public static Integer 取出现位置下标(String $文本,String $内容) {
         if ($文本 == null)
             return null;
         if ($内容 == null)
@@ -387,7 +391,7 @@ public class 字符 {
         return $位置 + $内容.length();
     }
 
-    public static Integer 取出现位置下标(String $文本, String $内容, Integer $开始位置) {
+    public static Integer 取出现位置下标(String $文本,String $内容,Integer $开始位置) {
         if ($文本 == null)
             return null;
         if ($内容 == null)
@@ -411,7 +415,7 @@ public class 字符 {
         return false;
     }
 
-    public static Integer 取出现次数(String $文本, String $内容) {
+    public static Integer 取出现次数(String $文本,String $内容) {
 
         Integer $次数 = 0;
         Integer $位置 = -1;
