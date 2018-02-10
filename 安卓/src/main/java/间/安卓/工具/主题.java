@@ -9,7 +9,25 @@ public class 主题 {
     private static int 小文本大小;
     private static int 默认填充;
     private static int 中等填充;
+    private static int 默认阴影;
+    private static int 默认圆角;
+    
+    public static void 置默认圆角(Object $阴影) {
+        默认圆角 = 视图.检查大小($阴影);
+    }
 
+    public static int 取默认圆角() {
+        return 默认圆角;
+    }
+    
+    public static void 置默认阴影(Object $阴影) {
+        默认阴影 = 视图.检查大小($阴影);
+    }
+
+    public static int 取默认阴影() {
+        return 默认阴影;
+    }
+    
     public static void 置中等填充(Object $填充) {
         中等填充 = 视图.检查大小($填充);
     }

@@ -12,7 +12,6 @@ public class YAML {
     public static String 转换(Object $对象) {
         if ($对象 == null) return null;
         try {
-            
             return YAML转换.writeValueAsString($对象);
         } catch (IOException $错误) {}
         return null;

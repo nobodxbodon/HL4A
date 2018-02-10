@@ -1,16 +1,18 @@
 package 间.安卓.脚本.组件;
 
-import 间.安卓.组件.*;
-import android.os.*;
-import org.mozilla.javascript.annotations.*;
-import 间.接口.*;
-import 间.安卓.脚本.*;
-import android.content.*;
-import 间.工具.*;
-import 间.收集.*;
-import 间.安卓.插件.界面插件;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import 间.安卓.工具.文件;
+import 间.安卓.插件.界面插件;
+import 间.安卓.组件.基本界面;
+import 间.安卓.脚本.JavaScript;
+import 间.安卓.脚本.基本脚本;
+import 间.工具.字符;
+import 间.工具.错误;
+import 间.接口.方法;
+import 间.接口.调用;
+import 间.收集.哈希表;
 
 public class 脚本界面 extends 基本界面 {
 

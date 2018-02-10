@@ -79,8 +79,8 @@ public class 视图 {
     }
 
     public static Integer 检查颜色(Object $颜色) {
-        if ($颜色 instanceof Integer)
-            return (Integer) $颜色;
+        if ($颜色 instanceof Number)
+            return ((Number) $颜色).intValue();
         if ($颜色 instanceof String && 字符.以开始((String)$颜色, "#"))
             return 颜色.转换((String)$颜色);
         return null;
