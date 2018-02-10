@@ -265,8 +265,8 @@ public class 反射 {
                     if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {
                         return null;
                     }
-                    $返回集合.添加($单个参数);
                 }
+                $返回集合.添加(数组.转换($数组类型,$剩余参数));
             } else if (!是子类($类,$参数[$键值].getClass())) {
                 return null;
             } else {
@@ -297,9 +297,8 @@ public class 反射 {
                     if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {
                         return null;
                     }
-                    $返回集合.添加($单个参数);
                 }
-                
+                $返回集合.添加(数组.转换($数组类型,$剩余参数));
             } else if (!是子类($类,$参数[$键值].getClass())) {
                 return null;
             } else {

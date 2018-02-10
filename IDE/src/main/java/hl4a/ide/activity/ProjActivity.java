@@ -234,7 +234,7 @@ public class ProjActivity extends 基本界面 {
         }
     };
 
-    public void 打包APK(Object[] $参数) {
+    public void 打包APK() {
         if (检查()) return;
         协议.隐藏();
         if (!工程.检查包名(当前.信息.包名)) {
@@ -287,7 +287,7 @@ public class ProjActivity extends 基本界面 {
         @Override
         public Object 调用(Object[] $参数) {
             if (更改设置.调用() == null) return null;
-            打包APK(null);
+            打包APK();
             return null;
         }
     };
