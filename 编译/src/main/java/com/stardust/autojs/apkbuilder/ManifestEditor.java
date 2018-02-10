@@ -1,19 +1,15 @@
 package com.stardust.autojs.apkbuilder;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+import java.util.List;
 import pxb.android.StringItem;
 import pxb.android.axml.AxmlReader;
 import pxb.android.axml.AxmlWriter;
 import pxb.android.axml.NodeVisitor;
-import 间.工具.*;
-import 间.安卓.工具.*;
-import 间.收集.*;
-import java.util.*;
+import 间.工具.字节;
+import 间.工具.流;
 
 /**
  * Created by Stardust on 2017/10/23.
@@ -67,7 +63,7 @@ public class ManifestEditor {
 
     public ManifestEditor commit() throws IOException {
         AxmlWriter writer = new MutableAxmlWriter();
-        AxmlReader reader = new AxmlReader(IOUtils.readFully(mManifestInputStream, mManifestInputStream.available()));
+        AxmlReader reader = new AxmlReader(字节.读取(mManifestInputStream));
         reader.accept(writer);
         mManifestData = writer.toByteArray();
         return this;

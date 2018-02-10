@@ -44,7 +44,11 @@ public class 符号栏 extends 水平滚动 {
         @Override
         public Object 调用(Object[] $参数) {
             String $符号 = ((文本视图)((线性布局)$参数[0]).取子元素("文本")).取文本();
-            框.插入($符号);
+            switch ($符号) {
+                case "格式化":;break;
+                default:
+                    框.插入($符号);
+            }
             return null;
         }
     };

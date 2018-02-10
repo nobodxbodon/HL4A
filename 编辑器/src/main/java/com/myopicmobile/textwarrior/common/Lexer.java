@@ -222,7 +222,7 @@ public class Lexer {
                             tokens.add(new Pair(idx, OPERATOR));
                             break;
                         default:
-                            if (JavaScript.替换关键字表.检查(name)) {
+                            if (JavaScript.替换关键字表.检查键值(name)) {
                                 tokens.add(new Pair(idx, KEYWORD));
                                 break;
                             } else if (JavaScript.是工具类(name) || (name.length() == 1 && language.isOperator(name.charAt(0)))) {

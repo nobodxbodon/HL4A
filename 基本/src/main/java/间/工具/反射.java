@@ -1,9 +1,11 @@
 package 间.工具;
 
-import java.lang.reflect.*;
-import java.util.*;
-import 间.收集.*;
-import android.util.Log;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.List;
+import 间.收集.集合;
+import 间.收集.哈希表;
 
 public class 反射 {
 
@@ -260,12 +262,12 @@ public class 反射 {
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
                 Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
-                    if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
+                    if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {
                         return null;
                     }
+                    $返回集合.添加($单个参数);
                 }
-                $返回集合.添加(数组.转换($数组类型,$剩余参数));
-            } else if (!$类.isAssignableFrom($参数[$键值].getClass())) {
+            } else if (!是子类($类,$参数[$键值].getClass())) {
                 return null;
             } else {
                 $返回集合.添加($参数[$键值]);
@@ -292,12 +294,13 @@ public class 反射 {
                 Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
                 Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
-                    if (!$数组类型.isAssignableFrom($单个参数.getClass())) {
+                    if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {
                         return null;
                     }
+                    $返回集合.添加($单个参数);
                 }
-                $返回集合.添加(数组.转换($数组类型,$剩余参数));
-            } else if (!$类.isAssignableFrom($参数[$键值].getClass())) {
+                
+            } else if (!是子类($类,$参数[$键值].getClass())) {
                 return null;
             } else {
                 $返回集合.添加($参数[$键值]);
@@ -314,5 +317,45 @@ public class 反射 {
         }
         return $参数类组;
     }
-
+    
+    private static Class i = int.class;
+    private static Class l = long.class;
+    private static Class b = boolean.class;
+    private static Class f = float.class;
+    private static Class c = char.class;
+    private static Class d = double.class;
+    private static Class s = short.class;
+    private static Class by = byte.class;
+    private static Class I = Integer.class;
+    private static Class L = Long.class;
+    private static Class B = Boolean.class;
+    private static Class F = Float.class;
+    private static Class C = Character.class;
+    private static Class D = Double.class;
+    private static Class S = Short.class;
+    private static Class By = Byte.class;
+    
+    private static 哈希表<Class,Class> 对应表 = new 哈希表<>();
+    
+    static {
+        对应表.设置(i,I);
+        对应表.设置(l,L);
+        对应表.设置(b,B);
+        对应表.设置(f,F);
+        对应表.设置(c,C);
+        对应表.设置(i,I);
+        对应表.设置(d,D);
+        对应表.设置(s,S);
+        对应表.设置(by,By);
+    }
+    
+    public static boolean 是子类(Class<?> $类,Class<?> $子类) {
+        if ($类.isAssignableFrom($子类)) {  
+            return true;
+        } else if(对应表.双查键值对($类,$子类)) {
+            return true;
+        }
+        return false;
+    }
+    
 }

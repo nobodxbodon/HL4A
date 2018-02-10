@@ -55,6 +55,8 @@ public interface 基本视图 {
     public void 置背景(Object $背景);
     public void 置背景颜色(Object $颜色);
 
+    public void 置阴影(Object $阴影);
+    
     /*
 
     @Override

@@ -133,7 +133,7 @@ class TokenStream
 // #string_id_map#
 // The following assumes that Token.EOF == 0
         
-        if (JavaScript.替换关键字表.检查(name)) {
+        if (JavaScript.替换关键字表.检查键值(name)) {
             name = (String)JavaScript.替换关键字表.读取(name);
             // 至于执行效率，，去他妈的吧
         }
@@ -318,7 +318,7 @@ class TokenStream
     {
 // #string_id_map#
 // The following assumes that Token.EOF == 0
-        if (JavaScript.替换关键字表.检查(name)) {
+        if (JavaScript.替换关键字表.检查键值(name)) {
             name = (String)JavaScript.替换关键字表.读取(name);
         }
         

@@ -16,8 +16,24 @@ public class 哈希表<键值, 内容> extends HashMap<键值, 内容> {
         return size();
     }
 
-    public Boolean 检查(Object $键值) {
+    public Boolean 检查键值(键值 $键值) {
         return containsKey($键值);
+    }
+    
+    public Boolean 检查内容(内容 $键值) {
+        return containsValue($键值);
+    }
+    
+    public Boolean 正查键值对(键值 $键值,内容 $内容) {
+        return containsKey($键值) && 读取($键值).equals($内容);
+    }
+    
+    public Boolean 反查键值对(内容 $键值,键值 $内容) {
+        return 正查键值对($内容,$键值);
+    }
+    
+    public Boolean 双查键值对(键值 $键值,键值 $内容) {
+        return 正查键值对($键值,(内容)$内容) || 反查键值对((内容)$键值,$内容);
     }
 
     public 哈希表<键值,内容> 设置(键值 $键值, 内容 $内容) {

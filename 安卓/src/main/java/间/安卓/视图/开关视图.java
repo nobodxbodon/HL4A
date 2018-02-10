@@ -314,5 +314,9 @@ public class 开关视图 extends Switch implements 基本视图 {
     public void 置左右填充(Object $填充) {
         视图实现.置左右填充(this,$填充);
     }
-
+    
+    @Override
+    public void 置阴影(Object $阴影) {
+        视图实现.置阴影(this, $阴影);
+    }
 }

@@ -9,11 +9,13 @@ var 扩类 = JavaImporter;
 
 导入类(ha.工具.线程,ha.工具.文件);
 
-导入包(java.lang,java.io,java.util,android.os,android.content);
+导入包(java.lang,java.io,java.util,
+android.os,android.content,android.util,
+android.view,android.widget);
 
 导入包(h.工具,h.收集,h.接口);
-导入包(ha.插件,ha.工具,ha.弹窗,ha.线程,ha.组件,ha.绘画);
-导入包(ha.视图,ha.视图.扩展,ha.视图.适配器);
+导入包(ha.插件,ha.工具,ha.弹窗,ha.组件,ha.绘画);
+导入包(ha.视图,ha.视图.扩展,ha.视图.适配器,ha.视图.实现);
 
 // 不手动导入就会报混淆错
 

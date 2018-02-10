@@ -13,10 +13,10 @@ import com.myopicmobile.textwarrior.common.DocumentProvider;
 import com.myopicmobile.textwarrior.common.LanguageJavascript;
 import com.myopicmobile.textwarrior.common.LanguageLua;
 import com.myopicmobile.textwarrior.common.Lexer;
-import 间.安卓.工具.主题;
 import 间.安卓.工具.文件;
 import 间.安卓.工具.视图;
 import 间.安卓.工具.转换;
+import 间.安卓.脚本.JavaScript;
 import 间.安卓.视图.事件.代码选中;
 import 间.安卓.视图.实现.基本视图;
 import 间.安卓.视图.实现.视图实现;
@@ -42,6 +42,8 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
     private int _index;
 
     public 方法 选中文本事件;
+    
+    public JavaScript 环境;
 
     public 代码框(Context $上下文) {
         super($上下文);
@@ -302,7 +304,7 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
         replaceText(0, getLength() - 1, c.toString());
     }
 
-    public void 置文本(CharSequence c) {
+    public void 置文本(String c) {
         Document doc=new Document(this);
         doc.setWordWrap(_isWordWrap);
         doc.setText(c);
@@ -378,6 +380,11 @@ public class 代码框 extends FreeScrollingTextField implements 基本视图  {
     @Override
     public void 置左右填充(Object $填充) {
         视图实现.置左右填充(this,$填充);
+    }
+    
+    @Override
+    public void 置阴影(Object $阴影) {
+        视图实现.置阴影(this, $阴影);
     }
 
 }

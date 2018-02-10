@@ -210,5 +210,10 @@ public class 水平滚动 extends HorizontalScrollView implements 基本布局 {
     public void 置左右填充(Object $填充) {
         视图实现.置左右填充(this,$填充);
     }
+    
+    @Override
+    public void 置阴影(Object $阴影) {
+        视图实现.置阴影(this, $阴影);
+    }
 
 }

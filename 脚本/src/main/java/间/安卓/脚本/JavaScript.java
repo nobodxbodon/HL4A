@@ -14,8 +14,6 @@ public class JavaScript implements 基本脚本 {
         return "JavaScript";
     }
 
-    public static String 实例 = "提示工具.普通(\"你好 世界 ~\");";
-
     public static 哈希表 替换关键字表 = new 哈希表();
 
     public static String[][] 默认替换表 = {
@@ -62,14 +60,18 @@ public class JavaScript implements 基本脚本 {
         "间.安卓.网络","间.安卓.组件",
         "间.安卓.绘画","间.安卓.视图",
         "间.安卓.视图.扩展","间.安卓.视图.适配器",
+       "间.安卓.视图.实现",
         "间.工具","间.数据","间.收集","间.接口",
+        "java.lang","java.io","java.util",
+        "android.os","android.util","android.content",
+        "android.view","android.widget"
     };
     
     public static 哈希表<String,Class<?>> 类缓存表 = new 哈希表<>();
     public static 哈希表<String,Boolean> 类检查表 = new 哈希表<>();
     
     public static boolean 是工具类(String $名称) {
-        if (类检查表.检查($名称)) {
+        if (类检查表.检查键值($名称)) {
             return 类检查表.读取($名称) == true;
         }
         Class<?> $类;
@@ -85,7 +87,7 @@ public class JavaScript implements 基本脚本 {
     }
     
     public static Class<?> 找工具类(String $名称) {
-        if (类缓存表.检查($名称)) {
+        if (类缓存表.检查键值($名称)) {
             return 类缓存表.读取($名称);
         }
         Class<?> $类;

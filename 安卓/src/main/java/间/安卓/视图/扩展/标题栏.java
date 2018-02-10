@@ -28,8 +28,7 @@ public class 标题栏 extends 线性布局 {
 
         上下文 = $上下文;
         
-        if (设备.取SDK()  >= 21)
-        setTranslationZ(视图.检查大小("4dp"));
+        置阴影("4dp");
         
         置标签("标题");
         置方向("水平");
@@ -72,7 +71,7 @@ public class 标题栏 extends 线性布局 {
     public void 切换() {
         标题对象.置文本颜色(主题.取主题颜色().取控件色());
         置背景(颜色.白色);
-        setTranslationZ(0);
+        置阴影(0);
     }
 
     public String 取标题() {

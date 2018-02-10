@@ -8,6 +8,7 @@ import 间.安卓.工具.文件;
 import 间.安卓.工具.应用;
 import 间.工具.ZIP;
 import 间.安卓.工具.处理;
+import 间.安卓.工具.提示;
 
 public class 启动界面 extends 基本界面 {
 
@@ -18,7 +19,7 @@ public class 启动界面 extends 基本界面 {
     }
     
     public void 释放文件() {
-        if (文件.自身变更("系统变更")) {
+        if (文件.自身变更("$_系统变更")) {
             文件.删除("#");
             ZIP.解压(应用.取安装包位置(),"#");
         }

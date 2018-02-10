@@ -18,6 +18,10 @@ public final class 视图实现 {
 
     // 因为侧滑界面和其他一些也需要设置这个，所以干脆反射了
 
+    public static void 置阴影(View $视图,Object $阴影) {
+        if (设备.取SDK()  >= 21)
+        $视图.setTranslationZ(视图.检查大小($阴影));
+    }
 
     public static void 置布局重力(View $视图,String $重力) {
         ViewGroup.LayoutParams $设置 = $视图.getLayoutParams();

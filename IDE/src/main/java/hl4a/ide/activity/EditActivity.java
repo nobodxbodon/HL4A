@@ -92,6 +92,22 @@ public class EditActivity extends 基本界面 {
         新建弹窗.置左按钮("取消", 新建弹窗.隐藏);
         新建弹窗.置中按钮("文件", 文件新建);
         新建弹窗.置右按钮("目录", 目录新建);
+    
+        布局.代码.置代码选中事件(调用.代理(this,"代码选中"));
+    }
+    
+    
+    
+    public void 代码选中(Boolean active,Integer selStart,Integer selEnd) {
+        if (active) {
+            布局.标题.隐藏();
+            布局.符号.隐藏();
+            布局.选中标题.显示();
+        } else {
+            布局.标题.显示();
+            布局.符号.显示();
+            布局.选中标题.隐藏();
+        }
     }
     
     方法 长按 = new 方法() {

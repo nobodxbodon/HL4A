@@ -213,6 +213,10 @@ public class 滚动视图 extends ScrollView implements 基本布局 {
         视图实现.置左右填充(this,$填充);
     }
     
+    @Override
+    public void 置阴影(Object $阴影) {
+        视图实现.置阴影(this, $阴影);
+    }
     
     
 }

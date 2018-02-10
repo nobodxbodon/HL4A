@@ -72,6 +72,10 @@ public class 集合<类型> extends ArrayList<类型> {
     public Boolean 检查(int $键值) {
         return 读取($键值) == null;
     }
+    
+    public Boolean 检查(Object $内容) {
+        return contains($内容);
+    }
 
     public int 数量() {
         return size();

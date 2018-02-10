@@ -27,7 +27,7 @@
  * _caretPosition == 257 + 12 + 28 + 4 == 301
  *
  * Note 1: EOF (End Of File) is a real char with a length of 1
- * Note 2: Characters enclosed in parentheses are non-printable
+ * Note 2: Characters e7nclosed in parentheses are non-printable
  *
  *****************************************************************************
  *
@@ -242,7 +242,7 @@ implements Document.TextFieldMetrics{
     
     public void format(){
         selectText(false);
-        CharSequence text="";
+        CharSequence text = AutoIndent.format(createDocumentProvider().toString(), _autoIndentWidth);
         _hDoc.beginBatchEdit();
         _hDoc.deleteAt(0,_hDoc.docLength()-1,System.nanoTime());
         _hDoc.insertBefore(text.toString().toCharArray(), 0, System.nanoTime());

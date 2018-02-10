@@ -27,7 +27,7 @@ public class 弹出菜单 extends ListPopupWindow {
         @Override
         public Object 调用(Object[] $参数) {
             int $位置 = $参数[2];
-            if (单击.检查($位置)) {
+            if (单击.检查键值($位置)) {
                 方法 $单击 = (方法)单击.读取($位置);
                 调用.事件($单击);
             }

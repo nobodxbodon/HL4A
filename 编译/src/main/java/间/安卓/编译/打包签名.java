@@ -1,12 +1,10 @@
 package 间.安卓.编译;
 
 import com.stardust.autojs.apkbuilder.ManifestEditor;
-import pxb.android.tinysign.TinySign;
 import zhao.arsceditor.ResDecoder.ARSCDecoder;
 import 间.安卓.工具.文件;
-import 间.工具.流;
 import 间.工具.ZIP;
-import java.io.File;
+import 间.工具.流;
 
 public class 打包签名 {
 

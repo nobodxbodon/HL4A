@@ -15,7 +15,7 @@ public class 基本服务 extends Service {
     }
 
     public boolean 检查事件(String $名称) {
-        return 所有事件.检查($名称);
+        return 所有事件.检查键值($名称);
     }
 
     public Object 调用事件(String $名称,Object... $参数) {
