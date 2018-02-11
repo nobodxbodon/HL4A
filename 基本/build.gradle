@@ -1,8 +1,8 @@
 apply plugin: 'java'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile fileTree(dir: 'libs', include: ['junit*.jar', 'hamcrest*.jar'])
+    testCompile "junit:junit:4.12"
+    testCompile "com.github.program_in_chinese:junit4_in_chinese:0.0.1"
 }
 
 sourceSets {
@@ -11,4 +11,8 @@ sourceSets {
             srcDirs = ["src/test/java"]
         }
     }
+}
+
+repositories {
+    mavenCentral()
 }
