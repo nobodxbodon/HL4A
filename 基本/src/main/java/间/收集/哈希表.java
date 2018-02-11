@@ -45,7 +45,7 @@ public class 哈希表<键值, 内容> extends HashMap<键值, 内容> {
         return get($键值);
     }
 
-    public 哈希表<键值,内容> 删除(内容 $键值) {
+    public 哈希表<键值,内容> 删除(键值 $键值) {
         remove($键值);
         return this;
     }
