@@ -1,7 +1,5 @@
 package 间.工具;
 
-import android.content.*;
-import 间.接口.*;
 import java.lang.reflect.InvocationTargetException;
 
 public class 错误 {
