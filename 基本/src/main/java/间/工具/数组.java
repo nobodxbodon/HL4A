@@ -5,6 +5,19 @@ import java.lang.reflect.*;
 
 public class 数组 {
 
+
+    public static Object[] 反转(Class<?> $类,Object[] $数组) {
+
+        Object[] $返回 = 创建($类,$数组.length);
+
+        for (int $键值 = $数组.length - 1;$键值 >= 0;$键值 --)  {
+            $返回[$键值] = $数组[$键值];
+        }
+
+        return $返回;
+
+    }
+    
     public static Object[] 创建(Class<?> $类,int $长度) {
         return (Object[]) Array.newInstance($类, $长度);
     }

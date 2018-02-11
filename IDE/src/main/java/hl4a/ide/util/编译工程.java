@@ -87,6 +87,7 @@ public class 编译工程 {
                 JSC $JS = new JSC($单个.getPath());
                 $JS.置包名(工程.信息.包名);
                 $JS.置输出($输出);
+                $JS.置编译源码(true);
                 try {
                     String $返回 = $JS.编译();
                     字符.保存($单个.getPath(), $返回);
