@@ -80,10 +80,6 @@ class TokenStream
         return Token.EOF != stringToKeyword(s, version, isStrict);
     }
     
-    public static boolean 是关键字(String $关键字) {
-        return stringToKeywordForES($关键字,true) > Token.EOF;
-    }
-
     private static int stringToKeyword(String name, int version, boolean isStrict)
     {
         

@@ -25,6 +25,7 @@ public class MainActivity extends 基本界面 {
         super.onCreate($数据);
         布局 = new 布局_主页(this);
         final 弹出菜单 $菜单 = 布局.标题.取菜单();
+        /*
         $菜单.添加("配置签名", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {
@@ -33,6 +34,7 @@ public class MainActivity extends 基本界面 {
                     return null;
                 }
             });
+            */
         $菜单.添加("帮助/手册", new 方法() {
                 @Override
                 public Object 调用(Object[] $参数) {

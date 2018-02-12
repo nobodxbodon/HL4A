@@ -284,11 +284,11 @@ public class 基本界面 extends Activity {
         跳转脚本(null, $类, null);
     }
 
-    public void 跳转脚本(String $类,Object... $数据) {
+    public void 跳转脚本(String $类,Object[] $数据) {
         跳转脚本(null, $类 , $数据);
     }
 
-    public void 跳转脚本(Integer $请求码,String $类,Object... $数据) {
+    public void 跳转脚本(Integer $请求码,String $类,Object[] $数据) {
         $请求码 = $请求码 == null ? -1 : $请求码;
         Class<?> $组件 = 反射.取类("间.安卓.脚本.组件.脚本界面");
         Class<?> $界面 = 反射.取类("hl4a.runtime.ScriptActivity");

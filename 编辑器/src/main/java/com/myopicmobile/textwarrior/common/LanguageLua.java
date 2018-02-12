@@ -50,7 +50,6 @@ public class LanguageLua extends Language {
     }
     
     private LanguageLua(){
-        super.setOperators(LUA_OPERATORS);
         super.setKeywords(keywords);
         super.setNames(names);
         super.addBasePackage("io",package_io.split("\\|"));

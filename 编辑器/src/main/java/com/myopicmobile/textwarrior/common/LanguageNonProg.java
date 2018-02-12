@@ -29,7 +29,6 @@ public class LanguageNonProg extends Language{
     
     private LanguageNonProg(){
         super.setKeywords(keywords);
-        super.setOperators(operators);
     }
 
     @Override

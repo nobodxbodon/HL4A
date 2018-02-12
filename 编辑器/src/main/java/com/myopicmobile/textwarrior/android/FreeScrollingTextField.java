@@ -58,6 +58,7 @@ import java.util.*;
 import android.text.ClipboardManager;
 import com.myopicmobile.textwarrior.common.Pair;
 import 间.安卓.视图.*;
+import 间.安卓.工具.提示;
 
 /**
  * A custom text view that uses a solid shaded caret (aka cursor) instead of a
@@ -552,8 +553,7 @@ implements Document.TextFieldMetrics{
      * 绘制
      * @param canvas
      */
-    private void realDraw(Canvas canvas){
-
+    private void realDraw(Canvas canvas) {
         int beginPaintRow = getBeginPaintRow(canvas);
         int currentIndex = _hDoc.getLineOffset(beginPaintRow);
 
@@ -632,7 +632,6 @@ implements Document.TextFieldMetrics{
                 currSpan = nextSpan;
                 spanColor = _colorScheme.getTokenColor(currSpan.getSecond());
                 _brush.setColor(spanColor);
-
                 if(spanIndex < spans.size()){
                     nextSpan = (Pair) spans.get(spanIndex++);
                 }
@@ -669,10 +668,6 @@ implements Document.TextFieldMetrics{
         doOptionHighlightRow(canvas);
     }
 
-    private  void log(String log)
-    {
-        System.out.println("------------------>Free:"+log);
-    }
     /**
      * Underline the caret row if the option for highlighting it is set
      */
@@ -3167,7 +3162,7 @@ implements Document.TextFieldMetrics{
 			else if (newCursorPosition <= 0){
 				_fieldController.moveCaret(_caretPosition - text.length() - newCursorPosition);
 			}
-			log("setComposingText:"+text+","+newCursorPosition);
+			//log("setComposingText:"+text+","+newCursorPosition);
 			return true;
 		}
 
@@ -3179,7 +3174,7 @@ implements Document.TextFieldMetrics{
          */
 		@Override
 		public boolean commitText(CharSequence text, int newCursorPosition) {
-			log("commitText:"+text+","+newCursorPosition+","+_composingCharCount);
+			//log("commitText:"+text+","+newCursorPosition+","+_composingCharCount);
 			_fieldController.replaceComposingText(
 				getCaretPosition() - _composingCharCount,
 				_composingCharCount,
@@ -3292,7 +3287,7 @@ implements Document.TextFieldMetrics{
 
 		@Override
 		public boolean setSelection(int start, int end) {
-			log("setSelection:"+start+","+end);
+			//log("setSelection:"+start+","+end);
 
 			if(start == end){
 				if(start==0)

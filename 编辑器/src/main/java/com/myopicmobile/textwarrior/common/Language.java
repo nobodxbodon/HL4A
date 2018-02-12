@@ -26,20 +26,11 @@ public abstract class Language
     public final static String GLYPH_SPACE = "\u00b7";
     public final static String GLYPH_TAB = "\u00bb";
 
-
-  
-    public final static char[] BASIC_C_OPERATORS = {
-        '(', ')', '{', '}', '.', ',', ';', '=', '+', '-',
-        '/', '*', '&', '!', '|', ':', '[', ']', '<', '>',
-        '?', '~', '%', '^'
-    };
-
     protected HashMap<String, Integer> _keywords = new HashMap<String, Integer>(0);
     protected HashMap<String, Integer> _names = new HashMap<String, Integer>(0);
     protected HashMap<String, String[]> _bases = new HashMap<String, String[]>(0);
     protected HashMap<String, Integer> _users = new HashMap<String, Integer>(0);
-    protected HashMap<Character, Integer> _operators = generateOperators(BASIC_C_OPERATORS);
-    
+   
     private ArrayList<String> _ueserCache = new ArrayList<String>();
     private String[] _userWords=new String[0];
     private String[] _keyword;
@@ -115,25 +106,6 @@ public abstract class Language
         _users.put(name, Lexer.NAME);    
     }
 
-    protected void setOperators(char[] operators)
-    {
-        _operators = generateOperators(operators);
-    }
-
-    private HashMap<Character, Integer> generateOperators(char[] operators)
-    {
-        HashMap<Character, Integer> operatorsMap = new HashMap<Character, Integer>(operators.length);
-        for (int i = 0; i < operators.length; ++i)
-        {
-            operatorsMap.put(operators[i], Lexer.OPERATOR);
-        }
-        return operatorsMap;
-    }
-
-    public final boolean isOperator(char c)
-    {
-        return _operators.containsKey(Character.valueOf(c));
-    }
 
     public final boolean isKeyword(String s)
     {

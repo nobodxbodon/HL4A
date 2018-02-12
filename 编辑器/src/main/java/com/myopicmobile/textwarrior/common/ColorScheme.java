@@ -98,7 +98,7 @@ public abstract class ColorScheme {
         colors.put(Colorable.NON_PRINTING_GLYPH, 蓝色);//行号
         colors.put(Colorable.COMMENT, 绿色); //注释
         colors.put(Colorable.KEYWORD, 蓝色); //关键字
-        colors.put(Colorable.NAME, 蓝色); // Eclipse default color
+        colors.put(Colorable.NAME, 绿色); // Eclipse default color
         colors.put(Colorable.LITERAL, 蓝色); // Eclipse default color
         colors.put(Colorable.STRING, 暗红); //字符串
         colors.put(Colorable.SECONDARY, 淡蓝);//宏

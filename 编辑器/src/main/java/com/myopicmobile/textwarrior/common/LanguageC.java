@@ -61,7 +61,6 @@ public class LanguageC extends Language{
         System.arraycopy(header,0,diyWord,funtions.length,header.length);
         setKeywords(keywords);
         setNames(diyWord);
-        setOperators(BASIC_C_OPERATORS);
 
     }
 }

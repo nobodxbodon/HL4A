@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2013 Tah Wei Hoon.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2013 Tah Wei Hoon. * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License Version 2.0,
  * with full text available at http://www.apache.org/licenses/LICENSE-2.0.html
  *
@@ -12,12 +11,64 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import 间.安卓.脚本.JavaScript;
+import 间.工具.反射;
+import 间.收集.哈希表;
+import 间.收集.集合;
+import 间.安卓.工具.提示;
 
 /**
  * Does lexical analysis of a text for C-like languages.
  * The programming language syntax used is set as a static class variable.
  */
 public class Lexer {
+    
+    
+    private static String[] 工具类前缀 = {
+        "间.安卓.插件","间.安卓.组件",
+        "间.安卓.工具","间.安卓.弹窗",
+        "间.安卓.网络","间.安卓.组件",
+        "间.安卓.绘画","间.安卓.视图",
+        "间.安卓.视图.扩展","间.安卓.视图.适配器",
+        "间.安卓.视图.实现",
+        "间.工具","间.数据","间.收集","间.接口",
+        "java.lang","java.io","java.util",
+        "android.os","android.util","android.content",
+        "android.view","android.widget"
+    };
+
+    public static 哈希表<String,Class<?>> 类缓存表 = new 哈希表<>();
+    public static 哈希表<String,Boolean> 类检查表 = new 哈希表<>();
+
+    public static boolean 是工具类(String $名称) {
+        if (类检查表.检查键值($名称)) {
+            return 类检查表.读取($名称) == true;
+        }
+        Class<?> $类;
+        for (String $单个 : 工具类前缀) {
+            if (($类 = 反射.取类($单个 + "." + $名称))!= null) {
+                类检查表.设置($名称,true);
+                类缓存表.设置($名称,$类);
+                return true;
+            }
+        }
+        类检查表.设置($名称,false);
+        return false;
+    }
+
+    public static Class<?> 找工具类(String $名称) {
+        if (类缓存表.检查键值($名称)) {
+            return 类缓存表.读取($名称);
+        }
+        Class<?> $类;
+        for (String $单个 : 工具类前缀) {
+            if (($类 = 反射.取类($单个 + "." + $名称))!= null) {
+                类缓存表.设置($名称,$类);
+                return $类;
+            }
+        }
+        return null;
+    }
+    
     private final static int MAX_KEYWORD_LENGTH = 127;
 
     public final static int UNKNOWN = -1;
@@ -186,6 +237,21 @@ public class Lexer {
          * ------------------------------
          * 它的特点：first记录从哪开始有标记，second记录标记的类型
          */
+
+        public final static String[] 蓝色关键字 = {
+            "(", ")", "{", "}", ".", ",", ";",":", "[", "]","?",
+        };
+
+        public final static String[] 绿色关键字 = {
+            "=", "+", "-","/", "*", "&", "!", "|", "<", ">","~", "%", "^",
+        };
+
+        public 集合 蓝色集合 = 集合.到集合(蓝色关键字);
+        public 集合 绿色集合 = 集合.到集合(绿色关键字);
+
+        
+        
+        
         public void tokenize() {
             DocumentProvider hDoc = getDocument();
             Language language = Lexer.getLanguage();
@@ -222,12 +288,28 @@ public class Lexer {
                             tokens.add(new Pair(idx, OPERATOR));
                             break;
                         default:
+
                             if (JavaScript.替换关键字表.检查键值(name)) {
                                 tokens.add(new Pair(idx, KEYWORD));
                                 break;
-                            } else if (JavaScript.是工具类(name) || (name.length() == 1 && language.isOperator(name.charAt(0)))) {
+                            }  else if (是工具类(name)) {
                                 tokens.add(new Pair(idx, OPERATOR));
                                 break;
+                            } else if (蓝色集合.检查(name)) {
+                                tokens.add(new Pair(idx, OPERATOR));
+                                break;
+
+                            } else {
+                                boolean 状态 = true;
+                                for (int k = 0;k < name.length();k ++) {
+                                    if (!绿色集合.检查(name.substring(k, k + 1))) {
+                                        状态 = false;
+                                    }
+                                }
+                                if (状态) {
+                                    tokens.add(new Pair(idx, NAME));
+                                    break;
+                                }
                             }
                             tokens.add(new Pair(idx, NORMAL));
                     }
