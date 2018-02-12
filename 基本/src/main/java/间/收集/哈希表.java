@@ -71,14 +71,12 @@ public class 哈希表<键值, 内容> extends HashMap<键值, 内容> {
         return get($键值);
     }
 
-    public 哈希表<键值,内容> 删除(键值 $键值) {
-        remove($键值);
-        return this;
+    public 内容 删除(键值 $键值) {
+        return remove($键值);
     }
 
-    public 哈希表<键值,内容> 清空() {
+    public void 清空() {
         clear();
-        return this;
     }
 
 }
