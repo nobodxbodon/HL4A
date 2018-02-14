@@ -151,11 +151,11 @@ public class 字符 {
         return $文本.split($分隔, $最大位数);
     }
 
-    public static String 分解(Object $数组[]) {
+    public static String 分解(Object[] $数组) {
         return 分解($数组, "");
     }
 
-    public static String 分解(Object $数组[],String $分隔) {
+    public static String 分解(Object[] $数组,String $分隔) {
 
         if ($数组 == null)
             return null;

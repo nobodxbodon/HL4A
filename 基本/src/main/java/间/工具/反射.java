@@ -3,14 +3,21 @@ package 间.工具;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
-import 间.收集.集合;
 import 间.收集.哈希表;
+import 间.收集.集合;
 
 public class 反射 {
 
     public static ClassLoader 最新加载器 = 反射.class.getClassLoader();
 
+    public static Class<?>[] 取泛型(Object $实例) {
+        Type $类型 = $实例.getClass().getGenericSuperclass();
+        return (Class<?>[]) ((ParameterizedType) $类型).getActualTypeArguments();
+    }
+    
     public static Class<?> 取类(String $类名) {
         return 取类($类名, 最新加载器);
     }
@@ -259,7 +266,7 @@ public class 反射 {
         for (int $键值 = 0;$键值 < $类组.length;$键值 ++) {
             Class $类 = $类组[$键值];
             if ($键值 + 1 == $类组.length && Object[].class.isAssignableFrom($类)) {
-                Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
+                Object[] $剩余参数 = 数组.截取($参数, $键值, null);
                 Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
                     if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {
@@ -291,7 +298,7 @@ public class 反射 {
             Class $类 = $类组[$键值];
             if ($键值 + 1 == $类组.length && Object[].class.isAssignableFrom($类)) {
                 int $参数长度 = $参数.length - $类组.length;
-                Object[] $剩余参数 = 数组.截取(Object.class, $参数, $键值, null);
+                Object[] $剩余参数 = 数组.截取($参数, $键值, null);
                 Class<?> $数组类型 = $类.getComponentType();
                 for (Object $单个参数 : $剩余参数) {
                     if ($单个参数 != null && !是子类($数组类型,$单个参数.getClass())) {

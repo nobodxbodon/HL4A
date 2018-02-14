@@ -2,30 +2,35 @@ package 间.安卓.组件;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import java.io.Serializable;
-import 间.安卓.工具.布局;
+import 间.安卓.工具.图片;
 import 间.安卓.工具.应用;
 import 间.安卓.工具.提示;
-import 间.安卓.工具.服务.连接处理;
+import 间.安卓.工具.文件;
+import 间.安卓.工具.环境;
+import 间.安卓.工具.线程;
 import 间.安卓.工具.设备;
-import 间.安卓.视图.浏览器;
+import 间.安卓.插件.应用插件;
+import 间.安卓.插件.界面插件;
 import 间.工具.反射;
 import 间.工具.时间;
 import 间.工具.错误;
 import 间.接口.方法;
 import 间.接口.调用;
-import 间.收集.哈希表;
 import 间.收集.集合;
-import 间.安卓.工具.环境;
-import 间.安卓.插件.界面插件;
-import 间.安卓.插件.应用插件;
-import 间.安卓.工具.线程;
 
 public class 基本界面 extends Activity {
+
+    public static final int 请求码_图片选择 = 19132;
+    public static final int 请求码_权限请求 = 13133;
+
+    public static final int 返回码_成功 = Activity.RESULT_OK;
+    public static final int 返回码_失败 = Activity.RESULT_CANCELED;
+
 
     public Object[] 传入参数;
 
@@ -161,12 +166,12 @@ public class 基本界面 extends Activity {
 
 
     @Override
-    public void onActivityResult(int $请求码,int $结果码,Intent $意图) {
+    public void onActivityResult(int $请求码,int $返回码,Intent $意图) {
         super.onActivityResult($请求码, $请求码, $意图);
         for (界面插件 $单个 : 所有插件) {
-            $单个.界面回调事件($请求码, $结果码, $意图);
+            $单个.界面回调事件($请求码, $返回码, $意图);
         }
-        界面回调事件($请求码, $结果码, $意图);
+        界面回调事件($请求码, $返回码, $意图);
     }
 
     @Override

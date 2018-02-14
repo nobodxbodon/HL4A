@@ -96,6 +96,9 @@ public class 应用 {
         主题.置默认阴影("4dp");
         主题.置主题颜色(颜色.靛蓝);
         提示.初始化($应用);
+        if ($应用 instanceof 基本应用) {
+            图片.初始化((基本应用)$应用);
+        }
     }
 
     public static void 自动设置主题(Context $上下文) {

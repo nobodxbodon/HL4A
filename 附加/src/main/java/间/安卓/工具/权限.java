@@ -6,6 +6,7 @@ import android.os.*;
 import android.support.v4.app.*;
 import android.support.v4.content.*;
 import 间.工具.*;
+import 间.安卓.组件.基本界面;
 
 public class 权限 {
 
@@ -20,7 +21,7 @@ public class 权限 {
             设置.保存("上次请求","233");
             请求所有($界面);
             } else {
-                $界面.onRequestPermissionsResult(23333,new String[0],new int[0]);
+                $界面.onRequestPermissionsResult(基本界面.请求码_权限请求,new String[0],new int[0]);
             }
         //}
         
@@ -52,12 +53,12 @@ public class 权限 {
             String[] $所有 = 应用.取所有权限();
             请求权限($界面, $所有);
         } else {
-            $界面.onRequestPermissionsResult(23333,new String[0],new int[0]);
+            $界面.onRequestPermissionsResult(基本界面.请求码_权限请求,new String[0],new int[0]);
         }
     }
 
     public static void 请求权限(Activity $界面,String[] $权限) {
-        ActivityCompat.requestPermissions($界面, $权限, 23333);
+        ActivityCompat.requestPermissions($界面, $权限, 基本界面.请求码_权限请求);
     }
 
 }

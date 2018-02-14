@@ -117,7 +117,6 @@ public class ProjActivity extends 基本界面 {
         进度 = new 加载中弹窗(this);
         进度.置可关闭(false);
         创建按钮("配置签名").置单击事件(调用.配置(this, "配置签名"));
-        创建按钮("直接运行").置单击事件(直接运行);
         创建按钮("进入编辑").置单击事件(进入编辑);
         创建按钮("打包HPK").置单击事件(打包HPK);
         创建按钮("打包APK").置单击事件(协议.显示);
@@ -205,23 +204,6 @@ public class ProjActivity extends 基本界面 {
         提示.普通("配置成功 ~");
         签名.隐藏();
     }
-
-    方法 直接运行 = new 方法() {
-        @Override
-        public Object 调用(Object[] $参数) {
-            if (检查()) return null;
-            String $入口 = 当前.取地址(工程.源码目录, "入口.js");
-            if (!文件.是文件($入口)) {
-                提示.普通("没有入口文件 ！");
-            } else {
-                文件.替换地址("@", 当前.取地址("资源") + "/");
-                try {
-                    跳转脚本($入口);
-                } catch (Exception $错误) {}
-            }
-            return null;
-        }
-    };
 
     方法 打包HPK = new 方法() {
         @Override

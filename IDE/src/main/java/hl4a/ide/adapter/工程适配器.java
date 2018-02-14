@@ -3,6 +3,7 @@ package hl4a.ide.adapter;
 import android.view.View;
 import hl4a.ide.activity.ProjActivity;
 import hl4a.ide.layout.布局_新建工程;
+import hl4a.ide.layout.布局_适配器_工程;
 import hl4a.ide.util.工程;
 import java.io.File;
 import 间.安卓.工具.提示;
@@ -12,7 +13,6 @@ import 间.安卓.组件.基本界面;
 import 间.安卓.视图.列表视图;
 import 间.安卓.视图.文本视图;
 import 间.安卓.视图.适配器.数组适配器;
-import 间.安卓.资源.布局.布局_适配器_数组;
 import 间.接口.方法;
 import 间.收集.哈希表;
 
@@ -82,7 +82,7 @@ public class 工程适配器 extends 数组适配器 {
     public void 更新工程() {
         数据.清空();
         File[] $所有 = 文件.取文件列表(工程.工程目录);
-        添加项目("新建工程", null);
+        添加项目("新建工程", null,null);
         for (File $单个 : $所有) {
             if ($单个.isDirectory()) {
                 工程 $工程 = 工程.读取($单个.getName());
@@ -91,7 +91,7 @@ public class 工程适配器 extends 数组适配器 {
                         $工程.信息.包名 = $单个.getName();
                         $工程.保存();
                     }
-                    添加项目($工程.信息.工程名, $单个.getName());
+                    添加项目($工程.信息.工程名, $单个.getName(),$工程.取地址("图标.png"));
                 }
             }
         }
@@ -99,18 +99,33 @@ public class 工程适配器 extends 数组适配器 {
     }
 
 
-    void 添加项目(String $内容,String $地址) {
-        哈希表 $添加 = new 哈希表();
+    void 添加项目(String $内容,String $地址,String $图片) {
+        哈希表<String,String> $添加 = new 哈希表<>();
+        if ($图片 != null && !文件.是文件($图片)) {
+            $图片 = "#assets/android.png";
+        }
+        $添加.设置("图片", $图片);
         $添加.设置("内容", $内容);
         $添加.设置("地址", $地址);
         数据.添加($添加);
     }
 
     @Override
-    public View 处理(View $视图,哈希表 $参数) {
+    public View 创建() {
+        return new 布局_适配器_工程(上下文);
+    }
+    
+    @Override
+    public View 处理(View $视图,哈希表<String,String> $参数) {
         $视图.setTag($参数);
-        文本视图 $内容 = ((布局_适配器_数组)$视图).文本;
-        $内容.置文本((String)$参数.读取("内容"));
+        布局_适配器_工程 $工程 = (布局_适配器_工程)$视图;
+        String $图片 = $参数.读取("图片");
+        if ($图片 == null) {
+            $工程.背景.隐藏();
+        } else {
+            $工程.图片.置图片($图片);
+        }
+        $工程.文本.置文本($参数.读取("内容"));
         return $视图;
     }
 

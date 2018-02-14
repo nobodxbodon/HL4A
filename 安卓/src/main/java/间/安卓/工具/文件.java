@@ -1,11 +1,14 @@
 package 间.安卓.工具;
 
-import 间.工具.*;
-import android.os.*;
-import android.content.*;
-import android.net.*;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
-import java.io.File;
+import 间.工具.字符;
 
 public class 文件 extends 间.工具.文件 {
 
@@ -14,6 +17,31 @@ public class 文件 extends 间.工具.文件 {
         文件.替换地址("$", 取数据目录(""));
         文件.替换地址("#", 取自身目录(""));
     }
+    
+    public static String 取URI路径(Uri uri) {
+        if (null == uri) return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if (scheme == null)
+            data = uri.getPath();
+        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+            data = uri.getPath();
+        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+            Cursor cursor = 环境.取应用().getContentResolver().query(uri,new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    if (index > -1) {
+                        data = cursor.getString(index);
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
+    }
+
+    
     
     public static boolean 自身变更() {
         return 有变更(应用.取安装包位置());
